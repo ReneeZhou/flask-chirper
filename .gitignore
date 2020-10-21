@@ -131,4 +131,14 @@ dmypy.json
 # vscode settings
 .vscode
 
+# macOS
 .DS_Store
+
+# tailwind
+node_modules/
+package-lock.json
+package.json
+tailwind.config.js
+tailwind_default.config.js
+simulating_twitter/static/main.css
+src/styles.css

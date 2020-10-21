@@ -1,95 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Jekyll v4.1.1">
-  <title>Starter Template · Bootstrap</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulating Twitter</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
-
-  <!-- Bootstrap core CSS -->
-  <link href=" {{ url_for('static', filename = 'bootstrap.min.css') }}" rel="stylesheet">
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-  <!-- Custom styles for this template -->
-  <link href="{{ url_for('static', filename = 'main.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Username</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<body class="grid grid-cols-3 bg-gray-900 text-white font-semibold text-xl">
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Liked Posts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        <li class="dropdown my-sm-0">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+  <!-- layout left -->
+  <nav class="">
+    <div class="">
+      <ul class="flex flex-col">
+        <!-- Here we need a logic to control display some lists when page is short -->
+        <li>Twitter</li>
+        <li>Home</li>
+        <li>Explore</li>
+        <li>Notifications</li>
+        <li>Messages</li>
+        <li>Bookmarks</li>
+        <li>Lists</li>
+        <li>Profile</li>
+
+        <!-- this is the More Dropdown -->
+        <!-- Need logics to change what shows in the dropdown according to view height -->
+        <li>
+          <button>More</button>
+          <div>
+            <a href="#">Topics</a>
+            <a href="#">Moments</a>
+            <a href="#">Twitter Ads</a>
+            <a href="#">Analytics</a>
+            <a href="#">Settings and Privacy</a>
+            <a href="#">Help Center</a>
+            <a href="#">Display</a>
           </div>
         </li>
-      </ul>
 
-      <!-- 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-   -->
-    <div class="navbar-nav">
-      <a class="nav-item nav-link nav-justified" href="#">Login</a>
+        <li>Tweet</li>
+      </ul>
     </div>
 
+    <div class="">
+      <button>Renee</button>
+      <div>
+        <ul>
+          <li>Renee</li>
+          <li>George</li>
+        </ul>
+        <a href="#">Add an existing account</a>
+        <a href="#">Log out @renee</a>
+      </div>
     </div>
   </nav>
 
-  <main role="main" class="container">
+  <!-- layout middle -->
+  <main class="border-l border-r divide-y divide-2">
+    <h1>Home</h1>
+    <section>
+      What's happening?
+    </section>
+    <section>
+      Post 1
+    </section>
+    <section>
+      Post 2
+    </section>
+    <section>
+      Post 3
+    </section>
+  </main>
 
-    <div class="starter-template">
-      <h1>Bootstrap starter template</h1>
-      <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
-        mostly barebones HTML document.</p>
+
+  <!-- layout right -->
+  <aside class="flex flex-col mt-2 ml-8">
+    <div class="w-auto">
+      <form class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
+      divide-y divide-gray-600 m-4 p-4">Search Twitter</form>
+
+      <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
+      divide-y divide-gray-600 m-4 p-4">
+          <h3>Trends for you</h3>
+          <a href="#">Topic 1</a>
+          <a href="#">Topic 2</a>
+          <a href="#">Topic 3</a>
+          <a href="#">Show more</a>
+        <!-- </div> -->
+      </section>
+
+      <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
+      divide-y divide-gray-600 m-4 p-4">
+        <h3>Who to follow</h3>
+        <a href="#">Person 1</a>
+        <a href="#">Person 2</a>
+        <a href="#">Show more</a>
+      </section>
     </div>
 
-  </main><!-- /.container -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-  <script src="{{ url_for('static', filename = 'bootstrap.bundle.min.js') }}"></script>
+    <footer class="flex flex-row text-xs text-gray-600">
+      <a href="#" class="no-underline hover:underline">Terms of Service</a>
+      <a href="#" class="no-underline hover:underline">Privacy Policy</a>
+      <a href="#" class="no-underline hover:underline">Cookie Policy</a>
+      <a href="#" class="no-underline hover:underline">Ads info</a>
+      <div>
+        <button>More</button>
+        <ul>
+          <li>About</li>
+          <li>
+            <a href="#">Status</a>
+            <a href="#">Twitter for Business</a>
+            <a href="#">Developers</a>
+        </ul>
+      </div>
+      <p>(c) 2020 Twitter, Inc.</p>
+    </footer>
+  </aside>
+</body>
 
 </html>
