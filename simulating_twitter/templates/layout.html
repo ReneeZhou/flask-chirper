@@ -6,34 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulating Twitter</title>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
 </head>
 
 <body class="grid grid-cols-3 bg-gray-900 text-white font-semibold text-xl">
 
   <!-- layout left -->
-  <nav class="">
-    <div class="">
-      <ul class="flex flex-col">
+  <nav class="border-2 border-pink-500 m-2 flex flex-row justify-end">
+
+    <!-- an empty container to push the bar to the right -->
+    <div class="border-2 border-pink-200 m-2">Empty</div>
+
+    <!-- nav bar -->
+    <div class="border-2 border-pink-300 m-4 flex flex-col">
+      <ul class="border-2 border-pink-500 m-2">
         <!-- Here we need a logic to control display some lists when page is short -->
-        <li>Twitter</li>
-        <li>Home</li>
-        <li>Explore</li>
-        <li>Notifications</li>
-        <li>Messages</li>
-        <li>Bookmarks</li>
-        <li>Lists</li>
-        <li>Profile</li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Messages</a></li>
+        <li><a href="#">Bookmarks</a></li>
+        <li><a href="#">Lists</a></li>
+        <li><a href="#">Profile</a></li>
 
         <!-- this is the More Dropdown -->
         <!-- Need logics to change what shows in the dropdown according to view height -->
-        <li>
+        <li class="border-2 border-yellow-500 m-2">
           <button>More</button>
           <div>
+            <!-- this part of the menu change according to height -->
             <a href="#">Topics</a>
             <a href="#">Moments</a>
             <a href="#">Twitter Ads</a>
             <a href="#">Analytics</a>
+
+            <!-- this part has 3 items regardless -->
+            <div class="divide-y-0 divide-white"></div>
+
             <a href="#">Settings and Privacy</a>
             <a href="#">Help Center</a>
             <a href="#">Display</a>
@@ -42,17 +52,17 @@
 
         <li>Tweet</li>
       </ul>
-    </div>
 
-    <div class="">
-      <button>Renee</button>
-      <div>
-        <ul>
-          <li>Renee</li>
-          <li>George</li>
-        </ul>
-        <a href="#">Add an existing account</a>
-        <a href="#">Log out @renee</a>
+      <div class="border-2 border-pink-500 m-2">
+        <button>Renee</button>
+        <div>
+          <ul>
+            <li>Renee</li>
+            <li>George</li>
+          </ul>
+          <a href="#">Add an existing account</a>
+          <a href="#">Log out @renee</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -80,15 +90,17 @@
     <div class="w-auto">
       <form class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
       divide-y divide-gray-600 m-4 p-4">Search Twitter</form>
+      <!-- will add a dropdown of recent search when clicking on search bar -->
+
 
       <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
       divide-y divide-gray-600 m-4 p-4">
-          <h3>Trends for you</h3>
-          <a href="#">Topic 1</a>
-          <a href="#">Topic 2</a>
-          <a href="#">Topic 3</a>
-          <a href="#">Show more</a>
-        <!-- </div> -->
+        <h3>Trends for you</h3>
+        <!-- add a drop down menu to each of the topic on the top right corner -->
+        <a href="#">Topic 1</a>
+        <a href="#">Topic 2</a>
+        <a href="#">Topic 3</a>
+        <a href="#">Show more</a>
       </section>
 
       <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
