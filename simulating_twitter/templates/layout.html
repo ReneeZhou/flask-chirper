@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulating Twitter</title>
-
   <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
+
+  <title>{% block title %}{% endblock %} / Twitter - Simulator</title>
 </head>
 
 <body class="grid grid-cols-3 bg-gray-900 text-white font-semibold text-xl">
+
 
   <!-- layout left -->
   <nav class="border-2 border-pink-500 m-2 flex flex-row justify-end">
@@ -21,14 +22,14 @@
     <div class="border-2 border-pink-300 m-4 flex flex-col">
       <ul class="border-2 border-pink-500 m-2">
         <!-- Here we need a logic to control display some lists when page is short -->
-        <li><a href="#">Twitter</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Explore</a></li>
-        <li><a href="#">Notifications</a></li>
-        <li><a href="#">Messages</a></li>
-        <li><a href="#">Bookmarks</a></li>
-        <li><a href="#">Lists</a></li>
-        <li><a href="#">Profile</a></li>
+        <li><a href="{{ url_for('home') }}">Twitter</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('explore') }}">Explore</a></li>
+        <li><a href="{{ url_for('notifications') }}">Notifications</a></li>
+        <li><a href="{{ url_for('messages') }}">Messages</a></li>
+        <li><a href="{{ url_for('bookmarks') }}">Bookmarks</a></li>
+        <li><a href="{{ url_for('lists') }}">Lists</a></li>
+        <li><a href="{{ url_for('profile') }}">Profile</a></li>
 
         <!-- this is the More Dropdown -->
         <!-- Need logics to change what shows in the dropdown according to view height -->
@@ -50,7 +51,11 @@
           </div>
         </li>
 
-        <li>Tweet</li>
+        <div>
+          <button>
+            <a href="{{ url_for('tweet') }}">Tweet</a>
+          </button>
+          </div>
       </ul>
 
       <div class="border-2 border-pink-500 m-2">
@@ -60,75 +65,82 @@
             <li>Renee</li>
             <li>George</li>
           </ul>
-          <a href="#">Add an existing account</a>
-          <a href="#">Log out @renee</a>
+          <a href="{{ url_for('account_add') }}">Add an existing account</a>
+          <a href="{{ url_for('account_switch' )}}">Log out @renee</a>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- layout middle -->
-  <main class="border-l border-r divide-y divide-2">
-    <h1>Home</h1>
-    <section>
-      What's happening?
-    </section>
-    <section>
-      Post 1
-    </section>
-    <section>
-      Post 2
-    </section>
-    <section>
-      Post 3
-    </section>
-  </main>
-
+  <div class="border-2 border-pink-500 m-2 p-2">
+    <main class="border-l border-r divide-y divide-2 p-2">
+      <h1 class="p-2">{% block header %}{% endblock header %}</h1>
+      <section class="p-3">
+        What's happening?
+      </section>
+      <section class="p-1">
+        Post 1
+      </section>
+      <section class="p-1">
+        Post 2
+      </section>
+      <section class="p-1">
+        Post 3
+      </section>
+    </main>
+  </div>
 
   <!-- layout right -->
-  <aside class="flex flex-col mt-2 ml-8">
-    <div class="w-auto">
-      <form class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
+  <aside class="border-2 border-pink-300 flex flex-row mt-2 ml-8">
+    <div class="border-2 border-yellow-500 m-2 w-72">
+      <div class="border-2 border-pink-500 m-2">
+        <form class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
       divide-y divide-gray-600 m-4 p-4">Search Twitter</form>
-      <!-- will add a dropdown of recent search when clicking on search bar -->
+        <!-- will add a dropdown of recent search when clicking on search bar -->
 
 
-      <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
+        <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
       divide-y divide-gray-600 m-4 p-4">
-        <h3>Trends for you</h3>
-        <!-- add a drop down menu to each of the topic on the top right corner -->
-        <a href="#">Topic 1</a>
-        <a href="#">Topic 2</a>
-        <a href="#">Topic 3</a>
-        <a href="#">Show more</a>
-      </section>
+          <h3>Trends for you</h3>
+          <!-- add a drop down menu to each of the topic on the top right corner -->
+          <a href="#">Topic 1</a>
+          <a href="#">Topic 2</a>
+          <a href="#">Topic 3</a>
+          <a href="#">Show more</a>
+        </section>
 
-      <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
+        <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
       divide-y divide-gray-600 m-4 p-4">
-        <h3>Who to follow</h3>
-        <a href="#">Person 1</a>
-        <a href="#">Person 2</a>
-        <a href="#">Show more</a>
-      </section>
+          <h3>Who to follow</h3>
+          <a href="#">Person 1</a>
+          <a href="#">Person 2</a>
+          <a href="#">Show more</a>
+        </section>
+      </div>
+
+      <footer class="border-2 border-pink-500 m-2 flex flex-row text-xs text-gray-600">
+        <a href="#" class="no-underline hover:underline">Terms of Service</a>
+        <a href="#" class="no-underline hover:underline">Privacy Policy</a>
+        <a href="#" class="no-underline hover:underline">Cookie Policy</a>
+        <a href="#" class="no-underline hover:underline">Ads info</a>
+        <div>
+          <button>More</button>
+          <ul>
+            <li>About</li>
+            <li>
+              <a href="#">Status</a>
+              <a href="#">Twitter for Business</a>
+              <a href="#">Developers</a>
+          </ul>
+        </div>
+        <p>(c) 2020 Twitter, Inc.</p>
+      </footer>
     </div>
 
-    <footer class="flex flex-row text-xs text-gray-600">
-      <a href="#" class="no-underline hover:underline">Terms of Service</a>
-      <a href="#" class="no-underline hover:underline">Privacy Policy</a>
-      <a href="#" class="no-underline hover:underline">Cookie Policy</a>
-      <a href="#" class="no-underline hover:underline">Ads info</a>
-      <div>
-        <button>More</button>
-        <ul>
-          <li>About</li>
-          <li>
-            <a href="#">Status</a>
-            <a href="#">Twitter for Business</a>
-            <a href="#">Developers</a>
-        </ul>
-      </div>
-      <p>(c) 2020 Twitter, Inc.</p>
-    </footer>
+    <!-- extra container to align side bar -->
+    <div class="border-2 border-pink-500 m-2">Empty</div>
+
   </aside>
 </body>
 
