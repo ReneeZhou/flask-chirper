@@ -5,22 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
-  <link rel="shortcut icon" href="{{ url_for('static') }}"
-
   <title>{% block title %}{% endblock %} / Twitter - Simulator</title>
 </head>
 
 <body class="grid grid-cols-3 bg-gray-900 text-white font-semibold text-xl">
 
-
   <!-- layout left -->
-  <nav class="border-2 border-pink-500 m-2 flex flex-row justify-end">
-
-    <!-- an empty container to push the bar to the right -->
-    <div class="border-2 border-pink-200 m-2">Empty</div>
-
+  <nav class="border-2 borde-pink-500 m-2 justify-self-end">
     <!-- nav bar -->
-    <div class="border-2 border-pink-300 m-4 flex flex-col">
+    <div class="border-2 border-pink-300 m-4 flex flex-col justify-self-end">
       <ul class="border-2 border-pink-500 m-2">
         <!-- Here we need a logic to control display some lists when page is short -->
         <li><a href="{{ url_for('home') }}">Twitter</a></li>
@@ -57,6 +50,7 @@
             <a href="{{ url_for('tweet') }}">Tweet</a>
           </button>
         </div>
+
       </ul>
 
       <div class="border-2 border-pink-500 m-2">
@@ -70,11 +64,13 @@
           <a href="{{ url_for('account_switch' )}}">Log out @renee</a>
         </div>
       </div>
+
     </div>
   </nav>
 
+
   <!-- layout middle -->
-  <div class="border-2 border-pink-500 m-2 p-2">
+  <div class="border-2 border-pink-500 m-2 p-2 justify-self-center">
     <main class="border-l border-r">
       <h1 class="p-2">{% block header %}{% endblock header %}</h1>
 
@@ -83,8 +79,9 @@
     </main>
   </div>
 
+
   <!-- layout right -->
-  <aside class="border-2 border-pink-300 flex flex-row mt-2 ml-8">
+  <aside class="border-2 border-pink-300 flex flex-row mt-2 ml-8 justify-self-start">
     <div class="border-2 border-yellow-500 m-2 w-72">
       <div class="border-2 border-pink-500 m-2">
         <form class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
@@ -150,11 +147,8 @@
         <p>(c) 2020 Twitter, Inc.</p>
       </footer>
     </div>
-
-    <!-- extra container to align side bar -->
-    <div class="border-2 border-pink-500 m-2">Empty</div>
-
   </aside>
+
 </body>
 
 </html>
