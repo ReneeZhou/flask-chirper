@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
+    <title>{% block title %}{% endblock title%} / Twitter - simulator</title>
+</head>
+
+<body class="text-white border-orange-400 border-2 bg-gray-900 grid grid-cols-1">
+    <!-- <div class="border-2 justify-self-start"></div> -->
+    <div class="justify-self-center">{% block content %}{% endblock content %}</div>
+    <!-- <div class="border-2 justify-self-end"></div> -->
+</body>
+
+</html>

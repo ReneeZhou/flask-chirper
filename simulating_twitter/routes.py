@@ -1,12 +1,25 @@
-from simulating_twitter import app
 from flask import render_template, redirect, url_for
-
+from simulating_twitter import app
+from simulating_twitter.models import User, Post
+from simulating_twitter.forms import LoginForm, RegistrationForm
 
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html', \
         posts = posts, trends = trends, people = people)
+
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', form = form)
+
+
+@app.route('/signup', methods = ['GET', 'POST'])
+def signup():
+    form = RegistrationForm()
+    return render_template('signup.html', form = form)
 
 
 @app.route('/explore')

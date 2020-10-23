@@ -1,0 +1,36 @@
+{% extends 'layout_form.html' %}
+
+{% block title %}Login on Twitter{% endblock title %}
+
+{% block content %}
+<div class="border-2 border-green-300 m-2">
+
+    <form method="POST" action="" class="flex flex-col">
+        <!-- action="" posts us back to the same route -->
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Log in to Twitter</legend>
+            <div>
+                {{ form.email.label(class="") }}
+                {{ form.email(class="") }}
+            </div>
+            <div>
+                {{ form.password.label(class="") }}
+                {{ form.password(class="") }}
+            </div>
+        </fieldset>
+        <div>
+            {{ form.submit(class="") }}
+        </div>
+    </form>
+    <div>
+        <small>
+            <a href="#">Forgot password?</a>
+        </small>
+        <small>
+            <a href="{{ url_for('signup') }}">Sign up for Twitter</a>
+        </small>
+    </div>
+
+</div>
+{% endblock content %}

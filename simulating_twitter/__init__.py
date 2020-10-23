@@ -17,5 +17,4 @@ app.config.from_pyfile('config.py')
 
 db = SQLAlchemy(app)
 
-
 from simulating_twitter import routes

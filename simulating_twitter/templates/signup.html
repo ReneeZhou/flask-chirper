@@ -1,0 +1,32 @@
+{% extends 'layout_form.html' %}
+
+{% block title %}Sign up for Twitter{% endblock title %}
+
+{% block content %}
+    <form method="POST" action=""> <!-- action="" posts us back to the same route -->
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Create your account</legend>
+            <div>
+                {{ form.username.label(class="") }}
+                {{ form.username(class="") }}
+            </div>
+            <div>
+                {{ form.email.label(class="") }}
+                {{ form.email(class="") }}
+            </div>
+            <div>
+                {{ form.password.label(class="") }}
+                {{ form.password(class="") }}
+            </div>
+            <div>
+                {{ form.confirm_password.label(class="") }}
+                {{ form.confirm_password(class="") }}
+            </div>
+        </fieldset>
+        <div>
+            {{ form.submit(class="") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

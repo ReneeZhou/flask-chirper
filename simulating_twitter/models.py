@@ -1,5 +1,5 @@
-from simulating_twitter import db
 from datetime import datetime
+from simulating_twitter import db
 
 
 class User(db.Model):

@@ -143,3 +143,6 @@ tailwind_default.config.js
 simulating_twitter/static/main.css
 src/styles.css
 postcss.config.js
+
+# db
+simulating_twitter/site.db
