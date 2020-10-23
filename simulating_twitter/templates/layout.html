@@ -55,7 +55,7 @@
           <button>
             <a href="{{ url_for('tweet') }}">Tweet</a>
           </button>
-          </div>
+        </div>
       </ul>
 
       <div class="border-2 border-pink-500 m-2">
@@ -74,20 +74,11 @@
 
   <!-- layout middle -->
   <div class="border-2 border-pink-500 m-2 p-2">
-    <main class="border-l border-r divide-y divide-2 p-2">
+    <main class="border-l border-r">
       <h1 class="p-2">{% block header %}{% endblock header %}</h1>
-      <section class="p-3">
-        What's happening?
-      </section>
-      <section class="p-1">
-        Post 1
-      </section>
-      <section class="p-1">
-        Post 2
-      </section>
-      <section class="p-1">
-        Post 3
-      </section>
+
+      {% block content %}{% endblock content %}
+
     </main>
   </div>
 
@@ -104,17 +95,38 @@
       divide-y divide-gray-600 m-4 p-4">
           <h3>Trends for you</h3>
           <!-- add a drop down menu to each of the topic on the top right corner -->
-          <a href="#">Topic 1</a>
-          <a href="#">Topic 2</a>
-          <a href="#">Topic 3</a>
+          <a href="#">
+            {% for trend in trends %}
+            <div class="border border-gray-500">
+              <div class="text-xs text-gray-500 flex flex-row m-1">
+                <div>{{ trend.label }}</div>
+                <div>{{ trend.topic }}</div>
+              </div>
+              <div>{{ trend.content }}</div>
+              <div class="text-xs text-gray-500">{{ trend.tweet_count }}</div>
+            </div>
+            {% endfor %}
+          </a>
           <a href="#">Show more</a>
         </section>
 
         <section class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
       divide-y divide-gray-600 m-4 p-4">
           <h3>Who to follow</h3>
-          <a href="#">Person 1</a>
-          <a href="#">Person 2</a>
+          {% for person in people %}
+          <div class="flex flex-row">
+            <div class="flex flex-row">
+              <img> {{ person.icon }}
+              <div class="flex flex-col">
+                <div>{{ person.username }}</div>
+                <div class="text-base font-light text-gray-600">{{ person.handle}}</div>
+              </div>
+            </div>
+            <div class="border border-blue-600 rounded-full">
+              <button>Follow</button>
+            </div>
+          </div>
+          {% endfor %}
           <a href="#">Show more</a>
         </section>
       </div>

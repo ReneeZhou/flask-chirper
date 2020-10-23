@@ -15,5 +15,7 @@ app.config.from_pyfile('config.py')
 # overridden if this file exists in the instance folder
 
 
+db = SQLAlchemy(app)
+
 
 from simulating_twitter import routes

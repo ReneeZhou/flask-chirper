@@ -2,3 +2,36 @@
 
 {% block title %} Home {% endblock title %}
 {% block header %} Home {% endblock header%}
+
+{% block content %}
+<section class="p-3">What's happening?</section>
+
+{% for post in posts %}
+<section class="p-1 text-sm m-2">
+    <!-- <img class="w-2" src="{{ post.icon }}" alt="icon"> -->
+    <div class="flex flex-row m-1">
+        <a href="#" class="flex flex-row m-1">
+            <div class="nounderline hover:underline">{{ post.username }}</div>
+            <div>{{ post.handle }}</div>
+        </a>
+        <div class="m-1">{{ post.time }}</div>
+    </div>
+    <div class="m-1">
+        <div>{{ post.content }}</div>
+        <div class="flex flex-row p-1">
+            <button>{{ post.comment }}</button>
+            <button>{{ post.retweet }}</button>
+            <button>{{ post.like }}</button>
+            <div class="m-2">
+                <button>{{ post.share }}</button>
+                <ul class="flex flex-col">
+                    <li>Send via Direct Message</li>
+                    <li>Add Tweet to Bookmarks</li>
+                    <li>Copy link to Tweet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+{% endblock content%}

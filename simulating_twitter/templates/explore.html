@@ -1,5 +1,57 @@
 {% extends 'layout.html' %}
 
-{% block title %} Explore {% endblock title %}
-{% block header %} Trends for you {% endblock header %}
-<p> What's happening</p>
+{% block title %}Explore{% endblock title%}
+
+
+{% block header %}
+<form action="" method="">
+    <div class="bg-gray-800 rounded-full m-2">
+        <img>Search icon
+        <label for="search"></label>
+        <input type="text" name="search" placeholder="Search Twitter" class="bg-gray-800">
+    </div>
+    <div>
+        <ul>
+            <li>drop down search history 1</li>
+            <li>drop down search history 2</li>
+        </ul>
+    </div>
+    <!-- must hit enter to search -->
+    <!-- <input type="submit"> -->
+</form>
+{% endblock header %}
+
+
+{% block content %}
+<div class="h-2 bg-gray-800 border-gray-800"></div>
+<div class="m-2">
+    <h1>Trends for you</h1>
+    {% for trend in trends %}
+    <div class="border border-gray-500">
+        <div class="text-xs text-gray-500 flex flex-row m-1">
+            <div>{{ trend.label }}</div>
+            <div>{{ trend.topic }}</div>
+        </div>
+        <div>{{ trend.content }}</div>
+        <div class="text-xs text-gray-500">{{ trend.tweet_count }}</div>
+    </div>
+    {% endfor %}
+    <a href="#">Show more</a>
+
+</div>
+
+<div class="h-2 bg-gray-800 border-gray-800 flex flex-row ml-2"></div>
+<div class="m-2">
+    <h1>What's happening</h1>
+    {% for happening in happenings %}
+    <div class="border border-gray-500">
+        <div class="text-xs text-gray-500">
+            <div>{{ happening.label }}</div>
+            <div>{{ happening.time }}</div>
+        </div>
+        <div>{{ happening.title }}</div>
+    </div>
+    {% endfor %}
+    <a href="#">Show more</a>
+</div>
+{% endblock content %}
