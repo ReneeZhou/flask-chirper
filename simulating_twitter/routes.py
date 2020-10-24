@@ -4,13 +4,18 @@ from simulating_twitter.models import User, Post
 from simulating_twitter.forms import LoginForm, RegistrationForm
 
 @app.route('/')
+def home_notauth():
+    return render_template('home_notauth.html')
+
+
+# @app.rounte('/')
 @app.route('/home')
 def home():
     return render_template('home.html', \
         posts = posts, trends = trends, people = people)
 
 
-@app.route('/login')
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
     return render_template('login.html', form = form)
