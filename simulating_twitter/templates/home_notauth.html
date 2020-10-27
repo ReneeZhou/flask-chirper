@@ -8,48 +8,57 @@
     <title>Twitter. It's what's happening / Twitter</title>
 </head>
 
-<body class="grid grid-cols-2 grid-rows-2 bg-gray-900 text-white">
-    <div class="col-start-1 col-span-1 row-start-1 bg-blue-400">
-        <aside class="row-span-1 justify-self-center items-center text-lg font-bold whitespace-no-wrap">
-            <h2>Follow your interests.</h2>
-            <h2>Hear what people are talking about.</h2>
-            <h2>Join the conversation.</h2>
+<body class="bg-gray-900 text-white relative">
+    <div class="flex flex-row h-screen">
+        <aside class="bg-blue-400 w-1/2 text-lg font-bold flex flex-col items-center justify-center">
+            <div class="space-y-8">
+                <h2>Follow your interests.</h2>
+                <h2>Hear what people are talking about.</h2>
+                <h2>Join the conversation.</h2>
+            </div>
         </aside>
+
+        <main class="w-1/2 flex flex-col items-center justify-center">
+            <div class="w-96 space-y-12">
+                <h1 class="text-3xl font-bold">See what's happening in the world right now</h1>
+
+                <div class="flex flex-col space-y-4">
+                    <h4 class="font-semibold">Join Twitter today.</h4>
+
+                    <div class="flex flex-col space-y-4">
+                        <button class="bg-blue-500 rounded-full h-10 font-semibold hover:bg-blue-600">
+                            <a href="{{ url_for('signup') }}">Sign up</a>
+                        </button>
+                        <button class="border border-blue-500 rounded-full h-10 text-blue-500 font-semibold hover:bg-gray-800">
+                            <a href="{{ url_for('login') }}">Log in</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-    <main class="col-start-2 col-span-2 row-start-1 row-span-1 justify-self-center">
-        <img>Twitter Icon
-        <h1 class="text-3xl font-bold">See what's happening in the world right now</h1>
 
-        <div>
-            <h4 class="font-semibold">Join Twitter today.</h4>
-            <div class="bg-blue-500 rounded-full h-10 m-4 font-semibold text-center">
-                <a href="{{ url_for('signup') }}">Sign up</a>
-            </div>
-            <div class="border border-blue-500 rounded-full h-10 m-4 text-blue-500 font-semibold text-center">
-                <a href="{{ url_for('login') }}">Log in</a>
-            </div>
-        </div>
-    </main>
-    <footer class="col-span-2 row-start-2 flex flex-row flex-wrap items-center gap-1 text-gray-500 font-medium">
-        <small class="whitespace-no-wrap">About</small>
-        <small class="whitespace-no-wrap">Help Center</small>
-        <small class="whitespace-no-wrap">Terms of Service</small>
-        <small class="whitespace-no-wrap">Privacy Policy</small>
-        <small class="whitespace-no-wrap">Cookie Policy</small>
-        <small class="whitespace-no-wrap">Ads info</small>
-        <small class="whitespace-no-wrap">Blog</small>
-        <small class="whitespace-no-wrap">Status</small>
-        <small class="whitespace-no-wrap">Careers</small>
-        <small class="whitespace-no-wrap">Brand Resources</small>
-        <small class="whitespace-no-wrap">Advertising</small>
-        <small class="whitespace-no-wrap">Marketing</small>
-        <small class="whitespace-no-wrap">Twitter for Business</small>
-        <small class="whitespace-no-wrap">Developers</small>
-        <small class="whitespace-no-wrap">Directory</small>
-        <small class="whitespace-no-wrap">Settings</small>
-        <small class="whitespace-no-wrap">(c) 2020 Twitter, Inc.</small>
-    </footer>
-
+    <div class="fixed bottom-0 w-full tracking-wider bg-gray-900 flex flex-row justify-center">
+        <footer class="text-gray-500 font-light mx-3 my-3 space-x-2 tracking-wide leading-relaxed text-center">
+            <small class="">About</small>
+            <small class="">Help Center</small>
+            <small class="">Terms of Service</small>
+            <small class="">Privacy Policy</small>
+            <small class="">Cookie Policy</small>
+            <small class="">Ads info</small>
+            <small class="">Blog</small>
+            <small class="">Status</small>
+            <small class="">Careers</small>
+            <small class="">Brand Resources</small>
+            <small class="">Advertising</small>
+            <small class="">Marketing</small>
+            <small class="">Twitter for Business</small>
+            <small class="">Developers</small>
+            <small class="">Directory</small>
+            <small class="">Settings</small>
+            <small class="">(c) 2020 Twitter, Inc.</small>
+        </footer>
+    </div>
 </body>
 
 </html>
