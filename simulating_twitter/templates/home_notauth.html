@@ -18,27 +18,30 @@
             </div>
         </aside>
 
-        <main class="w-1/2 flex flex-col items-center">
-            <form class="h-24 flex flex-row space-x-4 text-gray-600 text-sm mt-4 ml-4 group">
-                <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-56 h-16 
-                group-hover:border-blue-500">
-                    <label for="username" class="mt-2 ml-2">Phone, email, or username</label>
-                    <input name="username" type="text" requred class="ml-2 bg-gray-800  bg-opacity-0 text-lg text-white
+        <main class="w-1/2 flex flex-col items-center justify-center relative">
+            <div class="fixed top-0">
+                <form class="h-24 flex flex-row space-x-4 text-gray-600 text-sm mt-4 ml-4">
+                    <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-56 h-16">
+                        <label for="username" class="mt-2 ml-2">Phone, email, or username</label>
+                        <input name="username" type="text" requred class="ml-2 bg-gray-800  bg-opacity-0 text-lg text-white
                      outline-none">
-                </div>
-                <div class="flex flex-col">
-                    <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-56 h-16 
-                    group-hover:border-blue-500">
-                        <label for="passpord" class="mt-2 ml-2">Password</label>
-                        <input name="password" type="password" requred class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white
-                         outline-none">
                     </div>
-                    <a href="#" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot password?</a>
-                </div>
-                <button class="border border-blue-500 rounded-full text-blue-500 text-base whitespace-no-wrap px-3 font-semibold h-10 w-20 py-2 ">Log in</button>
-            </form>
+                    <div class="flex flex-col">
+                        <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-56 h-16">
+                            <label for="passpord" class="mt-2 ml-2">Password</label>
+                            <input name="password" type="password" requred class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white
+                         outline-none">
+                        </div>
+                        <a href="#" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
+                            password?</a>
+                    </div>
+                    <button
+                        class="border border-blue-500 rounded-full text-blue-500 text-base whitespace-no-wrap px-3 font-semibold h-10 w-20 py-2">
+                        Log in</button>
+                </form>
+            </div>
 
-            <div class="w-96 space-y-12 border-2 border-red-300">
+            <div class="w-100 space-y-12">
                 <h1 class="text-3xl font-bold">See what's happening in the world right now</h1>
 
                 <div class="flex flex-col space-y-4">
