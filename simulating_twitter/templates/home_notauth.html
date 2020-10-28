@@ -35,8 +35,10 @@
                         <a href="#" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
                             password?</a>
                     </div>
-                    <button class="border border-blue-500 rounded-full text-blue-500 text-base font-semibold 
-                     mt-3 whitespace-no-wrap px-3 h-10 w-20 py-2 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Log in</button>
+                    <button
+                        class="border border-blue-500 rounded-full text-blue-500 text-base font-semibold 
+                     mt-3 whitespace-no-wrap px-3 h-10 w-20 py-2 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Log
+                        in</button>
                 </form>
             </div>
 
@@ -47,15 +49,15 @@
                     <h4 class="font-semibold">Join Twitter today.</h4>
 
                     <div class="flex flex-col space-y-4">
-                        <button class="bg-blue-500 rounded-full h-10 font-semibold 
-                        hover:bg-blue-600 focus:outline-none">
-                            <a href="{{ url_for('signup') }}">Sign up</a>
-                        </button>
-                        <button
-                            class="border border-blue-500 rounded-full h-10 text-blue-500 font-semibold
-                             hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">
-                            <a href="{{ url_for('login') }}">Log in</a>
-                        </button>
+                        <a href="{{ url_for('signup') }}">
+                            <button class="w-96 bg-blue-500 rounded-full h-10 font-semibold 
+                            hover:bg-blue-600 focus:outline-none">Sign up</button>
+                        </a>
+                        <a href="{{ url_for('login') }}">
+                            <button class="w-96 border border-blue-500 rounded-full h-10 text-blue-500 font-semibold
+                             hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Log in</button>
+                        </a>
+
                     </div>
                 </div>
             </div>
