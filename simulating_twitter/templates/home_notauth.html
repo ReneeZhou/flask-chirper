@@ -35,24 +35,25 @@
                         <a href="#" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
                             password?</a>
                     </div>
-                    <button
-                        class="border border-blue-500 rounded-full text-blue-500 text-base whitespace-no-wrap px-3 font-semibold h-10 w-20 py-2">
-                        Log in</button>
+                    <button class="border border-blue-500 rounded-full text-blue-500 text-base font-semibold 
+                     mt-3 whitespace-no-wrap px-3 h-10 w-20 py-2 focus:outline-none">Log in</button>
                 </form>
             </div>
 
-            <div class="w-100 space-y-12">
+            <div class="w-96 space-y-12">
                 <h1 class="text-3xl font-bold">See what's happening in the world right now</h1>
 
                 <div class="flex flex-col space-y-4">
                     <h4 class="font-semibold">Join Twitter today.</h4>
 
                     <div class="flex flex-col space-y-4">
-                        <button class="bg-blue-500 rounded-full h-10 font-semibold hover:bg-blue-600">
+                        <button class="bg-blue-500 rounded-full h-10 font-semibold 
+                        hover:bg-blue-600 focus:outline-none">
                             <a href="{{ url_for('signup') }}">Sign up</a>
                         </button>
                         <button
-                            class="border border-blue-500 rounded-full h-10 text-blue-500 font-semibold hover:bg-gray-800">
+                            class="border border-blue-500 rounded-full h-10 text-blue-500 font-semibold
+                             hover:bg-gray-800 focus:outline-none">
                             <a href="{{ url_for('login') }}">Log in</a>
                         </button>
                     </div>

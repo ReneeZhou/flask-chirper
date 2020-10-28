@@ -144,5 +144,8 @@ simulating_twitter/static/main.css
 src/styles.css
 postcss.config.js
 
-# db
+# ignore img
+simulating_twitter/static/img/ocean1.jpg
+simulating_twitter/static/img/ocean2.jpg
+simulating_twitter/static/img/ocean3.jpg
 simulating_twitter/site.db
