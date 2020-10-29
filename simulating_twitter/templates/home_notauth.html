@@ -5,39 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
-    <title>Twitter. It's what's happening / Twitter</title>
+    <title>Chirper. It's what's happening / Chirper</title>
 </head>
 
 <body class="bg-gray-900 text-white relative">
     <div class="flex flex-row h-screen">
-        <aside class="bg-blue-400 w-1/2 text-lg font-bold flex flex-col items-center justify-center">
-            <div class="space-y-8">
-                <div class="flex flex-row space-x-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="stroke-current stroke-1 w-8 h-8">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <h2>Follow your interests.</h2>
-                </div>
-                <div class="flex flex-row space-x-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="stroke-current stroke-1 w-8 h-8">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    <h2>Hear what people are talking about.</h2>
-                </div>
-                <div class="flex flex-row space-x-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="stroke-current stroke-1 w-8 h-8">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                    <h2>Join the conversation.</h2>
-                </div>
+        <div class="w-1/2 h-full bg-blue-400">
+            <div class="h-full w-full flex flex-col items-center justify-center bg-no-repeat bg-cover"
+            style="background-image: url('../static/img/bird_fill_blue.svg">
+                <aside class="text-lg font-bold text-white">
+                    <div class="space-y-8">
+                        <div class="flex flex-row space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="stroke-current stroke-1 w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <h2>Follow your interests.</h2>
+                        </div>
+                        <div class="flex flex-row space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="stroke-current stroke-1 w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            <h2>Hear what people are talking about.</h2>
+                        </div>
+                        <div class="flex flex-row space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="stroke-current stroke-1 w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            <h2>Join the conversation.</h2>
+                        </div>
+                    </div>
+                </aside>
             </div>
-        </aside>
+        </div>
 
         <main class="w-1/2 flex flex-col items-center justify-center relative">
             <div class="fixed top-0">
@@ -81,7 +86,7 @@
                     <h1 class="text-3xl font-bold">See what's happening in the world right now</h1>
                 </div>
                 <div class="flex flex-col space-y-5">
-                    <h4 class="font-semibold">Join Twitter today.</h4>
+                    <h4 class="font-semibold">Join Chirper today.</h4>
 
                     <div class="flex flex-col space-y-4">
                         <a href="{{ url_for('signup') }}">
@@ -113,11 +118,11 @@
             <a><small class="no-underline hover:underline">Brand Resources</small></a>
             <a><small class="no-underline hover:underline">Advertising</small></a>
             <a><small class="no-underline hover:underline">Marketing</small></a>
-            <a><small class="no-underline hover:underline">Twitter for Business</small></a>
+            <a><small class="no-underline hover:underline">Chirper for Business</small></a>
             <a><small class="no-underline hover:underline">Developers</small></a>
             <a><small class="no-underline hover:underline">Directory</small></a>
             <a><small class="no-underline hover:underline">Settings</small></a>
-            <a><small class="no-underline hover:underline">(c) 2020 Twitter, Inc.</small></a>
+            <a><small class="no-underline hover:underline">© 2020 Chirper, Inc.</small></a>
         </footer>
     </div>
 </body>
