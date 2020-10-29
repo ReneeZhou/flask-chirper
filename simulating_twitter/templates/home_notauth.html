@@ -9,11 +9,11 @@
 </head>
 
 <body class="bg-gray-900 text-white relative">
-    <div class="flex flex-row h-screen">
-        <div class="w-1/2 h-full bg-blue-400">
+    <div class="flex flex-col md:flex-row md:h-screen ">
+        <div class="order-2 md:order-1 md:w-1/2 md:h-full bg-blue-400">
             <div class="h-full w-full flex flex-col items-center justify-center bg-no-repeat bg-cover"
-            style="background-image: url({{ url_for('static', filename = 'img/bird_fill_blue.svg') }})">
-                <aside class="text-lg font-bold text-white">
+                style="background-image: url({{ url_for('static', filename = 'img/bird_fill_blue.svg') }})">
+                <aside class="text-lg font-bold text-white p-8">
                     <div class="space-y-8">
                         <div class="flex flex-row space-x-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -44,16 +44,16 @@
             </div>
         </div>
 
-        <main class="w-1/2 flex flex-col items-center justify-center relative">
-            <div class="fixed top-0">
+        <main class="order-1 md:order-2 md:w-1/2 flex flex-col items-center justify-center relative">
+            <div class="fixed top-0 invisible lg:visible">
                 <form class="h-24 flex flex-row space-x-4 text-gray-600 text-sm mt-4 ml-4">
-                    <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-56 h-16">
+                    <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-52 h-16">
                         <label for="username" class="mt-2 ml-2">Phone, email, or username</label>
                         <input name="username" type="text" requred class="ml-2 bg-gray-800  bg-opacity-0 text-lg text-white
                      outline-none">
                     </div>
                     <div class="flex flex-col">
-                        <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-56 h-16">
+                        <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-52 h-16">
                             <label for="passpord" class="mt-2 ml-2">Password</label>
                             <input name="password" type="password" requred class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white
                          outline-none">
@@ -68,8 +68,8 @@
                 </form>
             </div>
 
-            <div class="w-96 space-y-12">
-                <div class="space-y-5">
+            <div class="w-96 space-y-12 mb-6">
+                <div class="space-y-5 mt-4">
                     <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
                         xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 fill-current">
                         <g>
@@ -83,7 +83,7 @@
                                 d="m101.433 87.27-17.215 17.175c-5.865 5.851-5.876 15.349-.025 21.213 2.931 2.937 6.774 4.406 10.619 4.406 3.833 0 7.666-1.46 10.594-4.381l21.621-21.57c2.821-2.814 4.406-6.635 4.406-10.619v-78.035c0-8.284-6.716-15-15-15h-79.812c-8.284 0-15 6.716-15 15v71.811l-17.215 17.175c-5.865 5.851-5.876 15.349-.025 21.213 5.852 5.866 15.348 5.876 21.213.025l21.621-21.57c2.821-2.814 4.406-6.635 4.406-10.619v-63.035h49.812z" />
                         </g>
                     </svg>
-                    <h1 class="text-3xl font-bold">See what's happening in the world right now</h1>
+                    <h1 class="text-3xl font-bold leading-snug">See what's happening in the world right now</h1>
                 </div>
                 <div class="flex flex-col space-y-5">
                     <h4 class="font-semibold">Join Chirper today.</h4>
@@ -100,8 +100,20 @@
 
                     </div>
                 </div>
+
             </div>
         </main>
+        <div class="md:hidden order-3 flex flex-row self-center w-96 justify-between mt-8">
+            <a href="{{ url_for('signup') }}">
+                <button class="w-40 bg-blue-500 rounded-full h-10 font-semibold 
+                hover:bg-blue-600 focus:outline-none">Sign up</button> <!-- change to w-44 -->
+            </a>
+            <a href="{{ url_for('login') }}">
+                <button class="w-40 border border-blue-500 rounded-full h-10 text-blue-500 font-semibold
+                 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Log in</button>
+            </a>
+
+        </div>
     </div>
 
     <div class="fixed bottom-0 w-full tracking-wider bg-gray-900 flex flex-row justify-center">
