@@ -12,7 +12,7 @@
     <div class="flex flex-row h-screen">
         <div class="w-1/2 h-full bg-blue-400">
             <div class="h-full w-full flex flex-col items-center justify-center bg-no-repeat bg-cover"
-            style="background-image: url('../static/img/bird_fill_blue.svg">
+            style="background-image: url({{ url_for('static', filename = 'img/bird_fill_blue.svg') }})">
                 <aside class="text-lg font-bold text-white">
                     <div class="space-y-8">
                         <div class="flex flex-row space-x-3">
