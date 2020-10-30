@@ -5,18 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
-  <title>{% block title %}{% endblock %} / Twitter - Simulator</title>
+  <title>{% block title %}{% endblock %} / Chirper - Simulator</title>
 </head>
 
-<body class="grid grid-cols-3 bg-gray-900 text-white font-semibold text-xl">
+<body class="flex flex-row bg-gray-900 text-white font-semibold text-xl">
 
   <!-- layout left -->
   <nav class="border-2 borde-pink-500 m-2 justify-self-end flex flex-col">
     <!-- nav bar -->
-    <div class="border-2 border-pink-300 m-4 flex flex-col">
-      <ul class="border-2 border-pink-500 m-2">
+    <div class="flex flex-col">
+      <ul class="">
         <!-- Here we need a logic to control display some lists when page is short -->
-        <li><a href="{{ url_for('home') }}">Twitter</a></li>
+        <li><a href="{{ url_for('home') }}">Chirper</a></li>
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('explore') }}">Explore</a></li>
         <li><a href="{{ url_for('notifications') }}">Notifications</a></li>
@@ -27,18 +27,14 @@
 
         <!-- this is the More Dropdown -->
         <!-- Need logics to change what shows in the dropdown according to view height -->
-        <li class="border-2 border-yellow-500 m-2">
+        <li class="">
           <button>More</button>
           <div>
             <!-- this part of the menu change according to height -->
             <a href="#">Topics</a>
             <a href="#">Moments</a>
-            <a href="#">Twitter Ads</a>
+            <a href="#">Chirper Ads</a>
             <a href="#">Analytics</a>
-
-            <!-- this part has 3 items regardless -->
-            <div class="divide-y-0 divide-white"></div>
-
             <a href="#">Settings and Privacy</a>
             <a href="#">Help Center</a>
             <a href="#">Display</a>
@@ -47,7 +43,7 @@
 
         <div>
           <button>
-            <a href="{{ url_for('tweet') }}">Tweet</a>
+            <a href="{{ url_for('chirp') }}">Chirp</a>
           </button>
         </div>
 
@@ -85,7 +81,7 @@
     <div class="border-2 border-yellow-500 m-2 w-72">
       <div class="border-2 border-pink-500 m-2">
         <form class="flex flex-col bg-gray-800 bg-opacity-50 rounded-2xl overflow-visible
-      divide-y divide-gray-600 m-4 p-4">Search Twitter</form>
+      divide-y divide-gray-600 m-4 p-4">Search Chirper</form>
         <!-- will add a dropdown of recent search when clicking on search bar -->
 
 
@@ -101,7 +97,7 @@
                 <div>{{ trend.topic }}</div>
               </div>
               <div>{{ trend.content }}</div>
-              <div class="text-xs text-gray-500">{{ trend.tweet_count }}</div>
+              <div class="text-xs text-gray-500">{{ trend.chirp_count }}</div>
             </div>
             {% endfor %}
           </a>
@@ -140,11 +136,11 @@
             <li>About</li>
             <li>
               <a href="#">Status</a>
-              <a href="#">Twitter for Business</a>
+              <a href="#">Chirper for Business</a>
               <a href="#">Developers</a>
           </ul>
         </div>
-        <p>(c) 2020 Twitter, Inc.</p>
+        <p>© 2020 Chirper, Inc.</p>
       </footer>
     </div>
   </aside>
