@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
 </head>
 
-<body class="flex flex-row bg-gray-900 text-white">
-    <div class="flex flex-col items-center p-2">
+<body class="xs:flex xs:flex-row sm:flex sm:flex-row lg:grid lg:grid-cols-3 bg-gray-900 text-white">
+    <div class="col-span-1 justify-self-end flex flex-col items-center p-2">
         <!-- nav bar @xs bp -->
         <nav class="xs:flex sm:flex flex-col lg:hidden text-xl font-semibold space-y-3">
             <a href=" {{url_for('home') }}" class="rounded-full px-2">
@@ -318,17 +318,93 @@
             </a>
 
             <a href="{{ url_for('chirp') }}">
-                <button class="w-56 h-12 m-2 rounded-full bg-blue-500 font-semibold text-base">Chirp</button>
+                <button
+                    class="w-56 h-12 m-2 rounded-full bg-blue-500 hover:bg-blue-600 font-semibold text-base">Chirp</button>
             </a>
         </nav>
     </div>
-    <main class="h-screen w-148 border-l border-r divide-x border-gray-700">dummy
+    <main class="w-148 max-w-xl h-screen border-l border-r divide-x border-gray-700">dummy
         {% block header %}{% endblock header %}
     </main>
 
-    <aside class="">
-        <div>Trends for you</div>
-        <div>Who to follow</div>
+    <aside class="space-y-4 mt-2">
+        <!-- search bar -->
+        <div class="inline-flex w-88 text-gray-600 bg-gray-800 bg-opacity-75 rounded-full overflow-hidden
+          px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:text-blue-500">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="w-5 h-5 stroke-current focus:text-blue-500">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <form class="ml-4">
+                <label for="search"></label>
+                <input name="search" type="text" placeholder="Search Chirper"
+                    class="bg-gray-800 bg-opacity-0 outline-none">
+            </form>
+        </div>
+
+        <!-- trends template -->
+        <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
+            <div class="flex justify-between items-center px-4 py-1">
+                <div class="text-xl font-bold">Trends for you</div>
+                <div class="rounded-full hover:bg-blue-800 hover:bg-opacity-25 p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="w-6 h-6 stroke-current text-blue-500 stroke-2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50">
+                <div>
+                    <small class="text-gray-600">Trending in Taiwan</small>
+                    <p class="font-bold">China</p>
+                    <small class="text-gray-600">450K Chirps</small>
+                </div>
+                <div>
+                    <button
+                        class="focus:outline-none rounded-full hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            class="w-6 h-6 stroke-current stroke-2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl">
+                <a href="{{ url_for('trends') }}">Show more</a>
+            </div>
+        </div>
+
+
+        <!-- avatar template -->
+        <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
+            <div class="text-xl font-bold px-4 py-2">Who to follow</div>
+
+            <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50">
+                <div class="flex space-x-4">
+                    <a href="#">
+                        <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
+                            class="w-12 h-12 rounded-full">
+                    </a>
+                    <div>
+                        <a href="#" class="font-bold hover:underline">Renee Zhou</a>
+                        <p class="text-gray-600 text-base">@handle</p>
+                    </div>
+                </div>
+               
+                <button class="self-center rounded-full font-bold text-blue-500 px-4 h-8
+                border border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25">Follow</button>
+            </div>
+            
+
+            <div class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl">
+                <a href="{{ url_for('connect_people') }}">Show more</a>
+            </div>
+        </div>
     </aside>
 
 </body>
