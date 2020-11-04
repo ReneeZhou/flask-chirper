@@ -22,33 +22,35 @@
             </svg>
             <h1 class="text-2xl font-bold text-center">Log in to Chirper</h1>
 
-            <div class="space-y-5">
-                <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-500">
-                    <label class="mt-2 ml-2 text-sm text-gray-600 ">Phone, email, or username</label>
+            <div class="space-y-5 text-gray-500">
+                <!-- phone, email, username -->
+                <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-500 focus-within:text-blue-500">
+                    <label class="mt-2 ml-2 text-sm ">Phone, email, or username</label>
                     {% if form.email.errors %}
-                        {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none") }}
+                        {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                         {% for error in form.email.errors %}
                           <span>{{ error }}</span>
                         {% endfor %}
                     {% else %}
-                        {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none") }}
+                        {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                     {% endif %}
                 </div>
 
-                <div class="flex flex-col  bg-gray-700 bg-opacity-25 border-b-2 border-gray-500">
-                    {{ form.password.label(class="mt-2 ml-2 text-sm text-gray-600") }}
+                <!-- password -->
+                <div class="flex flex-col  bg-gray-700 bg-opacity-25 border-b-2 border-gray-500 focus-within:text-blue-500">
+                    {{ form.password.label(class="mt-2 ml-2 text-sm") }}
                     {% if form.password.errors %}
-                        {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none") }}
+                        {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                         {% for error in form.password.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     {% else %}
-                        {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none") }}
+                        {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                     {% endif %}
                 </div>
 
                 <div>
-                    {{ form.submit(class="rounded-full bg-blue-600 w-128 h-12 font-bold outline-none cursor-pointer") }}
+                    {{ form.submit(class="rounded-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 w-128 h-12 font-bold outline-none cursor-pointer text-white") }}
                 </div>
             </div>
         </div>

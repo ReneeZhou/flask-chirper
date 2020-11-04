@@ -47,13 +47,15 @@
         <main class="order-1 md:order-2 md:w-1/2 flex flex-col items-center justify-center relative">
             <div class="fixed top-0 invisible lg:visible">
                 <form class="h-24 flex flex-row space-x-4 text-gray-600 text-sm mt-4 ml-4">
-                    <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-52 h-16">
+                    <div
+                        class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-52 h-16 focus-within:text-blue-500 focus-within:border-blue-500">
                         <label for="username" class="mt-2 ml-2">Phone, email, or username</label>
                         <input name="username" type="text" requred class="ml-2 bg-gray-800  bg-opacity-0 text-lg text-white
                      outline-none">
                     </div>
                     <div class="flex flex-col">
-                        <div class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-52 h-16">
+                        <div
+                            class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-52 h-16 focus-within:text-blue-500 focus-within:border-blue-500">
                             <label for="passpord" class="mt-2 ml-2">Password</label>
                             <input name="password" type="password" requred class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white
                          outline-none">
@@ -63,7 +65,7 @@
                     </div>
                     <button
                         class="border border-blue-500 rounded-full text-blue-500 text-base font-semibold 
-                     mt-3 whitespace-no-wrap px-3 h-10 w-20 py-2 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Log
+                     mt-3 whitespace-no-wrap px-3 h-10 w-20 py-2 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none focus:bg-gray-700">Log
                         in</button>
                 </form>
             </div>
@@ -106,7 +108,7 @@
         <div class="md:hidden order-3 flex flex-row self-center w-96 justify-between mt-8">
             <a href="{{ url_for('signup') }}">
                 <button class="w-44 bg-blue-500 rounded-full h-10 font-semibold 
-                hover:bg-blue-600 focus:outline-none">Sign up</button> 
+                hover:bg-blue-600 focus:outline-none">Sign up</button>
             </a>
             <a href="{{ url_for('login') }}">
                 <button class="w-44 border border-blue-500 rounded-full h-10 text-blue-500 font-semibold
