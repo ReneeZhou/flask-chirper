@@ -2,6 +2,16 @@
 
 {% block title %} Home {% endblock title %}
 {% block header %} Home {% endblock header%}
+{% block svg %}
+<div class="svg-bg-div">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 stroke-current text-blue-500">
+
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+    </svg>
+</div>
+{% endblock svg %}
+
 
 {% block content %}
 <div class="flex flex-row my-2 mx-3 space-x-3">
@@ -18,7 +28,7 @@
         <form>
             <label for="chirp"></label>
             <textarea name="chirp" placeholder="What's happening?" maxlength="280" rows="1"
-                class="resize-none bg-gray-900 text-xl focus:outline-none"></textarea>
+                class="resize-none bg-gray-900 text-xl focus:outline-none p-2"></textarea>
         </form>
 
         <div class="flex flex-col space-y-2 divide-y divide-gray-700">
@@ -218,8 +228,8 @@
                     {{ post.icon }}
                 </div>
             </div>
-    
-    
+
+
             <div class="flex flex-col w-full space-y-2">
                 <!-- small header -->
                 <div class="flex flex-row justify-between">
@@ -238,7 +248,7 @@
                             <time class="">{{ post.time }}</time>
                         </a>
                     </div>
-    
+
                     <!-- setting button -->
                     <button class="focus:outline-none">
                         <div class="rounded-full p-1 hover:bg-blue-700 hover:bg-opacity-25 active:bg-blue-500">
@@ -249,16 +259,16 @@
                             </svg>
                         </div>
                     </button>
-    
+
                 </div>
-    
+
                 <!-- chirp content section -->
                 <div>
                     <p class="text-base">
-                       {{ post.content }}
+                        {{ post.content }}
                     </p>
                 </div>
-    
+
                 <!-- svg group -->
                 <div class="flex flex-row justify-between pr-20">
                     <!-- comment -->
@@ -271,7 +281,7 @@
                             </svg>
                         </div>
                     </a>
-    
+
                     <!-- rechirp -->
                     <a href="{{ url_for('chirp') }}">
                         <div class="rounded-full p-1 hover:bg-green-700 hover:bg-opacity-25 active:bg-green-500">
@@ -282,8 +292,8 @@
                             </svg>
                         </div>
                     </a>
-    
-    
+
+
                     <!-- like -->
                     <button class="focus:outline-none">
                         <div class="rounded-full p-1 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
@@ -294,8 +304,8 @@
                             </svg>
                         </div>
                     </button>
-    
-    
+
+
                     <!-- share -->
                     <button class="focus:outline-none">
                         <div class="rounded-full p-1 hover:bg-blue-700 hover:bg-opacity-25 active:bg-blue-500">
@@ -306,9 +316,9 @@
                             </svg>
                         </div>
                     </button>
-    
+
                 </div>
-    
+
                 <!-- link to thread -->
                 <!-- <div>
                     <a href="#">Show this thread</a>
@@ -316,7 +326,7 @@
             </div>
         </div>
     </div>
-    
+
     {% endfor %}
 </div>
 {% endblock content %}
