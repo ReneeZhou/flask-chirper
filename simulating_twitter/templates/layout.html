@@ -372,12 +372,7 @@
                     <h1 class="text-xl font-bold">{% block header %}{% endblock header %}</h1>
                     <div class="rounded-full w-10 h-10 hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-600
                                 flex justify-center items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            class="w-6 h-6 stroke-current text-blue-500">
-
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                        </svg>
+                                {% block svg %}{% endblock svg %}
                     </div>
                 </div>
             </div>
