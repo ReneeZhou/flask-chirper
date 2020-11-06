@@ -35,7 +35,18 @@
 
 {% block content %}
 <div>
-
+    <div style="background-image:url({{ url_for('static', filename = 'img/ocean6.jpg') }})"
+        class="bg-local bg-cover bg-center">
+        <div class="w-full h-80 flex flex-col justify-end px-4 py-3
+        bg-gradient-to-b from-transparent to-gray-900">
+            <div class="flex flex-row items-center space-x-1">
+                <div class="text-sm">Topic</div>
+                <div>⋅</div>
+                <div class="text-sm">Trending</div>
+            </div>
+            <div class="text-xl font-bold">The power of ocean</div>
+        </div>
+    </div>
     <!-- trends for you -->
     <div class="border-t-8 border-gray-800">
         <div>
@@ -91,8 +102,7 @@
                 </div>
                 <!-- img -->
                 <div class="w-20 h-20 rounded-2xl overflow-hidden">
-                    <img src="{{ url_for('static', filename = 'img/ocean3.jpg') }}"
-                    class="w-full h-full object-cover">
+                    <img src="{{ url_for('static', filename = 'img/ocean3.jpg') }}" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
