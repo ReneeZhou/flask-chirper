@@ -68,7 +68,7 @@
     <!-- 4 tabs -->
     <div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
         <a href="{{ url_for('profile') }}" class="w-40 flex flex-row justify-center items-center 
-        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
+        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
             <div>Chirps</div>
         </a>
         <a href="{{ url_for('profile_with_replies') }}" class="w-56 flex flex-row justify-center items-center 
@@ -80,9 +80,13 @@
             <div>Media</div>
         </a>
         <a href="{{ url_for('profile_likes') }}" class="w-40 flex flex-row justify-center items-center 
-        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
+        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
             <div>Likes</div>
         </a>
+    </div>
+    <div class="pt-10 flex flex-col items-center space-y-2">
+        <h1 class="text-white text-xl font-bold">You don’t have any likes yet</h1>
+        <p class="text-sm font-medium text-gray-600">Tap the heart on any Chirp to show it some love. When you do, it’ll show up here.</p>
     </div>
 </div>
 {% endblock content %}

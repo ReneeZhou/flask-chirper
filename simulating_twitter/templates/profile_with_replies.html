@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Renee Zhou (@handle){% endblock title %}
+{% block title %}Chirps with replies by Renee Zhou (@handle){% endblock title %}
 {% block header %}Renee Zhou{% endblock header %}
 {% block presvg %}
 <a href="#">
@@ -68,11 +68,11 @@
     <!-- 4 tabs -->
     <div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
         <a href="{{ url_for('profile') }}" class="w-40 flex flex-row justify-center items-center 
-        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
+        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
             <div>Chirps</div>
         </a>
         <a href="{{ url_for('profile_with_replies') }}" class="w-56 flex flex-row justify-center items-center 
-        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
+        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
             <div>Chirps & replies</div>
         </a>
         <a href="{{ url_for('profile_media') }}" class="w-40 flex flex-row justify-center items-center 

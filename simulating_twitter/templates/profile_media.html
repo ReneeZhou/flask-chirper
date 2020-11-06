@@ -68,7 +68,7 @@
     <!-- 4 tabs -->
     <div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
         <a href="{{ url_for('profile') }}" class="w-40 flex flex-row justify-center items-center 
-        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
+        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
             <div>Chirps</div>
         </a>
         <a href="{{ url_for('profile_with_replies') }}" class="w-56 flex flex-row justify-center items-center 
@@ -76,7 +76,7 @@
             <div>Chirps & replies</div>
         </a>
         <a href="{{ url_for('profile_media') }}" class="w-40 flex flex-row justify-center items-center 
-        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
+        hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
             <div>Media</div>
         </a>
         <a href="{{ url_for('profile_likes') }}" class="w-40 flex flex-row justify-center items-center 
@@ -84,5 +84,18 @@
             <div>Likes</div>
         </a>
     </div>
+
+    <div class="flex flex-col justify-center items-center space-y-4">
+        <div class="pt-10 flex flex-col items-center space-y-2">
+            <h1 class="text-white text-xl font-bold">You haven’t Chirped any photos or videos yet</h1>
+            <p class="text-sm font-medium text-gray-600">When you send Chirps with photos or videos in them, it will
+                show up here.</p>
+        </div>
+        <a href="{{ url_for('compose_chirp') }}" class="w-52 flex justify-center rounded-full bg-blue-500 hover:bg-blue-600 px-4 py-2">
+            <div class="font-bold">Take a photo or video</div>
+        </a>
+    </div>
 </div>
+
+
 {% endblock content %}
