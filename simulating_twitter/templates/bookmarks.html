@@ -2,14 +2,13 @@
 
 {% block title %}Bookmarks{% endblock title %}
 {% block header %}Bookmarks{% endblock header %}
+
+{% block small %}
+<div class="text-gray-600 text-s font-normal">@handle</div>
+{% endblock small %}
+
 {% block svg %}
 <div class="flex flex-row">
-    <div class="svg-bg-div">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        class="w-6 h-6 stroke-current text-blue-500">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-          </svg>
-    </div>
     <div class="svg-bg-div">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             class="w-6 h-6 stroke-current text-blue-500">
@@ -19,3 +18,10 @@
     </div>
 </div>
 {% endblock svg %}
+
+{% block content %}
+<div class="mt-4 pt-8 flex flex-col items-center space-y-2">
+    <h1 class="text-white text-xl font-bold">You haven’t added any Tweets to your Bookmarks yet</h1>
+    <p class="text-sm font-medium text-gray-600">When you do, they'll show up here.</p>
+</div>
+{% endblock content %}

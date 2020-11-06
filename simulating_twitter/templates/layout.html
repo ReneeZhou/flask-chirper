@@ -76,7 +76,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('lists') }}" class="home-a">
+                <a href="{{ url_for('profile_lists') }}" class="home-a">
                     <div class="home-btn">
                         <!-- list icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -103,7 +103,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('chirp') }}">
+                <a href="{{ url_for('compose_chirp') }}">
                     <!-- chirp icon -->
                     <div class="rounded-full m-2 p-2 bg-blue-500 hover:bg-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8">
@@ -189,7 +189,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('lists') }}" class="home-a">
+                <a href="{{ url_for('profile_lists') }}" class="home-a">
                     <div class="home-btn">
                         <!-- list icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -216,7 +216,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('chirp') }}">
+                <a href="{{ url_for('compose_chirp') }}">
                     <div class="rounded-full p-2 m-2 bg-blue-500 hover:bg-blue-600">
                         <!-- chirp icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8">
@@ -308,7 +308,7 @@
                         <div class="pr-5">Bookmarks</div>
                     </div>
                 </a>
-                <a href="{{ url_for('lists') }}" class="home-a">
+                <a href="{{ url_for('profile_lists') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- list icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -338,7 +338,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('chirp') }}">
+                <a href="{{ url_for('compose_chirp') }}">
                     <button
                         class="w-56 h-12 m-2 rounded-full bg-blue-500 hover:bg-blue-600 font-semibold text-base">Chirp</button>
                 </a>
@@ -369,7 +369,13 @@
         <table>
             <div class="fixed w-148 bg-gray-900 border-b border-gray-700">
                 <div class="flex justify-between items-center py-2 pl-4 pr-1 cursor-pointer">
-                    <h1 class="text-xl font-bold">{% block header %}{% endblock header %}</h1>
+                    <div class="flex flex-row items-center">
+                        {% block presvg %}{% endblock presvg %}
+                        <h1 class="text-xl font-bold">
+                            {% block header %}{% endblock header %}
+                            {% block small %}{% endblock small%}
+                        </h1>
+                    </div>
                     {% block svg %}{% endblock svg %}
                 </div>
                 <div>
