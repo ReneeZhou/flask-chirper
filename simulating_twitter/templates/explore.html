@@ -35,18 +35,22 @@
 
 {% block content %}
 <div>
-    <div style="background-image:url({{ url_for('static', filename = 'img/ocean6.jpg') }})"
-        class="bg-local bg-cover bg-center">
-        <div class="w-full h-80 flex flex-col justify-end px-4 py-3
+    <!-- event -->
+    <a href="#">
+        <div style="background-image:url({{ url_for('static', filename = 'img/ocean6.jpg') }})"
+            class="bg-local bg-cover bg-center">
+            <div class="w-full h-80 flex flex-col justify-end px-4 py-3
         bg-gradient-to-b from-transparent to-gray-900">
-            <div class="flex flex-row items-center space-x-1">
-                <div class="text-sm">Topic</div>
-                <div>⋅</div>
-                <div class="text-sm">Trending</div>
+                <div class="flex flex-row items-center space-x-1">
+                    <div class="text-sm">Topic</div>
+                    <div>⋅</div>
+                    <div class="text-sm">Trending</div>
+                </div>
+                <div class="text-xl font-bold">The power of ocean</div>
             </div>
-            <div class="text-xl font-bold">The power of ocean</div>
         </div>
-    </div>
+    </a>
+
     <!-- trends for you -->
     <div class="border-t-8 border-gray-800">
         <div>
@@ -79,7 +83,7 @@
             </div>
         </div>
         {% endfor %}
-        <a href="#" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
+        <a href="{{ url_for('trends') }}" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
     </div>
 
     <!-- what's happening -->
@@ -108,7 +112,7 @@
         </div>
 
         {% endfor %}
-        <a href="#" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
+        <a href="{{ url_for('timeline') }}" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
     </div>
 </div>
 {% endblock content %}
