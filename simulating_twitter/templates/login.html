@@ -8,7 +8,7 @@
     <form method="POST" action="">
         <!-- action="" posts us back to the same route -->
         {{ form.hidden_tag() }}
-        <div class="flex flex-col mt-5 space-y-4">
+        <div class="flex flex-col mt-5 space-y-4 items-center">
             <svg id="Capa_1" enable-background="new 0 0 512.377 512.377" height="512" viewBox="0 0 512.377 512.377"
                 width="512" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 fill-current self-center mb-3">
                 <g>
@@ -22,6 +22,18 @@
             </svg>
             <h1 class="text-2xl font-bold text-center">Log in to Chirper</h1>
 
+
+            <div class="w-144">
+                {% with messages = get_flashed_messages(with_categories = True) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash_warning">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+
             <div class="space-y-5 text-gray-500">
                 <!-- phone, email, username -->
                 <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-500 focus-within:text-blue-500">
@@ -29,7 +41,7 @@
                     {% if form.email.errors %}
                         {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                         {% for error in form.email.errors %}
-                          <span>{{ error }}</span>
+                          <span class="flash_warning">{{ error }}</span>
                         {% endfor %}
                     {% else %}
                         {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
@@ -42,7 +54,7 @@
                     {% if form.password.errors %}
                         {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                         {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
+                            <span class="flash_warning">{{ error }}</span>
                         {% endfor %}
                     {% else %}
                         {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
