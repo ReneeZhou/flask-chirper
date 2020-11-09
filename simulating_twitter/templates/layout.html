@@ -113,13 +113,15 @@
                     </div>
                 </a>
             </div>
-            <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
-            w-16 h-16">
-                <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                    <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                        class="w-full h-full object-cover">
-                </div>
-            </button>
+            <a href="{{ url_for('login') }}">
+                <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
+                w-16 h-16">
+                    <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
+                        <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
+                            class="w-full h-full object-cover">
+                    </div>
+                </button>
+            </a>
         </nav>
 
         <!-- nav bar @lg bp -->
@@ -227,13 +229,15 @@
 
                 </a>
             </div>
-            <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
-            w-16 h-16">
-                <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                    <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                        class="w-full h-full object-cover">
-                </div>
-            </button>
+            <a href="{{ url_for('login') }}">
+                <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
+                w-16 h-16">
+                    <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
+                        <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
+                            class="w-full h-full object-cover">
+                    </div>
+                </button>
+            </a>
         </nav>
 
         <!-- nav bar @xl bp -->
@@ -343,26 +347,28 @@
                         class="w-56 h-12 m-2 rounded-full bg-blue-500 hover:bg-blue-600 font-semibold text-base">Chirp</button>
                 </a>
             </div>
-            <div class="flex flex-row justify-between items-center p-2
+            <a href="{{ url_for('login') }}">
+                <div class="flex flex-row justify-between items-center p-2
                 rounded-full hover:bg-gray-700 hover:bg-opacity-25 active:bg-gray-600 cursor-pointer">
-                <div class="flex flex-row space-x-2">
-                    <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                        <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                            class="w-full h-full object-cover">
-                    </div>
+                    <div class="flex flex-row space-x-2">
+                        <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
+                            <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
+                                class="w-full h-full object-cover">
+                        </div>
 
-                    <div class="flex flex-col">
-                        <p class="font-bold">Renee Zhou</p>
-                        <p class="text-gray-600">@handle</p>
+                        <div class="flex flex-col">
+                            <p class="font-bold">Renee Zhou</p>
+                            <p class="text-gray-600">@handle</p>
+                        </div>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            class="w-6 h-6 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </div>
                 </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="w-6 h-6 stroke-current">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-            </div>
+            </a>
         </nav>
     </div>
     <main class="w-148 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
