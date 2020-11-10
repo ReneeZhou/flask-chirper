@@ -86,7 +86,7 @@ def home():
 @app.route('/explore', methods = ['GET', 'POST'])
 @login_required
 def explore():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('explore.html', \
         trends = trends, happenings = happenings, image_file = image_file)
 
@@ -94,105 +94,105 @@ def explore():
 @app.route('/notifications')
 @login_required
 def notifications():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
-    return render_template('notifications.html')
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
+    return render_template('notifications.html', image_file = image_file)
 
 
 @app.route('/notifications/mentions')
 @login_required
 def notifications_mentions():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('notifications_mentions.html', image_file = image_file)
 
 
 @app.route('/messages')
 @login_required
 def messages():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('messages.html', image_file = image_file)
 
 
 @app.route('/bookmarks')
 @login_required
 def bookmarks():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('bookmarks.html', image_file = image_file)
 
 
 @app.route('/profile/lists')
 @login_required
 def profile_lists():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('profile_lists.html', image_file = image_file)
 
 
 @app.route('/lists/create')
 @login_required
 def lists_create():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('lists_create.html', image_file = image_file)
 
 
 @app.route('/profile')
 @login_required
 def profile():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('profile.html', image_file = image_file)
 
 
 @app.route('/profile/with_replies')
 @login_required
 def profile_with_replies():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('profile_with_replies.html', image_file = image_file)
 
 
 @app.route('/profile/media')
 @login_required
 def profile_media():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('profile_media.html', image_file = image_file)
 
 
 @app.route('/profile/likes')
 @login_required
 def profile_likes():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('profile_likes.html', image_file = image_file)
 
 
 @app.route('/settings/profile')
 @login_required
 def settings_profile():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('settings_profile.html', image_file = image_file)
 
 
 @app.route('/compose/chirp')
 @login_required
 def compose_chirp():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('compose_chirp.html', image_file = image_file)
 
 
 @app.route('/account/add')
 @login_required
 def account_add():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('account_add.html', image_file = image_file)
 
 
 @app.route('/account/switch')
 @login_required
 def account_switch():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('account_switch.html', image_file = image_file)
 
 
 @app.route('/trends')
 @login_required
 def trends():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('trends.html', \
         trends = trends, image_file = image_file)
 
@@ -200,7 +200,7 @@ def trends():
 @app.route('/timeline')
 @login_required
 def timeline():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('timeline.html', \
         happenings = happenings, image_file = image_file)
 
@@ -208,7 +208,7 @@ def timeline():
 @app.route('/connect_people')
 @login_required
 def connect_people():
-    image_file = url_for('static', filename = 'img/' + current_user.image.file)
+    image_file = url_for('static', filename = 'img/' + current_user.image_file)
     return render_template('connect_people.html', image_file = image_file)
 
 
