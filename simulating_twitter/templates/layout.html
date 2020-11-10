@@ -114,27 +114,25 @@
                     </div>
                 </a>
             </div>
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('logout') }}">
-                <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
-                w-16 h-16">
-                    <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                        <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                            class="w-full h-full object-cover">
-                    </div>
-                </button>
-            </a>
-            {% else %}
-            <a href="{{ url_for('login') }}">
-                <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
-                w-16 h-16">
-                    <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                        <img src="{{ image_file }}" alt="profile pic" class="w-full h-full object-cover">
-                        <!-- image_file we passed into the template from routes.py home() -->
-                    </div>
-                </button>
-            </a>
-            {% endif %}
+
+            <div class="flex flex-col items-center">
+                <!-- manage account -->
+                <a href="#">
+                    <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
+                    w-16 h-16">
+                        <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
+                            <img src="{{ image_file }}" alt="profile pic" class="w-full h-full object-cover">
+                            <!-- image_file we passed into the template from routes.py home() -->
+                        </div>
+                    </button>
+                </a>
+                <!-- log out button -->
+                <a href="{{ url_for('logout') }}">
+                    <button
+                        class="text-xs px-2 rounded-full hover:bg-gray-800 bg-gray-700 bg-opacity-25 focus:outline-none">Log
+                        out</button>
+                </a>
+            </div>
         </nav>
 
         <!-- nav bar @lg bp -->
@@ -242,27 +240,27 @@
 
                 </a>
             </div>
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('logout') }}">
-                <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
-                w-16 h-16">
-                    <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                        <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                            class="w-full h-full object-cover">
-                    </div>
-                </button>
-            </a>
-            {% else %}
-            <a href="{{ url_for('login') }}">
-                <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
-                w-16 h-16">
-                    <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                        <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                            class="w-full h-full object-cover">
-                    </div>
-                </button>
-            </a>
-            {% endif %}
+
+            <div class="flex flex-col items-center">
+                <!-- manage account -->
+                <a href="#">
+                    <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
+                    w-16 h-16">
+                        <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
+                            <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </button>
+                </a>
+
+                <!-- log out button -->
+                <a href="{{ url_for('logout') }}">
+                    <button
+                        class="text-xs px-2 rounded-full hover:bg-gray-800 bg-gray-700 bg-opacity-25 focus:outline-none">Log
+                        out</button>
+                </a>
+            </div>
+
         </nav>
 
         <!-- nav bar @xl bp -->
@@ -373,53 +371,40 @@
                 </a>
             </div>
 
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('logout') }}">
-                <div class="flex flex-row justify-between items-center p-2
-                rounded-full hover:bg-gray-700 hover:bg-opacity-25 active:bg-gray-600 cursor-pointer">
-                    <div class="flex flex-row space-x-2">
-                        <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                            <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                                class="w-full h-full object-cover">
-                        </div>
+            <div class="space-y-1">
+                <!-- manage account -->
+                <a href="#">
+                    <div class="flex flex-row justify-between items-center p-2
+                    rounded-full hover:bg-gray-700 hover:bg-opacity-25 active:bg-gray-600 cursor-pointer">
+                        <div class="flex flex-row space-x-2">
+                            <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
+                                <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
+                                    class="w-full h-full object-cover">
+                            </div>
 
-                        <div class="flex flex-col">
-                            <p class="font-bold">Renee Zhou</p>
-                            <p class="text-gray-600">@handle</p>
+                            <div class="flex flex-col">
+                                <p class="font-bold">Renee Zhou</p>
+                                <p class="text-gray-600">@handle</p>
+                            </div>
+                        </div>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="w-6 h-6 stroke-current">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
                         </div>
                     </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            class="w-6 h-6 stroke-current">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            {% else %}
-            <a href="{{ url_for('login') }}">
-                <div class="flex flex-row justify-between items-center p-2
-                rounded-full hover:bg-gray-700 hover:bg-opacity-25 active:bg-gray-600 cursor-pointer">
-                    <div class="flex flex-row space-x-2">
-                        <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                            <img src="{{ url_for('static', filename = 'img/ocean2.jpg') }}" alt="profile pic"
-                                class="w-full h-full object-cover">
-                        </div>
+                </a>
 
-                        <div class="flex flex-col">
-                            <p class="font-bold">Renee Zhou</p>
-                            <p class="text-gray-600">@handle</p>
-                        </div>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            class="w-6 h-6 stroke-current">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            {% endif %}
+                <!-- log out button -->
+                <a href="{{ url_for('logout') }}" class="flex flex-col">
+                    <button
+                        class="text-xs px-2 rounded-full hover:bg-gray-800 bg-gray-700 bg-opacity-25 focus:outline-none">Log
+                        out</button>
+                </a>
+            </div>
+
         </nav>
     </div>
     <main class="w-148 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
