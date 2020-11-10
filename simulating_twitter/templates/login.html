@@ -25,39 +25,41 @@
 
             <div class="w-144">
                 {% with messages = get_flashed_messages(with_categories = True) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="flash_warning">{{ message }}</div>
-                        {% endfor %}
-                    {% endif %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash_warning">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
                 {% endwith %}
             </div>
 
 
             <div class="space-y-5 text-gray-500">
                 <!-- phone, email, username -->
-                <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-500 focus-within:text-blue-500">
+                <div
+                    class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-500 focus-within:text-blue-500">
                     <label class="mt-2 ml-2 text-sm ">Phone, email, or username</label>
                     {% if form.email.errors %}
-                        {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
-                        {% for error in form.email.errors %}
-                          <span class="flash_warning">{{ error }}</span>
-                        {% endfor %}
+                    {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
+                    {% for error in form.email.errors %}
+                    <span class="flash_warning">{{ error }}</span>
+                    {% endfor %}
                     {% else %}
-                        {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
+                    {{ form.email(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                     {% endif %}
                 </div>
 
                 <!-- password -->
-                <div class="flex flex-col  bg-gray-700 bg-opacity-25 border-b-2 border-gray-500 focus-within:text-blue-500">
+                <div
+                    class="flex flex-col  bg-gray-700 bg-opacity-25 border-b-2 border-gray-500 focus-within:text-blue-500">
                     {{ form.password.label(class="mt-2 ml-2 text-sm") }}
                     {% if form.password.errors %}
-                        {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
-                        {% for error in form.password.errors %}
-                            <span class="flash_warning">{{ error }}</span>
-                        {% endfor %}
+                    {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
+                    {% for error in form.password.errors %}
+                    <span class="flash_warning">{{ error }}</span>
+                    {% endfor %}
                     {% else %}
-                        {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
+                    {{ form.password(class="ml-2 h-10 bg-gray-700 bg-opacity-0 outline-none text-white") }}
                     {% endif %}
                 </div>
 
@@ -78,7 +80,15 @@
         <small>
             <a href="{{ url_for('signup') }}" class="nounderline hover:underline text-blue-400">Sign up for Chirper</a>
         </small>
+
+        <!-- credit for bird icon -->
+        <div class="text-xxs text-gray-800 mt-2">Bird icon made by
+            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from
+            <a href="https://www.flaticon.com/" title="Flaticon">Flaticon</a>
+        </div>
     </div>
+
+
 
 </div>
 {% endblock content %}
