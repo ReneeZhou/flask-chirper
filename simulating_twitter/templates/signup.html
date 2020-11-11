@@ -37,14 +37,14 @@
                     <!-- name -->
                     <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                     focus-within:border-blue-500 focus-within:text-blue-500">
-                        <label class="bg-gray-700 bg-opacity-0 ml-2 mt-2">Name</label>
+                        <label for="name" class="bg-gray-700 bg-opacity-0 ml-2 mt-2">Name</label>
                         {% if form.username.errors %}
-                        {{ form.username(class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                        {{ form.username(name="name" class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% for error in form.username.errors %}
                         <span class="flash_warning">{{ error }}</span>
                         {% endfor %}
                         {% else %}
-                        {{ form.username(class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                        {{ form.username(name="name" class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% endif %}
                     </div>
 
@@ -71,28 +71,28 @@
                     <!-- password -->
                     <div class="flex flex-col  bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                     focus-within:border-blue-500 focus-within:text-blue-500">
-                        {{ form.password.label(class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
+                        {{ form.password.label(for="password" class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
                         {% if form.password.errors %}
-                        {{ form.password(class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                        {{ form.password(name="password" class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% for error in errors %}
                         <span class="flash_warning">{{ form.password.error }}</span>
                         {% endfor %}
                         {% else %}
-                        {{ form.password(class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                        {{ form.password(name="password" class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% endif %}
                     </div>
 
                     <!-- confirm password -->
                     <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                     focus-within:border-blue-500 focus-within:text-blue-500">
-                        {{ form.confirm_password.label(class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
+                        {{ form.confirm_password.label(for="confirm_password" class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
                         {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                        {{ form.confirm_password(name="confirm_password" class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% for error in form.confirm_password.errors %}
                         <span class="flash_warning">{{ error }}</span>
                         {% endfor %}
                         {% else %}
-                        {{ form.confirm_password(class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                        {{ form.confirm_password(name="confirm_password" class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% endif %}
                     </div>
                 </div>
