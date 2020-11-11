@@ -39,7 +39,7 @@
                     focus-within:border-blue-500 focus-within:text-blue-500">
                         <label for="name" class="bg-gray-700 bg-opacity-0 ml-2 mt-2">Name</label>
                         {% if form.username.errors %}
-                        {{ form.username(maxlength="50", class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                        {{ form.username(maxlength="20", class="bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% for error in form.username.errors %}
                         <span class="flash_warning">{{ error }}</span>
                         {% endfor %}
