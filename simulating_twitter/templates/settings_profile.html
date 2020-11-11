@@ -4,6 +4,7 @@
 <div class="h-screen sm:bg-gray-900 md:bg-gray-800 md:bg-opacity-100 flex flex-col items-center md:justify-center">
     <div class="flex flex-col bg-gray-900 md:rounded-2xl pb-32 pt-2 h-160">
         <form method="POST" action="" class="">
+            {{ form.hidden_tag() }}
             <div class="flex flex-col w-148">
                 <!-- header -->
                 <div class="flex flex-row items-center justify-between border-b border-gray-700 pb-2 px-2">
@@ -50,10 +51,6 @@
                     <!-- form  fields-->
                     <div class="flex flex-col">
                         <div class="space-y-2 text-gray-600 px-4 -mt-16">
-                            <!-- profile pic -->
-                            <!-- <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-gray-900">
-                                <img src="{{ image_file }}" alt="profile pic" class="w-full h-full object-cover">
-                            </div> -->
 
                             <!-- camera svg -->
                             <div style="background-image: url({{ image_file }}); opacity:0.8;"
@@ -80,34 +77,34 @@
                             <div class="flex flex-col space-y-8">
                                 <!-- name -->
                                 <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
-                                    focus-within:border-blue-500 focus-within:text-blue-500">
-                                    <label for="name" class="bg-gray-700 bg-opacity-0 ml-2 mt-2">Name</label>
-                                    <input name="name" maxlength="50"
-                                        class="bg-gray-700 bg-opacity-0 ml-2 outline-none text-white">
+                                    focus-within:border-blue-500 focus-within:text-blue-50">
+                                    {{ form.username.label(for="name", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
+                                    {{ form.username(maxlength="50", placeholder="Add your name",
+                                    class="bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
                                 </div>
 
                                 <!-- bio -->
                                 <div class="flex flex-col  bg-gray-700 bg-opacity-25 border-b-2 border-gray-600 
                                     focus-within:border-blue-500 focus-within:text-blue-500">
-                                    <label for="bio" class="bg-gray-700 bg-opacity-0 ml-2 mt-2">Bio</label>
-                                    <textarea name="bio" rows="3" maxlength="160"
-                                        class="resize-none bg-gray-700 bg-opacity-0 ml-2 outline-none text-white"></textarea>
+                                    {{ form.bio.label(for="bio", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
+                                    {{ form.bio(rows="3", maxlength="160", placeholder="Add your bio",
+                                    class="resize-none bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
                                 </div>
 
                                 <!-- location -->
                                 <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                                         focus-within:border-blue-500 focus-within:text-blue-500">
-                                    <label for="location" class="bg-gray-700 bg-opacity-0 ml-2 mt-2">Location</label>
-                                    <input name="location" maxlength="30"
-                                        class="bg-gray-700 bg-opacity-0 ml-2 outline-none text-white">
+                                    {{ form.location.label(for="location", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
+                                    {{ form.location(maxlength="30", placeholder="Add your location",
+                                    class="bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
                                 </div>
 
                                 <!-- website -->
                                 <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                                          focus-within:border-blue-500 focus-within:text-blue-500">
-                                    <label for="website" class="bg-gray-700 bg-opacity-0 ml-2 mt-2">Website</label>
-                                    <input name="website" maxlength="100"
-                                        class="bg-gray-700 bg-opacity-0 ml-2 outline-none text-white">
+                                    {{ form.website.label(for="website", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
+                                    {{ form.website(maxlength="100", placeholder="Add your website",
+                                    class="bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
                                 </div>
 
                                 <!-- birthday -->
