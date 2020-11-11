@@ -145,26 +145,10 @@ src/styles.css
 postcss.config.js
 
 # ignore img
-simulating_twitter/static/img/ocean1.jpg
-simulating_twitter/static/img/ocean2.jpg
-simulating_twitter/static/img/ocean3.jpg
 simulating_twitter/site.db
 simulating_twitter/static/img/bird_fill.svg
 simulating_twitter/static/img/bird.svg
 simulating_twitter/static/img/bird_fill_blue.svg
-simulating_twitter/static/img/ocean4.jpg
-simulating_twitter/static/img/ocean5.jpg
-simulating_twitter/static/img/ocean6.jpg
-simulating_twitter/static/img/crab.jpg
-simulating_twitter/static/img/fish.jpg
-simulating_twitter/static/img/jellyfish.jpg
-simulating_twitter/static/img/lama.jpg
-simulating_twitter/static/img/turtle.jpg
-simulating_twitter/static/img/alpaca.jpg
-simulating_twitter/static/img/hummingbird.jpg
-simulating_twitter/static/img/lionfish.jpg
-simulating_twitter/static/img/llama.jpg
-simulating_twitter/static/img/seaturtle.jpg
-simulating_twitter/static/img/profile.jpg
-simulating_twitter/static/img/default_profile.png
 simulating_twitter/static/img/favicon.png
+simulating_twitter/static/img/ocean6.jpg
+simulating_twitter/static/img/profile_pics/*
