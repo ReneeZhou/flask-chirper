@@ -30,28 +30,51 @@
 
                 <!-- scrollable area -->
                 <div class="h-144 overflow-y-scroll">
-                    <!-- photo -->
+                    <!-- cover photo -->
                     <div class="h-48 mb-4 flex justify-center items-center bg-black bg-opacity-50">
                         <!-- camera svg -->
-                        <div class="rounded-full w-10 h-10 flex justify-center items-center
+                        <button class="focus:outline-none">
+                            <div class="rounded-full w-10 h-10 flex justify-center items-center
                     hover:bg-gray-800 hover:bg-opacity-25 active:bg-gray-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                class="1-6 h-6 stroke-current stroke-1 ">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                        </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    class="w-6 h-6 stroke-current stroke-1 ">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                        </button>
                     </div>
 
                     <!-- form  fields-->
                     <div class="flex flex-col">
-                        <div class="space-y-2 text-gray-600 px-4 -mt-20">
+                        <div class="space-y-2 text-gray-600 px-4 -mt-16">
                             <!-- profile pic -->
-                            <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-gray-900">
+                            <!-- <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-gray-900">
                                 <img src="{{ image_file }}" alt="profile pic" class="w-full h-full object-cover">
+                            </div> -->
+
+                            <!-- camera svg -->
+                            <div style="background-image: url({{ image_file }}); opacity:0.8;"
+                                class="w-28 h-28 bg-cover bg-center rounded-full">
+                                <div class="w-28 h-28 flex flex-row justify-center items-center rounded-full">
+                                    <button class="focus:outline-none">
+                                        <div class="rounded-full w-10 h-10 flex justify-center items-center
+                                        hover:bg-gray-600 hover:bg-opacity-25 active:bg-gray-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                class="w-6 h-6 stroke-current stroke-1 text-white">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+
                             </div>
+
 
                             <!-- other fields -->
                             <div class="flex flex-col space-y-8">
