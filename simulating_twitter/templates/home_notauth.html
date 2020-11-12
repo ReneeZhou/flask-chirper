@@ -59,17 +59,18 @@
                     <div class="flex flex-col">
                         <div
                             class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-52 h-16 focus-within:text-blue-500 focus-within:border-blue-500">
-                            <label for="passpord" class="my-1 ml-2">Password</label>
+                            <!-- <label for="passpord" class="my-1 ml-2">Password</label> -->
+                            {{ form.password.label(for="passpord", class="my-1 ml-2") }}
                             {{ form.password(class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none") }}
                             <!-- <input name="password" type="password" requred class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none"> -->
                         </div>
                         <a href="#" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
                             password?</a>
                     </div>
-                    <button
-                        class="border border-blue-500 rounded-full text-blue-500 text-base font-semibold 
-                     mt-3 whitespace-no-wrap px-3 h-10 w-20 py-2 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none focus:bg-gray-700">Log
-                        in</button>
+                    <div>
+                        {{ form.submit(class="text-blue-500 text-base font-semibold bg-gray-900 cursor-pointer border border-blue-500 rounded-full 
+                        mt-3 whitespace-no-wrap px-3 py-2 h-10 w-20 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none focus:bg-gray-700") }}
+                    </div>
                 </form>
             </div>
 
