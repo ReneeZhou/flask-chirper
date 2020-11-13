@@ -1,28 +1,24 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from flask_login import current_user
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField    # BooleanField
+from wtforms.fields.html5 import EmailField, URLField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL
 from simulating_twitter.models import User
 
-class RegistrationForm(FlaskForm):
-    username = StringField('Username', \
-        validators = [DataRequired(), Length(min = 2, max = 20)])
-    # phone = IntegerField('Phone', \
-    #     validators = [DataRequired()])
-    email = StringField('Email', \
-        validators = [DataRequired(), Email()])
-    password = PasswordField('Password', \
-        validators = [DataRequired()])
-    confirm_password = PasswordField('Confirm Passrowd', \
-        validators = [DataRequired(), EqualTo('password')])
-    submit = SubmitField('Sign Up')
 
+class RegistrationForm(FlaskForm):
+    name = StringField('Name', validators = [DataRequired(), Length(max = 50)])
+    email = EmailField('Email', validators = [DataRequired(), Email()])
+    password = PasswordField('Password', validators = [DataRequired()])
+    confirm_password = PasswordField('Confirm Passrowd', validators = [DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')
 
     # create a custom validation
     # check whether username exists already
-    def validate_username(self, username):
-        user = User.query.filter_by(username = username.data).first()
-        if user:
-            raise ValidationError('That username is taken. Please choose a different one. ')
+    # def validate_name(self, name):
+    #     user = User.query.filter_by(name = name.data).first()
+    #     if user:
+    #         raise ValidationError('That username is taken. Please choose a different one. ')
     
     # check whether email is already used
     def validate_email(self, email):
@@ -32,10 +28,37 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', \
-        validators = [DataRequired(), Email()])
-    password = PasswordField('Password',\
-        validators = [DataRequired()])
+    email = StringField('Email', validators = [DataRequired(), Email()])
+    password = PasswordField('Password', validators = [DataRequired()])
     # remember = BooleanField('Remember Me') 
     # we will remember user by default unless they sign out manually
     submit = SubmitField('Log In')
+
+
+class UpdateProfileForm(FlaskForm):
+    # these 4 fields don't have to be unique
+    name = StringField('Name', validators = [DataRequired(), Length(max = 50)])
+    bio = TextAreaField('Bio', validators = [Length(max = 160)])
+    location = StringField('Location', validators = [Length(max = 30)])
+    website = URLField('Website', validators = [Length(max = 100)])
+    submit = SubmitField('Save')
+
+
+
+class UpdateAccountForm(FlaskForm): 
+    handle = StringField('Handle', validators = [DataRequired()])
+    email = EmailField('Email', validators = [DataRequired(), Email()])
+    submit = SubmitField('Update')
+
+    def validate_handle(self, handle):
+        if handle.data != current_user.handle:
+            user = User.query.filter_by(handle = handle.data).first()
+            if user:
+                raise ValidationError('This handle has been taken. It\'s an unique identifier. \
+                    You must choose something else.')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email = email.data).first()
+            if user:
+                raise ValidationError('This email has been taken. Please choose another one.')
