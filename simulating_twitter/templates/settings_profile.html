@@ -24,9 +24,12 @@
                     </div>
                     <!-- justify right -->
                     <!-- save button -->
-                    <a href="#" class="rounded-full bg-blue-500 hover:bg-blue-600 px-3 py-1 mr-3">
+                    <div>
+                        {{ form.submit(class="rounded-full bg-blue-500 hover:bg-blue-600 px-3 py-1 mr-3 cursor-pointer") }}
+                    </div>
+                    <!-- <a href="#" class="rounded-full bg-blue-500 hover:bg-blue-600 px-3 py-1 mr-3">
                         <div class="font-bold">Save</div>
-                    </a>
+                    </a> -->
                 </div>
 
                 <!-- scrollable area -->
@@ -78,8 +81,8 @@
                                 <!-- name -->
                                 <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                                     focus-within:border-blue-500 focus-within:text-blue-50">
-                                    {{ form.username.label(for="name", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
-                                    {{ form.username(maxlength="50", placeholder="Add your name",
+                                    {{ form.name.label(for="name", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
+                                    {{ form.name(maxlength="50", placeholder="Add your name",
                                     class="bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
                                 </div>
 
