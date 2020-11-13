@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
-{% block title %}Chirps with replies by Renee Zhou (@handle){% endblock title %}
-{% block header %}Renee Zhou{% endblock header %}
+{% block title %}Chirps with replies by {{ current_user.name }} (@{{ current_user.handle}}){% endblock title %}
+{% block header %}{{ current_user.name }}{% endblock header %}
 {% block presvg %}
 <a href="#">
     <!-- svg redirects to whatever last page user was on -->
@@ -37,8 +37,8 @@
                 <!-- profule info -->
                 <div class="flex flex-col space-y-2">
                     <div class="flex flex-col">
-                        <div class="text-xl font-bold">Renee Zhou</div>
-                        <div class="text-gray-600 text-tiny leading-tight">@handle</div>
+                        <div class="text-xl font-bold">{{ current_user.name }}</div>
+                        <div class="text-gray-600 text-tiny leading-tight">@{{ current_user.handle }}</div>
                     </div>
                     <div>I love Python 🐍</div>
                     <div class="flex flex-row space-x-2">

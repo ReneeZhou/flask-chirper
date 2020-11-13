@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Lists created by @handle{% endblock title %}
+{% block title %}Lists created by @{{ current_user.handle }}{% endblock title %}
 {% block header %}Lists{% endblock header %}
 
 {% block presvg %}
@@ -15,7 +15,7 @@
 {% endblock presvg %}
 
 {% block small %}
-<div class="text-gray-600 text-s font-normal">@handle</div>
+<div class="text-gray-600 text-s font-normal">@{{ current_user.handle }}</div>
 {% endblock small %}
 
 {% block svg %}
