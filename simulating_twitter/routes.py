@@ -1,7 +1,8 @@
+from secrets import token_urlsafe
 from flask import render_template, redirect, url_for, flash, request
 from simulating_twitter import app, db, bcrypt
 from simulating_twitter.models import User, Post
-from simulating_twitter.forms import LoginForm, RegistrationForm
+from simulating_twitter.forms import LoginForm, RegistrationForm, UpdateProfileForm, UpdateAccountForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -19,7 +20,7 @@ def home_notauth():
     elif form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember = True)
+            login_user(user) # , remember = True)
             return redirect(url_for('home'))
         else: 
             flash('Something went wrong.')
@@ -39,7 +40,7 @@ def login():
         # if user exists & password correct 
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             # log the user in with the flask extension
-            login_user(user, remember = True)
+            login_user(user) # , remember = True)
             # using .get() instead of [] to get the dict value will avoid error from not having a value
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home')) # ternary conditional
@@ -58,7 +59,15 @@ def signup():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username = form.username.data, email = form.email.data, password = hashed_password)
+
+        # generate a random url/handle for the user, check if duplicate in the db
+        handle = token_urlsafe(5)
+        if handle == User.query.filter_by(handle = handle).first():
+            handle = token_urlsafe(5)
+
+        user = User(handle = handle, name = form.name.data, email = form.email.data, \
+            password = hashed_password)
+        # user = User(username = form.username.data, email = form.email.data, password = hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -161,11 +170,31 @@ def profile_likes():
     return render_template('profile_likes.html', image_file = image_file)
 
 
-@app.route('/settings/profile')
+@app.route('/settings/profile', methods = ['GET', 'POST'])
 @login_required
 def settings_profile():
+    form = UpdateProfileForm()
+    if form.validate_on_submit():
+        current_user.name = form.name.data
+        current_user.bio = form.bio.data
+        current_user.location = form.location.data
+        current_user.website = form.website.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('profile'))
+        # POST/GET redirect pattern
+        # browser telling you're about to run another POST when you reload your page
+        # so us redirecting causing the browser to send a GET, and we won't get that pop up msg from browser
+    
+    # populate the form fields with existing user data
+    elif request.method == 'GET':
+        form.name.data = current_user.name
+        form.bio.data = current_user.bio
+        form.location.data = current_user.location
+        form.website.data = current_user.website
+            
     image_file = url_for('static', filename = 'img/profile_pics/' + current_user.image_file)
-    return render_template('settings_profile.html', image_file = image_file)
+    return render_template('settings_profile.html', form = form, image_file = image_file)
 
 
 @app.route('/compose/chirp')
