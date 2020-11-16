@@ -105,7 +105,7 @@
                 </a>
 
                 <a href="{{ url_for('compose_chirp') }}">
-                    <!-- chirp icon -->
+                    <!-- pen icon -->
                     <div class="rounded-full m-2 p-2 bg-blue-500 hover:bg-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8">
                             <path
@@ -231,7 +231,7 @@
 
                 <a href="{{ url_for('compose_chirp') }}">
                     <div class="rounded-full p-2 m-2 bg-blue-500 hover:bg-blue-600">
-                        <!-- chirp icon -->
+                        <!-- pen icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8">
                             <path
                                 d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
@@ -247,8 +247,7 @@
                     <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
                     w-16 h-16">
                         <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                            <img src="{{ image_file }}" alt="profile pic"
-                                class="w-full h-full object-cover">
+                            <img src="{{ image_file }}" alt="profile pic" class="w-full h-full object-cover">
                         </div>
                     </button>
                 </a>
@@ -365,9 +364,9 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('compose_chirp') }}">
-                    <button
-                        class="w-56 h-12 m-2 rounded-full bg-blue-500 hover:bg-blue-600 font-semibold text-base">Chirp</button>
+                <a href="{{ url_for('compose_chirp') }}" class="">
+                    <div class="w-56 h-12 m-2 rounded-full bg-blue-500 hover:bg-blue-600 font-semibold text-base
+                        flex flex-row justify-center items-center">Chirp</div>
                 </a>
             </div>
 
@@ -378,8 +377,7 @@
                     rounded-full hover:bg-gray-700 hover:bg-opacity-25 active:bg-gray-600 cursor-pointer">
                         <div class="flex flex-row space-x-2">
                             <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
-                                <img src="{{ image_file }}" alt="profile pic"
-                                    class="w-full h-full object-cover">
+                                <img src="{{ image_file }}" alt="profile pic" class="w-full h-full object-cover">
                             </div>
 
                             <div class="flex flex-col">
@@ -500,8 +498,8 @@
                     <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
                         <div class="flex space-x-4">
                             <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
-                                <img src="{{ url_for('static', filename = 'img/profile_pics/ocean2.jpg') }}" alt="profile pic"
-                                    class="w-full h-full object-cover">
+                                <img src="{{ url_for('static', filename = 'img/profile_pics/ocean2.jpg') }}"
+                                    alt="profile pic" class="w-full h-full object-cover">
                             </a>
                             <div>
                                 <a href="#" class="font-bold hover:underline">Renee Zhou</a>
