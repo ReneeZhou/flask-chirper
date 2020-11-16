@@ -2,7 +2,7 @@
 {% block title %}Edit profile{% endblock title %}
 {% block content %}
 <div class="h-screen sm:bg-gray-900 md:bg-gray-800 md:bg-opacity-100 flex flex-col items-center md:justify-center">
-    <div class="flex flex-col bg-gray-900 md:rounded-2xl pb-32 pt-2 h-80">
+    <div class="flex flex-col bg-gray-900 md:rounded-2xl pb-32 pt-2 h-100">
         <form method="POST" action="" class="">
             {{ form.hidden_tag() }}
             <div class="flex flex-col w-148">
@@ -40,6 +40,13 @@
                             {{ form.handle.label(for="handle", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
                             {{ form.handle(maxlength="50", placeholder="Choose your handle",
                                     class="bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
+                            
+                            {% if form.handle.errors %}
+                            {% for error in form.handle.errors %}
+                            <span class="flash_warning">{{ error }}</span>
+                            {% endfor %}
+                            {% endif %}
+
                         </div>
 
                         <!-- email -->
@@ -48,10 +55,25 @@
                             {{ form.email.label(for="email", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
                             {{ form.email(rows="3", maxlength="160", placeholder="Choose your email",
                                     class="resize-none bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
+                        
+                            {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                            <span class="flash_warning">{{ error }}</span>
+                            {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- flash message - account update success -->
+            {% with messages = get_flashed_messages(with_categories = True) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="justify-self-end flash_success">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
         </form>
     </div>
 </div>
