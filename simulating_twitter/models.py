@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), nullable = False, unique = True)
     password = db.Column(db.String(60), nullable = False)
 
-    image_file = db.Column(db.String(20), nullable = False, default = 'default_profile.png')
+    profile_image = db.Column(db.String(20), nullable = False, default = 'default_profile.png')
     background_image = db.Column(db.String(20))  # db will default Null because nullable
     bio = db.Column(db.String(160))              # give it a string None so it can find labels??
     location = db.Column(db.String(30))
