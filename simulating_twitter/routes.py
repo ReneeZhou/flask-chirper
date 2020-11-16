@@ -180,7 +180,7 @@ def settings_profile():
         current_user.location = form.location.data
         current_user.website = form.website.data
         db.session.commit()
-        flash('Your account has been updated!', 'success')
+        flash('Your profile has been updated!', 'success')
         return redirect(url_for('profile'))
         # POST/GET redirect pattern
         # browser telling you're about to run another POST when you reload your page
@@ -195,6 +195,25 @@ def settings_profile():
             
     image_file = url_for('static', filename = 'img/profile_pics/' + current_user.image_file)
     return render_template('settings_profile.html', form = form, image_file = image_file)
+
+
+@app.route('/settings/account', methods = ['GET', 'POST'])
+@login_required
+def settings_account():
+    form = UpdateAccountForm()
+
+    if request.method == 'GET':
+        form.handle.data = current_user.handle
+        form.email.data = current_user.email
+
+    elif form.validate_on_submit():
+        current_user.handle = form.handle.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('profile'))
+
+    return render_template('settings_account.html', form = form)
 
 
 @app.route('/compose/chirp')
