@@ -3,7 +3,7 @@
 {% block title %}Chirps with replies by {{ current_user.name }} (@{{ current_user.handle}}){% endblock title %}
 {% block header %}{{ current_user.name }}{% endblock header %}
 {% block presvg %}
-<a href="#">
+<div onclick="history.go(-1)">
     <!-- svg redirects to whatever last page user was on -->
     <div class="svg-bg-div mr-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -11,7 +11,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
     </div>
-</a>
+</div>
 {% endblock presvg %}
 
 {% block small %}
