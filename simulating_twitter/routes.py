@@ -1,4 +1,6 @@
-from secrets import token_urlsafe
+import os
+from secrets import token_urlsafe, token_hex
+from PIL import Image
 from flask import render_template, redirect, url_for, flash, request
 from simulating_twitter import app, db, bcrypt
 from simulating_twitter.models import User, Post
@@ -146,7 +148,13 @@ def lists_create():
 @login_required
 def profile():
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('profile.html', profile_image = profile_image)
+
+    # because we don't have a defualt background img like user profile pic
+    if current_user.background_image == None:
+        background_image = None
+    elif current_user.background_image:
+        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
+    return render_template('profile.html', profile_image = profile_image, background_image = background_image)
 
 
 @app.route('/profile/with_replies')
@@ -170,11 +178,41 @@ def profile_likes():
     return render_template('profile_likes.html', profile_image = profile_image)
 
 
+def save_image(form_image):
+    # ramdonize user's image name so they don't collide in db
+    random_hex = token_hex(8)
+    # save the file with the same extension as user uploaded
+    # if it's a file it will have this .filename attr from the form
+    # throow away the first variable (f_name) because we won't need it 
+    _, f_ext = os.path.splitext(form_image.filename)  
+    picture_fn = random_hex + f_ext
+
+    output_size = {'profile': (400, 400), 'background': (600, 200)}
+    i = Image.open(form_image)
+
+    if form_image.name == 'profile_image':
+        picture_path = os.path.join(app.root_path, 'static/img/profile_pics', picture_fn)
+        i.thumbnail(output_size['profile'])
+    elif form_image.name == 'background_image':
+        picture_path = os.path.join(app.root_path, 'static/img/background_pics', picture_fn)
+        i.thumbnail(output_size['background'])
+    
+    i.save(picture_path)
+
+    return picture_fn
+
+
 @app.route('/settings/profile', methods = ['GET', 'POST'])
 @login_required
 def settings_profile():
     form = UpdateProfileForm()
     if form.validate_on_submit():
+        if form.background_image.data: 
+            current_user.background_image  = save_image(form.background_image.data)
+
+        if form.profile_image.data:
+            current_user.profile_image = save_image(form.profile_image.data)
+
         current_user.name = form.name.data
         current_user.bio = form.bio.data
         current_user.location = form.location.data
@@ -192,7 +230,7 @@ def settings_profile():
         form.bio.data = current_user.bio
         form.location.data = current_user.location
         form.website.data = current_user.website
-            
+
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
     return render_template('settings_profile.html', form = form, profile_image = profile_image)
 
