@@ -1,88 +1,26 @@
-{% extends 'layout.html' %}
+{% extends 'layout_profile.html' %}
 
+<!-- overwrite the one in layout_profile.html -->
 {% block title %}{{ current_user.name }} (@{{ current_user.handle }}){% endblock title %}
-{% block header %}{{ current_user.name }}{% endblock header %}
-{% block presvg %}
-<div onclick="history.go(-1)">
-    <!-- svg redirects to whatever last page user was on -->
-    <div class="svg-bg-div mr-4">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            class="w-6 h-6 stroke-current text-blue-500">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-    </div>
-</div>
-{% endblock presvg %}
 
-{% block small %}
-<div class="text-gray-600 text-s font-normal">0 Chirps</div>
-{% endblock small %}
-
-
-{% block content %}
-<div class="mt-2">
-    <!-- user profile -->
-    <div class="flex flex-col justify-between">
-        <!-- user background -->
-        <div class="w-176 h-52 bg-gray-800">
-            <img>
-        </div>
-        <div class="h-1/2 flex flex-row justify-between mx-3">
-            <div class="flex flex-col -mt-20">
-                <!-- profile pic -->
-                <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-gray-900">
-                    <img src="{{ profile_image }}" alt="profile pic"
-                        class="w-full h-full object-cover">
-                </div>
-                <!-- profule info -->
-                <div class="flex flex-col space-y-2">
-                    <div class="flex flex-col">
-                        <div class="text-xl font-bold">{{ current_user.name }}</div>
-                        <div class="text-gray-600 text-tiny leading-tight">@{{ current_user.handle }}</div>
-                    </div>
-                    <div>I love Python 🐍</div>
-                    <div class="flex flex-row space-x-2">
-                        <!-- calendar svg -->
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                class="w-4 h-4 stroke-current text-gray-600">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <div class="text-gray-600 text-tiny">Joined June 2018</div>
-                    </div>
-                    <div class="flex flex-row space-x-6">
-                        <p class="text-gray-600 text-tiny"><b class="text-white font-semibold">359</b> Following</p>
-                        <p class="text-gray-600 text-tiny"><b class="text-white font-semibold">19</b> Followers</p>
-                    </div>
-                </div>
-            </div>
-            <!-- edit button -->
-            <a href="{{ url_for('settings_profile') }}">
-                <div class="text-blue-500 font-bold px-3 py-2 mt-2 rounded-full border
-                 border-blue-500 hover:bg-blue-800 hover:bg-opacity-25">Edit Profile</div>
-            </a>
-        </div>
-    </div>
-    <!-- 4 tabs -->
-    <div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
-        <a href="{{ url_for('profile') }}" class="w-40 flex flex-row justify-center items-center 
+<!-- 4 tabs -->
+{% block tabs %}
+<div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
+    <a href="{{ url_for('profile') }}" class="w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
-            <div>Chirps</div>
-        </a>
-        <a href="{{ url_for('profile_with_replies') }}" class="w-56 flex flex-row justify-center items-center 
+        <div>Chirps</div>
+    </a>
+    <a href="{{ url_for('profile_with_replies') }}" class="w-56 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
-            <div>Chirps & replies</div>
-        </a>
-        <a href="{{ url_for('profile_media') }}" class="w-40 flex flex-row justify-center items-center 
+        <div>Chirps & replies</div>
+    </a>
+    <a href="{{ url_for('profile_media') }}" class="w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
-            <div>Media</div>
-        </a>
-        <a href="{{ url_for('profile_likes') }}" class="w-40 flex flex-row justify-center items-center 
+        <div>Media</div>
+    </a>
+    <a href="{{ url_for('profile_likes') }}" class="w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
-            <div>Likes</div>
-        </a>
-    </div>
+        <div>Likes</div>
+    </a>
 </div>
-{% endblock content %}
+{% endblock tabs %}
