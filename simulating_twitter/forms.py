@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed  # FileAllowed is a validator restricting file type
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField    # BooleanField
 from wtforms.fields.html5 import EmailField, URLField
@@ -36,6 +37,10 @@ class LoginForm(FlaskForm):
 
 
 class UpdateProfileForm(FlaskForm):
+    # profile & background pic
+    profile_image = FileField('Update profile picture', validators = [FileAllowed(['jpg', 'png'])])
+    background_image = FileField('Update background image', validators = [FileAllowed(['jpg', 'png'])])
+
     # these 4 fields don't have to be unique
     name = StringField('Name', validators = [DataRequired(), Length(max = 50)])
     bio = TextAreaField('Bio', validators = [Length(max = 160)])
