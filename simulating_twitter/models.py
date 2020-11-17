@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
     # referring to Post class
 
     def __repr__(self):
-        return f'User("{self.name}", "{self.email}", "{self.image_file}")'
+        return f'User("{self.name}", "{self.email}", "{self.handle}")'
      
 
 
