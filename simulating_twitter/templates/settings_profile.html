@@ -36,24 +36,23 @@
                     <!-- cover photo -->
                     <div class="h-48 mb-4 flex justify-center items-center bg-black bg-opacity-50">
                         <div style="background-image: url({{ background_image }});"
-                        class="h-full w-full flex justify-center items-center bg-cover bg-center">
-                        <!-- camera svg -->
-                        <label class="cursor-pointer">
-                            <div class="rounded-full w-10 h-10 flex justify-center items-center
+                            class="h-full w-full flex justify-center items-center bg-cover bg-center">
+                            <!-- camera svg -->
+                            <label class="cursor-pointer">
+                                <div class="rounded-full w-10 h-10 flex justify-center items-center
                     hover:bg-gray-800 hover:bg-opacity-25 active:bg-gray-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    class="w-6 h-6 stroke-current stroke-1 ">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-                            {{ form.background_image(accept=".jpg,.png", class="hidden") }}
-                        </label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        class="w-6 h-6 stroke-current stroke-1 ">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                {{ form.background_image(accept=".jpg,.png", class="hidden") }}
+                            </label>
                         </div>
                     </div>
-
                     <!-- form  fields-->
                     <div class="flex flex-col">
                         <div class="space-y-2 text-gray-600 px-4 -mt-16">
