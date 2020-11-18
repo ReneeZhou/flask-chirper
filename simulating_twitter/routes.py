@@ -161,21 +161,33 @@ def profile():
 @login_required
 def profile_with_replies():
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('profile_with_replies.html', profile_image = profile_image)
+    if current_user.background_image == None:
+        background_image = None
+    elif current_user.background_image:
+        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
+    return render_template('profile_with_replies.html', profile_image = profile_image, background_image = background_image)
 
 
 @app.route('/profile/media')
 @login_required
 def profile_media():
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('profile_media.html', profile_image = profile_image)
+    if current_user.background_image == None:
+        background_image = None
+    elif current_user.background_image:
+        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
+    return render_template('profile_media.html', profile_image = profile_image, background_image = background_image)
 
 
 @app.route('/profile/likes')
 @login_required
 def profile_likes():
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('profile_likes.html', profile_image = profile_image)
+    if current_user.background_image == None:
+        background_image = None
+    elif current_user.background_image:
+        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
+    return render_template('profile_likes.html', profile_image = profile_image, background_image = background_image)
 
 
 def save_image(form_image):
@@ -232,7 +244,11 @@ def settings_profile():
         form.website.data = current_user.website
 
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('settings_profile.html', form = form, profile_image = profile_image)
+    if current_user.background_image == None:
+        background_image = None
+    elif current_user.background_image:
+        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
+    return render_template('settings_profile.html', form = form, profile_image = profile_image, background_image = background_image)
 
 
 @app.route('/settings/account', methods = ['GET', 'POST'])
