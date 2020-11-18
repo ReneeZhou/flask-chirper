@@ -3,7 +3,8 @@
 {% block content %}
 <div class="h-screen sm:bg-gray-900 md:bg-gray-800 md:bg-opacity-100 flex flex-col items-center md:justify-center">
     <div class="flex flex-col bg-gray-900 md:rounded-2xl pb-32 pt-2 h-160">
-        <form method="POST" action="" class="">
+        <form method="POST" action="" enctype="multipart/form-data">
+            <!-- add a special encoding type to our form in order for our to pass our image data properly -->
             {{ form.hidden_tag() }}
             <div class="flex flex-col w-148">
                 <!-- header -->
@@ -34,8 +35,10 @@
                 <div class="h-144 overflow-y-scroll">
                     <!-- cover photo -->
                     <div class="h-48 mb-4 flex justify-center items-center bg-black bg-opacity-50">
+                        <div style="background-image: url({{ background_image }});"
+                        class="h-full w-full flex justify-center items-center bg-cover bg-center">
                         <!-- camera svg -->
-                        <button class="focus:outline-none">
+                        <label class="cursor-pointer">
                             <div class="rounded-full w-10 h-10 flex justify-center items-center
                     hover:bg-gray-800 hover:bg-opacity-25 active:bg-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -46,7 +49,9 @@
                                         d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
-                        </button>
+                            {{ form.background_image(accept=".jpg,.png", class="hidden") }}
+                        </label>
+                        </div>
                     </div>
 
                     <!-- form  fields-->
@@ -57,7 +62,7 @@
                             <div style="background-image: url({{ profile_image }}); opacity:0.8;"
                                 class="w-28 h-28 bg-cover bg-center rounded-full">
                                 <div class="w-28 h-28 flex flex-row justify-center items-center rounded-full">
-                                    <button class="focus:outline-none">
+                                    <label class="cursor-pointer">
                                         <div class="rounded-full w-10 h-10 flex justify-center items-center
                                         hover:bg-gray-600 hover:bg-opacity-25 active:bg-gray-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -68,7 +73,8 @@
                                                     d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </div>
-                                    </button>
+                                        {{ form.profile_image(accept=".jpg,.png", class="hidden") }}
+                                    </label>
                                 </div>
 
                             </div>
@@ -78,7 +84,7 @@
                             <div class="flex flex-col space-y-8">
                                 <!-- name -->
                                 <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
-                                    focus-within:border-blue-500 focus-within:text-blue-50">
+                                    focus-within:border-blue-500 focus-within:text-blue-500">
                                     {{ form.name.label(for="name", class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
                                     {{ form.name(maxlength="50", placeholder="Add your name",
                                     class="bg-gray-700 bg-opacity-0 ml-2 pb-1 outline-none text-white placeholder-gray-600") }}
