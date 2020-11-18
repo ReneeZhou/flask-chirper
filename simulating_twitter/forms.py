@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed  # FileAllowed is a validator restricting file type
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField    # BooleanField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DateTimeField    # BooleanField
 from wtforms.fields.html5 import EmailField, URLField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL
 from simulating_twitter.models import User
@@ -49,7 +49,6 @@ class UpdateProfileForm(FlaskForm):
     submit = SubmitField('Save')
 
 
-
 class UpdateAccountForm(FlaskForm): 
     handle = StringField('Handle', validators = [DataRequired()])
     email = EmailField('Email', validators = [DataRequired(), Email()])
@@ -67,3 +66,9 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email = email.data).first()
             if user:
                 raise ValidationError('This email has been taken. Please choose another one.')
+
+
+class PostForm(FlaskForm):
+    dated_posted = DateTimeField('Timestamp', validators = [DataRequired()])
+    content = TextAreaField('Content', validators = [DataRequired()])
+    user_id = StringField('UserId', validators = [DataRequired()])
