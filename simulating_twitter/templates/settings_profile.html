@@ -27,7 +27,7 @@
                     <!-- save button -->
                     <div>
                         {{ form.submit(class="rounded-full bg-blue-500 hover:bg-blue-600 px-3 py-1 mr-3 cursor-pointer
-                        focus:outline-none") }}
+                        focus:outline-none font-bold") }}
                     </div>
                 </div>
 
@@ -58,8 +58,8 @@
                         <div class="space-y-2 text-gray-600 px-4 -mt-16">
 
                             <!-- camera svg -->
-                            <div style="background-image: url({{ profile_image }}); opacity:0.8;"
-                                class="w-28 h-28 bg-cover bg-center rounded-full">
+                            <div class="w-28 h-28 bg-cover bg-center rounded-full"
+                            style="background-image: url({{ profile_image }}); filter: brightness(95%)">
                                 <div class="w-28 h-28 flex flex-row justify-center items-center rounded-full">
                                     <label class="cursor-pointer">
                                         <div class="rounded-full w-10 h-10 flex justify-center items-center
