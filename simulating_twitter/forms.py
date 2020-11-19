@@ -70,5 +70,6 @@ class UpdateAccountForm(FlaskForm):
 
 class PostForm(FlaskForm):
     dated_posted = DateTimeField('Timestamp', validators = [DataRequired()])
-    content = TextAreaField('Content', validators = [DataRequired()])
+    content = TextAreaField('Content', validators = [DataRequired(), Length(max = 280)])
     user_id = StringField('UserId', validators = [DataRequired()])
+    submit = SubmitField('Chirp')
