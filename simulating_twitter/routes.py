@@ -2,9 +2,10 @@ import os
 from secrets import token_urlsafe, token_hex
 from PIL import Image
 from flask import render_template, redirect, url_for, flash, request
+from werkzeug.utils import validate_arguments
 from simulating_twitter import app, db, bcrypt
 from simulating_twitter.models import User, Post
-from simulating_twitter.forms import LoginForm, RegistrationForm, UpdateProfileForm, UpdateAccountForm
+from simulating_twitter.forms import LoginForm, PostForm, RegistrationForm, UpdateProfileForm, UpdateAccountForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -272,11 +273,16 @@ def settings_account():
     return render_template('settings_account.html', form = form)
 
 
-@app.route('/compose/chirp')
+@app.route('/compose/chirp', methods = ['GET', 'POST'])
 @login_required
 def compose_chirp():
+    form = PostForm()
+    if form.validate_on_submit():
+        current_user.content = form.content.data
+        db.session.commit()
+        return redirect(url_for('profile'))
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('compose_chirp.html', profile_image = profile_image)
+    return render_template('compose_chirp.html', profile_image = profile_image, form = form)
 
 
 @app.route('/account/add')
