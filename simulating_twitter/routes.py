@@ -89,6 +89,7 @@ def logout():
 @app.route('/home')
 @login_required
 def home():
+    posts = Post.query.all()
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
     # .profile_image is a column from the User model 
     return render_template('home.html', \
@@ -278,9 +279,11 @@ def settings_account():
 def compose_chirp():
     form = PostForm()
     if form.validate_on_submit():
-        current_user.content = form.content.data
+        post = Post(content = form.content.data, author = current_user)  # from the backref in db
+        db.session.add(post)
         db.session.commit()
-        return redirect(url_for('profile'))
+        flash('Your Chirp was sent. View')
+        # return redirect(url_for('profile'))
     profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
     return render_template('compose_chirp.html', profile_image = profile_image, form = form)
 
@@ -323,30 +326,30 @@ def connect_people():
 
 
 
-posts = [
-    {
-        'icon': 'icon 1',
-        'username': 'username 1',
-        'handle': '@handle 1',
-        'time': 'date 1',
-        'content': 'content 1',
-        'comment': 'comment button 1',
-        'rechirp': 'rechirp button 1',
-        'like': 'like button 1',
-        'share': 'share buttton dropdown 1'
-    },
-    {
-        'icon': 'icon 2',
-        'username': 'username 2',
-        'handle': '@handle 2',
-        'time': 'date 2',
-        'content': 'content 2',
-        'comment': 'comment button 2',
-        'rechirp': 'rechirp button 2',
-        'like': 'like button 2',
-        'share': 'share buttton dropdown 2'
-    },
-]
+# posts = [
+#     {
+#         'icon': 'icon 1',
+#         'username': 'username 1',
+#         'handle': '@handle 1',
+#         'time': 'date 1',
+#         'content': 'content 1',
+#         'comment': 'comment button 1',
+#         'rechirp': 'rechirp button 1',
+#         'like': 'like button 1',
+#         'share': 'share buttton dropdown 1'
+#     },
+#     {
+#         'icon': 'icon 2',
+#         'username': 'username 2',
+#         'handle': '@handle 2',
+#         'time': 'date 2',
+#         'content': 'content 2',
+#         'comment': 'comment button 2',
+#         'rechirp': 'rechirp button 2',
+#         'like': 'like button 2',
+#         'share': 'share buttton dropdown 2'
+#     },
+# ]
 
 trends = [
     {
