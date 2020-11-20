@@ -42,4 +42,4 @@ class Post(db.Model):
     # referring to user table and id col
 
     def __repr__(self):
-        return f'Post("{self.user_id}", "{self.date_posted}", f"{self.content}"'
+        return f'Post("{self.id}", "{self.date_posted}", f"{self.content}")'
