@@ -108,6 +108,12 @@ def status(post_id):
     return render_template('status.html', post = post, profile_image = profile_image)
 
 
+@app.errorhandler(404)
+@login_required
+def page_not_found(error_status):
+    return render_template('404.html', error_status = 404)
+
+
 # @app.rounte('/')
 @app.route('/home', methods = ['GET', 'POST'])
 @login_required
