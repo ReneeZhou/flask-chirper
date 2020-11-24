@@ -104,16 +104,27 @@ def show_time(date_posted):
 @app.route('/profile/status/<int:post_id>')
 def status(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('status.html', post = post)
+    return render_template('status.html', post = post, post_id = post_id)
 
 
-@app.route('/profile/status/<int:post_id>/update')
+@app.route('/profile/status/<int:post_id>/update', methods = ['GET', 'POST'])
 def update_chirp(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
     
-    return render_template('status_update.html', post = post)
+    form = PostForm()
+    if request.method == 'GET':
+        form.content.data = post.content
+    
+    if form.validate_on_submit():
+        post.content = form.content.data
+        # post.date_posted = datetime.utcnow()  optional
+        db.session.commit()
+        # flash('Your chirp has been updated. ', 'success')
+        return redirect(url_for('status', post_id = post_id))
+
+    return render_template('status_update.html', post = post, form = form)
 
 
 @app.errorhandler(404)
@@ -131,7 +142,7 @@ def home():
         post = Post(content = form.content.data, author = current_user)
         db.session.add(post)
         db.session.commit()
-        return redirect('home')
+        return redirect(url_for('home'))
 
     posts = Post.query.all()
     for post in posts:
