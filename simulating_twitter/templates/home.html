@@ -19,7 +19,7 @@
     <!-- profile pic -->
     <a href="{{ url_for('profile') }}">
         <div class="w-12 h-12 rounded-full overflow-hidden">
-            <img src="{{ profile_image }}" alt="profile pic" class="w-full h-full object-cover">
+            <img src="{{ url_for('static', filename = 'img/profile_pics/' + current_user.profile_image) }}" alt="profile pic" class="w-full h-full object-cover">
         </div>
     </a>
 

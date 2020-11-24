@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from secrets import token_urlsafe, token_hex
 from PIL import Image
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, abort
 from werkzeug.utils import validate_arguments
 from simulating_twitter import app, db, bcrypt
 from simulating_twitter.models import User, Post
@@ -104,8 +104,16 @@ def show_time(date_posted):
 @app.route('/profile/status/<int:post_id>')
 def status(post_id):
     post = Post.query.get_or_404(post_id)
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image) 
-    return render_template('status.html', post = post, profile_image = profile_image)
+    return render_template('status.html', post = post)
+
+
+@app.route('/profile/status/<int:post_id>/update')
+def update_chirp(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    
+    return render_template('status_update.html', post = post)
 
 
 @app.errorhandler(404)
@@ -128,60 +136,50 @@ def home():
     posts = Post.query.all()
     for post in posts:
         post.show = show_time(post.date_posted)
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
     # .profile_image is a column from the User model 
-    return render_template('home.html', \
-        profile_image = profile_image, form = form, posts = posts)
+    return render_template('home.html', form = form, posts = posts)
 
 
 @app.route('/explore', methods = ['GET', 'POST'])
 @login_required
 def explore():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('explore.html', \
-        trends = trends, happenings = happenings, profile_image = profile_image)
+    return render_template('explore.html', trends = trends, happenings = happenings)
 
 
 @app.route('/notifications')
 @login_required
 def notifications():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('notifications.html', profile_image = profile_image)
+    return render_template('notifications.html')
 
 
 @app.route('/notifications/mentions')
 @login_required
 def notifications_mentions():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('notifications_mentions.html', profile_image = profile_image)
+    return render_template('notifications_mentions.html')
 
 
 @app.route('/messages')
 @login_required
 def messages():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('messages.html', profile_image = profile_image)
+    return render_template('messages.html')
 
 
 @app.route('/bookmarks')
 @login_required
 def bookmarks():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('bookmarks.html', profile_image = profile_image)
+    return render_template('bookmarks.html')
 
 
 @app.route('/profile/lists')
 @login_required
 def profile_lists():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('profile_lists.html', profile_image = profile_image)
+    return render_template('profile_lists.html')
 
 
 @app.route('/lists/create')
 @login_required
 def lists_create():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('lists_create.html', profile_image = profile_image)
+    return render_template('lists_create.html')
 
 
 @app.route('/profile')
@@ -283,12 +281,11 @@ def settings_profile():
         form.location.data = current_user.location
         form.website.data = current_user.website
 
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
     if current_user.background_image == None:
         background_image = None
     elif current_user.background_image:
         background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
-    return render_template('settings_profile.html', form = form, profile_image = profile_image, background_image = background_image)
+    return render_template('settings_profile.html', form = form, background_image = background_image)
 
 
 @app.route('/settings/account', methods = ['GET', 'POST'])
@@ -322,8 +319,7 @@ def compose_chirp():
         db.session.commit()
         flash('Your Chirp was sent. View')
         # return redirect(url_for('profile'))
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('compose_chirp.html', profile_image = profile_image, form = form)
+    return render_template('compose_chirp.html', form = form)
 
 
 @app.route('/account/add')
@@ -343,24 +339,19 @@ def account_switch():
 @app.route('/trends')
 @login_required
 def trends():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('trends.html', \
-        trends = trends, profile_image = profile_image)
+    return render_template('trends.html', trends = trends)
 
 
 @app.route('/timeline')
 @login_required
 def timeline():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('timeline.html', \
-        happenings = happenings, profile_image = profile_image)
+    return render_template('timeline.html', happenings = happenings)
 
 
 @app.route('/connect_people')
 @login_required
 def connect_people():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('connect_people.html', profile_image = profile_image)
+    return render_template('connect_people.html')
 
 
 

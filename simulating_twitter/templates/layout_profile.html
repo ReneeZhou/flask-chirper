@@ -32,7 +32,7 @@
                 <div class="flex flex-row justify-between items-end">
                     <!-- profile pic -->
                     <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-gray-900">
-                        <img src="{{ profile_image }}" alt="profile pic" class="w-full h-full object-cover">
+                        <img src="{{ profile_image }}" alt="profile pic" class="w-full h-full object-cover">    <!-- not necessarily going to be current_user -->
                     </div>
                     <!-- edit button -->
                     <a href="{{ url_for('settings_profile') }}">
