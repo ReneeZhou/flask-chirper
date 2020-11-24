@@ -69,8 +69,9 @@ def signup():
         if handle == User.query.filter_by(handle = handle).first():
             handle = token_urlsafe(5)
 
-        user = User(handle = handle, name = form.name.data, email = form.email.data, \
-            password = hashed_password)
+        user = User(handle = handle, name = form.name.data, email = form.email.data, password = hashed_password)
+            # dob_y = form.dob_y.data, dob_m = form.dob_m.data, dob_d = form.dob_d.data)
+        
         # user = User(username = form.username.data, email = form.email.data, password = hashed_password)
         db.session.add(user)
         db.session.commit()
@@ -98,6 +99,13 @@ def show_time(date_posted):
         return date_posted.strftime('%d %b')
     else: 
         return date_posted.strftime('%d %b %Y')
+
+
+@app.route('/profile/status/<int:post_id>')
+def status(post_id):
+    post = Post.query.get_or_404(post_id)
+    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image) 
+    return render_template('status.html', post = post, profile_image = profile_image)
 
 
 # @app.rounte('/')

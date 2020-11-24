@@ -22,7 +22,7 @@
             <!-- user icon -->
             <div class="w-12 h-12">
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img src=" {{ url_for('static', filename = 'img/profile_pics/ocean4.jpg') }} " alt="profile pic"
+                    <img src=" {{ url_for('static', filename = 'img/profile_pics/' + post.author.profile_image) }} " alt="profile pic"
                         class="w-full h-full object-cover">
                 </div>
             </div>
@@ -34,9 +34,9 @@
                     <div class="flex flex-row space-x-2">
                         <!-- link to user page -->
                         <a href="#">
-                            <div class="flex flex-col space-x-1">
-                                <div class="text-base font-bold hover:underline">Renee Zhou</div>
-                                <div class="text-gray-600">@handle</div>
+                            <div class="flex flex-col">
+                                <div class="text-base font-bold hover:underline">{{ post.author.name }}</div>
+                                <div class="text-gray-600">@{{ post.author.handle }}</div>
                             </div>
                         </a>
                     </div>
@@ -61,15 +61,12 @@
             <!-- chirp content section -->
             <div>
                 <p class="text-2xl pt-4 pb-2">
-                    I am building Chirp using Python 🐍 , flask & tailwind.
-                    It is so fun! This is to pay tribute to Twitter of being such a wonderful platform!
+                    {{ post.content }}
                 </p>
 
                 <!-- post timestamp -->
                 <div class="flex flex-row text-gray-600 space-x-1 text-tiny border-b border-gray-600 py-4">
-                    <div>Time am/pm</div>
-                    <div>·</div>
-                    <div>Day MonthAbbr Year4dig</div>
+                    <div>{{ post.date_posted.strftime('%I:%M %p · %d %b %Y').lstrip('0') }}</div>
                     <div>·</div>
                     <div>Source Label</div>
                 </div>
