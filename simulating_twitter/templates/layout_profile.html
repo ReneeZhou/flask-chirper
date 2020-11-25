@@ -46,8 +46,8 @@
                             border-blue-500 hover:bg-blue-800 hover:bg-opacity-25">Edit Profile</div>
                     </a>
                     {% else %}
-                    <body class="bg-gray-900 flex items-center justify-center h-screen">
-
+                    <!-- <body class="bg-gray-900 flex items-center justify-center h-screen"> -->
+                        <!-- modal button -->
                         <button
                             class="modal-open bg-transparent bg-gray-900 border border-blue-500 text-blue-500 
                             hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 rounded-full focus:outline-none">Follow</button>
@@ -89,20 +89,20 @@
                                         <!-- body -->
                                         <div class="w-108 flex flex-col">
                                             <div class="flex flex-col justify-center items-center pb-16">
-                                                <p class="font-bold text-2xl text-center">Follow username to see what they share on Chirper.
+                                                <p class="font-bold text-2xl text-center">Follow {{ user.name}} to see what they share on Chirper.
                                                 </p>
                                                 <p class="text-gray-600 text-tiny">Sing up so you never miss their Chirps.</p>
                                             </div>
                     
                                             <!-- buttons -->
                                             <div class="flex flex-col justify-center items-center text-center font-bold space-y-4">
-                                                <a href="{{ url_for('signup') }}">
-                                                    <button class="w-108 bg-blue-500 rounded-full h-12 font-semibold 
-                                hover:bg-blue-600 focus:outline-none">Sign up</button>
-                                                </a>
                                                 <a href="{{ url_for('login') }}">
+                                                    <button class="w-108 bg-blue-500 rounded-full h-12 font-semibold 
+                                hover:bg-blue-600 focus:outline-none">Log in</button>
+                                                </a>
+                                                <a href="{{ url_for('signup') }}">
                                                     <button class="w-108 border border-blue-500 rounded-full h-12 text-blue-500 font-semibold
-                                 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Log in</button>
+                                 hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Sign up</button>
                                                 </a>
                                             </div>
                                         </div>
