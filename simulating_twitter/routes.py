@@ -152,7 +152,6 @@ def home():
 
 
 @app.route('/explore', methods = ['GET', 'POST'])
-@login_required
 def explore():
     return render_template('explore.html', trends = trends, happenings = happenings)
 
