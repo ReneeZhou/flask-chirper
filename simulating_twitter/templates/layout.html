@@ -32,6 +32,7 @@
                         </svg>
                     </div>
                 </a>
+                {% if current_user.is_authenticated %}
                 <a href="{{ url_for('home') }}" class="home-a">
                     <div class="home-btn">
                         <!-- home icon -->
@@ -41,6 +42,7 @@
                         </svg>
                     </div>
                 </a>
+                {% endif %}
                 <a href="{{ url_for('explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
@@ -50,6 +52,7 @@
                         </svg>
                     </div>
                 </a>
+                {% if current_user.is_authenticated %}
                 <a href="{{ url_for('notifications') }}" class="home-a">
                     <div class="home-btn">
                         <!-- notification icon -->
@@ -112,8 +115,9 @@
                         </svg>
                     </div>
                 </a>
+                {% endif %}
             </div>
-
+            {% if current_user.is_authenticated %}
             <div class="flex flex-col items-center">
                 <!-- manage account -->
                 <a href="{{ url_for('settings_account') }}">
@@ -133,6 +137,7 @@
                         out</button>
                 </a>
             </div>
+            {% endif %}
         </nav>
 
         <!-- nav bar @lg bp -->
@@ -156,6 +161,7 @@
                         </svg>
                     </div>
                 </a>
+                {% if current_user.is_authenticated %}
                 <a href="{{ url_for('home') }}" class="home-a">
                     <div class="home-btn">
                         <!-- home icon -->
@@ -165,6 +171,7 @@
                         </svg>
                     </div>
                 </a>
+                {% endif %}
                 <a href="{{ url_for('explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
@@ -175,6 +182,7 @@
                         </svg>
                     </div>
                 </a>
+                {% if current_user.is_authenticated %}
                 <a href="{{ url_for('notifications') }}" class="home-a">
                     <div class="home-btn">
                         <!-- notification icon -->
@@ -239,8 +247,9 @@
                     </div>
 
                 </a>
+                {% endif %}
             </div>
-
+            {% if current_user.is_authenticated %}
             <div class="flex flex-col items-center">
                 <!-- manage account -->
                 <a href="{{ url_for('settings_account') }}">
@@ -260,7 +269,7 @@
                         out</button>
                 </a>
             </div>
-
+            {% endif %}
         </nav>
 
         <!-- nav bar @xl bp -->
@@ -284,6 +293,7 @@
                         </svg>
                     </div>
                 </a>
+                {% if current_user.is_authenticated %}
                 <a href="{{ url_for('home') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- home icon -->
@@ -294,6 +304,7 @@
                         <div class="pr-5">Home</div>
                     </div>
                 </a>
+                {% endif %}
                 <a href="{{ url_for('explore') }}" class="home-a">
                     <!-- explore icon -->
                     <div class="home-btn space-x-4">
@@ -305,6 +316,7 @@
                         <div class="pr-5">Explore</div>
                     </div>
                 </a>
+                {% if current_user.is_authenticated %}
                 <a href="{{ url_for('notifications') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- notification icon -->
@@ -369,8 +381,9 @@
                     <div class="w-56 h-12 m-2 rounded-full bg-blue-500 hover:bg-blue-600 font-semibold text-base
                         flex flex-row justify-center items-center">Chirp</div>
                 </a>
+                {% endif %}
             </div>
-
+            {% if current_user.is_authenticated %}
             <div class="space-y-1">
                 <!-- manage account -->
                 <a href="{{ url_for('settings_account') }}">
@@ -404,7 +417,7 @@
                         out</button>
                 </a>
             </div>
-
+            {% endif %}
         </nav>
     </div>
     <main class="w-148 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
@@ -430,6 +443,51 @@
             </tbody>
 
         </table>
+
+        {% if not current_user.is_authenticated %}
+        <!-- temp -->
+        <!-- banner -->
+        <div class="fixed inset-x-0 bottom-0 flex flex-row justify-center items-center xs:h-16 sm:h-16 md:h-18 bg-blue-500">
+            <!-- xs, sm buttons -->
+            <div class="flex-row items-center md:hidden space-x-3">
+                <!-- login -->
+                <a href="{{ url_for('login') }}">
+                    <button class="w-56 border border-white rounded-full h-10 text-white font-semibold
+                     hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
+                </a>
+                <!-- signup -->
+                <a href="{{ url_for('signup') }}">
+                    <button class="w-56 bg-white rounded-full h-10 text-blue-500 font-semibold 
+                    hover:bg-gray-300 focus:outline-none">Sign up</button>
+                </a>
+
+            </div>
+
+            <!-- md and above -->
+            <div class="xs:hidden sm:hidden md:flex flex-row justify-between lg:ml-20 xl:ml-48">
+                <div class="flex flex-col justify-self-center -space-y-1 md:w-148 lg:w-196">
+                    <p class="text-2xl font-bold">Don’t miss what’s happening</p>
+                    <p class="text-tiny">People on Chirper are the first to know.</p>
+                </div> 
+                
+                <!-- buttons -->
+                <div class="flex flex-row items-center space-x-3 mr-4">
+                    <!-- login -->
+                    <a href="{{ url_for('login') }}">
+                        <button class="w-20 border border-white rounded-full h-10 text-white font-semibold
+                 hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
+                    </a>
+                    <!-- signup -->
+                    <a href="{{ url_for('signup') }}">
+                        <button class="w-20 bg-white rounded-full h-10 text-blue-500 font-semibold 
+                hover:bg-gray-300 focus:outline-none">Sign up</button>
+                    </a>
+                </div>
+            </div>
+
+            
+        </div>
+        {% endif %}
 
     </main>
 
@@ -550,7 +608,9 @@
         </table>
     </aside>
 
+
     <!-- message tab -->
+    {% if current_user.is_authenticated %}
     <div class="fixed bottom-0 right-0 px-4 h-12 xs:hidden sm:hidden lg:flex cursor-pointer">
         <div
             class="flex flex-row w-100 justify-between items-center rounded-t-2xl py-4 pl-4 pr-2 shadow-msg bg-gray-900">
@@ -574,6 +634,8 @@
             </div>
         </div>
     </div>
+    {% endif %}
+    <!-- message tab ends here -->
 </body>
 
 </html>
