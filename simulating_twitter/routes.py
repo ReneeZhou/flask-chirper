@@ -193,50 +193,28 @@ def lists_create():
     return render_template('lists_create.html')
 
 
-@app.route('/profile')
-@login_required
-def profile():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-
-    # because we don't have a defualt background img like user profile pic
-    if current_user.background_image == None:
-        background_image = None
-    elif current_user.background_image:
-        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
-    return render_template('profile.html', profile_image = profile_image, background_image = background_image)
+@app.route('/<handle>')
+def profile(handle):
+    user = User.query.filter_by(handle = handle).first()
+    return render_template('profile.html', user = user)
 
 
-@app.route('/profile/with_replies')
-@login_required
-def profile_with_replies():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    if current_user.background_image == None:
-        background_image = None
-    elif current_user.background_image:
-        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
-    return render_template('profile_with_replies.html', profile_image = profile_image, background_image = background_image)
+@app.route('/<handle>/with_replies')
+def profile_with_replies(handle):
+    user = User.query.filter_by(handle = handle).first()
+    return render_template('profile_with_replies.html', user = user)
 
 
-@app.route('/profile/media')
-@login_required
-def profile_media():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    if current_user.background_image == None:
-        background_image = None
-    elif current_user.background_image:
-        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
-    return render_template('profile_media.html', profile_image = profile_image, background_image = background_image)
+@app.route('/<handle>/media')
+def profile_media(handle):
+    user = User.query.filter_by(handle = handle).first()
+    return render_template('profile_media.html', user = user)
 
 
-@app.route('/profile/likes')
-@login_required
-def profile_likes():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    if current_user.background_image == None:
-        background_image = None
-    elif current_user.background_image:
-        background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
-    return render_template('profile_likes.html', profile_image = profile_image, background_image = background_image)
+@app.route('/<handle>/likes')
+def profile_likes(handle):
+    user = User.query.filter_by(handle = handle).first()
+    return render_template('profile_likes.html', user = user)
 
 
 def save_image(form_image):
@@ -263,6 +241,11 @@ def save_image(form_image):
     return picture_fn
 
 
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
+
+
 @app.route('/settings/profile', methods = ['GET', 'POST'])
 @login_required
 def settings_profile():
@@ -280,7 +263,7 @@ def settings_profile():
         current_user.website = form.website.data
         db.session.commit()
         flash('Your profile has been updated!', 'success')
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile', handle = current_user.handle))
         # POST/GET redirect pattern
         # browser telling you're about to run another POST when you reload your page
         # so us redirecting causing the browser to send a GET, and we won't get that pop up msg from browser

@@ -6,19 +6,19 @@
 <!-- 4 tabs -->
 {% block tabs %}
 <div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
-    <a href="{{ url_for('profile') }}" class="w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('profile', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <div>Chirps</div>
     </a>
-    <a href="{{ url_for('profile_with_replies') }}" class="w-56 flex flex-row justify-center items-center 
+    <a href="{{ url_for('profile_with_replies', handle = user.handle) }}" class="w-56 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
         <div>Chirps & replies</div>
     </a>
-    <a href="{{ url_for('profile_media') }}" class="w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('profile_media', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <div>Media</div>
     </a>
-    <a href="{{ url_for('profile_likes') }}" class="w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('profile_likes', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <div>Likes</div>
     </a>

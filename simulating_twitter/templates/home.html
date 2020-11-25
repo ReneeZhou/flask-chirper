@@ -17,7 +17,7 @@
 {% block content %}
 <div class="flex flex-row my-2 mx-3 space-x-3">
     <!-- profile pic -->
-    <a href="{{ url_for('profile') }}">
+    <a href="{{ url_for('profile', handle = current_user.handle) }}">
         <div class="w-12 h-12 rounded-full overflow-hidden">
             <img src="{{ url_for('static', filename = 'img/profile_pics/' + current_user.profile_image) }}" alt="profile pic" class="w-full h-full object-cover">
         </div>

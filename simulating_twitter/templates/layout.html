@@ -104,7 +104,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('profile') }}" class="home-a">
+                <a href="{{ url_for('profile', handle = current_user.handle) }}" class="home-a">
                     <div class="home-btn">
                         <!-- profile icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -249,7 +249,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('profile') }}" class="home-a">
+                <a href="{{ url_for('profile', handle = current_user.handle) }}" class="home-a">
                     <div class="home-btn">
                         <!-- profile icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -403,7 +403,7 @@
                         <div class="pr-5">Lists</div>
                     </div>
                 </a>
-                <a href="{{ url_for('profile') }}" class="home-a">
+                <a href="{{ url_for('profile', handle = current_user.handle) }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- profile icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
