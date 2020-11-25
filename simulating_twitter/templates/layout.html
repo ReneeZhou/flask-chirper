@@ -43,6 +43,7 @@
                     </div>
                 </a>
                 {% endif %}
+
                 <a href="{{ url_for('explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
@@ -52,6 +53,21 @@
                         </svg>
                     </div>
                 </a>
+
+                <!-- settings svg -->
+                {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('settings') }}" class="home-a">
+                    <div class="home-btn">
+                        <!-- explore icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                </a>
+                {% endif %}
+
                 {% if current_user.is_authenticated %}
                 <a href="{{ url_for('notifications') }}" class="home-a">
                     <div class="home-btn">
@@ -172,6 +188,7 @@
                     </div>
                 </a>
                 {% endif %}
+
                 <a href="{{ url_for('explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
@@ -182,6 +199,20 @@
                         </svg>
                     </div>
                 </a>
+
+                {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('settings') }}" class="home-a">
+                    <div class="home-btn">
+                        <!-- explore icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                </a>
+                {% endif %}
+
                 {% if current_user.is_authenticated %}
                 <a href="{{ url_for('notifications') }}" class="home-a">
                     <div class="home-btn">
@@ -305,6 +336,7 @@
                     </div>
                 </a>
                 {% endif %}
+
                 <a href="{{ url_for('explore') }}" class="home-a">
                     <!-- explore icon -->
                     <div class="home-btn space-x-4">
@@ -316,6 +348,21 @@
                         <div class="pr-5">Explore</div>
                     </div>
                 </a>
+
+                {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('settings') }}" class="home-a">
+                    <div class="home-btn space-x-4">
+                        <!-- explore icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <div class="pr-5">Settings</div>
+                    </div>
+                </a>
+                {% endif %}
+
                 {% if current_user.is_authenticated %}
                 <a href="{{ url_for('notifications') }}" class="home-a">
                     <div class="home-btn space-x-4">
@@ -447,7 +494,8 @@
         {% if not current_user.is_authenticated %}
         <!-- temp -->
         <!-- banner -->
-        <div class="fixed inset-x-0 bottom-0 flex flex-row justify-center items-center xs:h-16 sm:h-16 md:h-18 bg-blue-500">
+        <div
+            class="fixed inset-x-0 bottom-0 flex flex-row justify-center items-center xs:h-16 sm:h-16 md:h-18 bg-blue-500">
             <!-- xs, sm buttons -->
             <div class="flex-row items-center md:hidden space-x-3">
                 <!-- login -->
@@ -468,8 +516,8 @@
                 <div class="flex flex-col justify-self-center -space-y-1 md:w-148 lg:w-196">
                     <p class="text-2xl font-bold">Don’t miss what’s happening</p>
                     <p class="text-tiny">People on Chirper are the first to know.</p>
-                </div> 
-                
+                </div>
+
                 <!-- buttons -->
                 <div class="flex flex-row items-center space-x-3 mr-4">
                     <!-- login -->
@@ -485,7 +533,7 @@
                 </div>
             </div>
 
-            
+
         </div>
         {% endif %}
 
