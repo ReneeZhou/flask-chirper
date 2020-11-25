@@ -573,8 +573,40 @@
                 </div>
                 {% endif %}
 
+
                 <!-- user media -->
+                {% if not current_user.is_authenticated %}
                 <div class="w-88 h-52 flex flex-col border border-gray-700 rounded-xl px-4 pt-1 pb-4 space-y-2">user media</div>
+                {% endif %}
+
+                <!-- avatar template -->
+                {% if not current_user.is_authenticated %}
+                <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
+                    <div class="text-xl font-bold px-4 py-2">You might like</div>
+
+                    <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
+                                <img src="{{ url_for('static', filename = 'img/profile_pics/ocean2.jpg') }}"
+                                    alt="profile pic" class="w-full h-full object-cover">
+                            </a>
+                            <div>
+                                <a href="#" class="font-bold hover:underline">Renee Zhou</a>
+                                <p class="text-gray-600 text-base">@handle</p>
+                            </div>
+                        </div>
+
+                        <button class="self-center rounded-full font-bold text-blue-500 px-4 h-8 border 
+                        border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">Follow</button>
+                    </div>
+
+
+                    <div
+                        class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl cursor-pointer">
+                        <a href="{{ url_for('connect_people') }}">Show more</a>
+                    </div>
+                </div>
+                {% endif %}
 
                 <!-- trends template -->
                 <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
@@ -614,6 +646,7 @@
                     </div>
                 </div>
 
+                {% if current_user.is_authenticated %}
                 <!-- avatar template -->
                 <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
                     <div class="text-xl font-bold px-4 py-2">Who to follow</div>
@@ -641,6 +674,7 @@
                         <a href="{{ url_for('connect_people') }}">Show more</a>
                     </div>
                 </div>
+                {% endif %}
 
                 <!-- footer -->
                 <footer class="text-left w-88 text-gray-600 text-xs tracking-wide leading-loose">
