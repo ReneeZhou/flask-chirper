@@ -14,7 +14,11 @@
         <!-- nav bar @xs bp -->
         <nav class="xs:flex sm:flex flex-col lg:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
+                {% if current_user.is_authenticated %}
                 <a href=" {{url_for('home') }}" class="rounded-full px-2">
+                {% else %}
+                <a href=" {{url_for('home_notauth') }}" class="rounded-full px-2">
+                {% endif %}
                     <div class="home-btn">
                         <!-- chirpy icon -->
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -159,7 +163,11 @@
         <!-- nav bar @lg bp -->
         <nav class="xs:hidden sm:hidden lg:flex flex-col xl:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
+                {% if current_user.is_authenticated %}
                 <a href=" {{url_for('home') }}" class="rounded-full px-2">
+                {% else %}
+                <a href=" {{url_for('home_notauth') }}" class="rounded-full px-2">
+                {% endif %}
                     <div class="home-btn">
                         <!-- chirpy icon -->
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -306,7 +314,11 @@
         <!-- nav bar @xl bp -->
         <nav class="xs:hidden sm:hidden xl:flex flex-col h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
+                {% if current_user.is_authenticated %}
                 <a href=" {{url_for('home') }}" class="rounded-full px-2">
+                {% else %}
+                <a href=" {{url_for('home_notauth') }}" class="rounded-full px-2">
+                {% endif %}
                     <!-- chirpy icon -->
                     <div class="home-btn w-12">
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
