@@ -226,8 +226,10 @@
             <!-- user icon -->
             <div class="w-12 h-12">
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img src="{{ url_for('static', filename = 'img/profile_pics/' + post.author.profile_image) }}"
+                    <a href="{{ url_for('profile', handle = post.author.handle) }}">
+                        <img src="{{ url_for('static', filename = 'img/profile_pics/' + post.author.profile_image) }}"
                         alt="profile pic" class="w-full h-full object-cover">
+                    </a>
                 </div>
             </div>
 
@@ -238,7 +240,7 @@
                     <!-- author, handle, timestamp -->
                     <div class="flex flex-row space-x-2">
                         <!-- link to user page -->
-                        <a href="#">
+                        <a href="{{ url_for('profile', handle = post.author.handle) }}">
                             <div class="flex flex-row space-x-1">
                                 <div class="text-base font-bold hover:underline">{{ post.author.name }}</div>
                                 <div class="text-gray-600">@{{ post.author.handle }}</div>
