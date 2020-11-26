@@ -3,6 +3,7 @@ from datetime import datetime
 from secrets import token_urlsafe, token_hex
 from PIL import Image
 from flask import render_template, redirect, url_for, flash, request, abort
+from sqlalchemy.sql.visitors import replacement_traverse
 from werkzeug.utils import validate_arguments
 from simulating_twitter import app, db, bcrypt
 from simulating_twitter.models import User, Post
@@ -207,12 +208,20 @@ def profile_with_replies(handle):
 @app.route('/<handle>/media')
 def profile_media(handle):
     user = User.query.filter_by(handle = handle).first()
+
+    if not current_user.is_authenticated:
+        return redirect(url_for('profile', handle = user.handle))
+
     return render_template('profile_media.html', user = user)
 
 
 @app.route('/<handle>/likes')
 def profile_likes(handle):
     user = User.query.filter_by(handle = handle).first()
+
+    if not current_user.is_authenticated:
+        return redirect(url_for('profile', handle = user.handle))
+        
     return render_template('profile_likes.html', user = user)
 
 
