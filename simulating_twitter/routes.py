@@ -196,7 +196,12 @@ def lists_create():
 @app.route('/<handle>')
 def profile(handle):
     user = User.query.filter_by(handle = handle).first()
-    return render_template('profile.html', user = user)
+
+    posts = Post.query.filter_by(user_id = user.id).all()
+    for post in posts:
+        post.show = show_time(post.date_posted)
+
+    return render_template('profile.html', user = user, posts = posts)
 
 
 @app.route('/<handle>/with_replies')
@@ -221,7 +226,7 @@ def profile_likes(handle):
 
     if not current_user.is_authenticated:
         return redirect(url_for('profile', handle = user.handle))
-        
+
     return render_template('profile_likes.html', user = user)
 
 
@@ -320,7 +325,7 @@ def compose_chirp():
         db.session.add(post)
         db.session.commit()
         flash('Your Chirp was sent. View')
-        # return redirect(url_for('profile'))
+        return redirect(url_for('profile', handle = current_user.handle))
     return render_template('compose_chirp.html', form = form)
 
 
