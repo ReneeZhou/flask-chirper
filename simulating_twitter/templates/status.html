@@ -45,7 +45,7 @@
                     <div class="-space-x-1">
                         {% if post.author == current_user %}
                         <!-- edit button -->
-                        <a href="{{ url_for('update_chirp', post_id = post_id) }}">
+                        <a href="{{ url_for('update_chirp', handle = post.author.handle, post_id = post.post_id) }}">
                             <button class="focus:outline-none">
                                 <div class="rounded-full p-2 hover:bg-blue-700 hover:bg-opacity-25 active:bg-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

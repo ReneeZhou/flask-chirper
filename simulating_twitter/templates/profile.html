@@ -173,7 +173,7 @@
                 <!-- chirp content section -->
                 <div>
                     <p class="text-base">
-                        <a href="{{ url_for('status', post_id = post.post_id) }}">{{ post.content }}</a>
+                        <a href="{{ url_for('status', handle = post.author.handle, post_id = post.post_id) }}">{{ post.content }}</a>
                     </p>
                 </div>
 

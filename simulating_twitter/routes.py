@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from secrets import token_urlsafe, token_hex
+from secrets import token_urlsafe, token_hex, randbits
 from PIL import Image
 from flask import render_template, redirect, url_for, flash, request, abort
 from sqlalchemy.sql.visitors import replacement_traverse
@@ -102,18 +102,32 @@ def show_time(date_posted):
         return date_posted.strftime('%d %b %Y')
 
 
-@app.route('/profile/status/<int:post_id>')
-def status(post_id):
+@app.route('/<handle>/status/<int:post_id>', methods = ['GET', 'POST'])
+def status(handle, post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('status.html', post = post, post_id = post_id)
+    
+    if handle != post.author.handle:
+        handle = post.author.handle
+        post_id = post.post_id
+        return redirect(url_for('status', handle = handle, post_id = post_id))
+    
+    return render_template('status.html', post = post)
 
 
-@app.route('/profile/status/<int:post_id>/update', methods = ['GET', 'POST'])
-def update_chirp(post_id):
+@app.route('/<handle>/status/<int:post_id>/update', methods = ['GET', 'POST'])
+def update_chirp(handle, post_id):
     post = Post.query.get_or_404(post_id)
+
+    if handle != post.author.handle:
+        handle = post.author.handle
+        post_id = post.post_id
+        return redirect(url_for('status', handle = handle, post_id = post_id))
+
+    # route forbidded if it's not post owner
     if post.author != current_user:
         abort(403)
-    
+
+    # pre-fill content
     form = PostForm()
     if request.method == 'GET':
         form.content.data = post.content
@@ -123,9 +137,13 @@ def update_chirp(post_id):
         # post.date_posted = datetime.utcnow()  optional
         db.session.commit()
         # flash('Your chirp has been updated. ', 'success')
-        return redirect(url_for('status', post_id = post_id))
+        return redirect(url_for('status', handle = handle, post_id = post.post_id))
 
     return render_template('status_update.html', post = post, form = form)
+
+
+# @app.route('/profile/status/<int:post_id>/delete', methods = ['POST'])
+# def delete_chirp()
 
 
 @app.errorhandler(404)
@@ -134,13 +152,12 @@ def page_not_found(error_status):
     return render_template('404.html', error_status = 404)
 
 
-# @app.rounte('/')
 @app.route('/home', methods = ['GET', 'POST'])
 @login_required
 def home():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(content = form.content.data, author = current_user)
+        post = Post(post_id = randbits(60), content = form.content.data, author = current_user)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('home'))
@@ -288,8 +305,8 @@ def settings_profile():
         form.location.data = current_user.location
         form.website.data = current_user.website
 
-    if current_user.background_image == None:
-        background_image = None
+    if current_user.background_image == '':
+        background_image = ''
     elif current_user.background_image:
         background_image = url_for('static', filename = 'img/background_pics/' + current_user.background_image)
     return render_template('settings_profile.html', form = form, background_image = background_image)
@@ -321,7 +338,7 @@ def settings_account():
 def compose_chirp():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(content = form.content.data, author = current_user)  # from the backref in db
+        post = Post(post_id = randbits(60), content = form.content.data, author = current_user)  # from the backref in db
         db.session.add(post)
         db.session.commit()
         flash('Your Chirp was sent. View')

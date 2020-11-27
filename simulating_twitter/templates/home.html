@@ -233,7 +233,7 @@
                 </div>
             </div>
 
-
+            
             <div class="flex flex-col w-full space-y-2 -m-1">
                 <!-- small header -->
                 <div class="flex flex-row justify-between items-center">
@@ -271,7 +271,7 @@
                 <!-- chirp content section -->
                 <div>
                     <p class="text-base">
-                        <a href="{{ url_for('status', post_id = post.post_id) }}">{{ post.content }}</a>
+                        <a href="{{ url_for('status', handle = post.author.handle, post_id = post.post_id) }}">{{ post.content }}</a>
                     </p>
                 </div>
 
