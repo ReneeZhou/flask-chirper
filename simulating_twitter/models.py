@@ -1,4 +1,3 @@
-from secrets import randbits
 from datetime import datetime
 from simulating_twitter import db, login_manager
 from flask_login import UserMixin
@@ -26,10 +25,10 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable = False)
 
     profile_image = db.Column(db.String(20), nullable = False, default = 'default_profile.png')
-    background_image = db.Column(db.String(20))  # db will default Null because nullable
-    bio = db.Column(db.String(160))              # give it a string None so it can find labels??
-    location = db.Column(db.String(30))
-    website = db.Column(db.String(100))
+    background_image = db.Column(db.String(20), nullable = False, default = '')  # db will default Null because nullable
+    bio = db.Column(db.String(160), nullable = False, default = '')              # give it '' so it can render consistently in templates
+    location = db.Column(db.String(30), nullable = False, default = '')
+    website = db.Column(db.String(100), nullable = False, default = '')
 
     posts = db.relationship('Post', backref = 'author', lazy = True) 
     # referring to Post class
@@ -43,7 +42,7 @@ class Post(db.Model):
     # id = db.Column(db.Integer, primary_key = True)
     # title = db.Column(db.String(100), nullable = False)
     date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
-    post_id = db.Column(db.Integer, primary_key = True, default = randbits(60))
+    post_id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
     
