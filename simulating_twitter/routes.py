@@ -114,7 +114,21 @@ def status(handle, post_id):
     return render_template('status.html', post = post)
 
 
+@app.route('/<handle>/status/<int:post_id>/analytics', methods = ['GET'])
+@login_required
+def status_analytics(handle, post_id):
+    post = Post.query.get_or_404(post_id)
+
+    if handle != post.author.handle:
+        handle = post.author.handle
+        post_id = post.post_id
+        return redirect(url_for('status_analytics', handle = handle, post_id = post_id))
+
+    return render_template('status_analytics.html', post = post)
+
+
 @app.route('/<handle>/status/<int:post_id>/update', methods = ['GET', 'POST'])
+@login_required
 def update_chirp(handle, post_id):
     post = Post.query.get_or_404(post_id)
 
@@ -142,8 +156,18 @@ def update_chirp(handle, post_id):
     return render_template('status_update.html', post = post, form = form)
 
 
-# @app.route('/profile/status/<int:post_id>/delete', methods = ['POST'])
-# def delete_chirp()
+@app.route('/<handle>/status/<int:post_id>/delete', methods = ['POST'])
+@login_required
+def delete_chirp(handle, post_id):
+    post = Post.query.get_or_404(post_id)
+    
+    if post.author != current_user:
+        abort(403)
+
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your chirp was deleted', 'success')
+    return redirect(url_for('profile', handle = current_user.handle))
 
 
 @app.errorhandler(404)
@@ -210,6 +234,12 @@ def lists_create():
     return render_template('lists_create.html')
 
 
+@app.route('/lists/add_member')
+@login_required
+def lists_addMember():
+    return render_template('lists_addMember.html')
+
+
 @app.route('/<handle>')
 def profile(handle):
     user = User.query.filter_by(handle = handle).first()
@@ -245,6 +275,16 @@ def profile_likes(handle):
         return redirect(url_for('profile', handle = user.handle))
 
     return render_template('profile_likes.html', user = user)
+
+
+@app.route('/<handle>/moments')
+def profile_moments(handle):
+    return render_template('profile_moments.html')
+
+
+@app.route('/<handle>/topics')
+def profile_topics(handle):
+    return render_template('profile_topics.html')
 
 
 def save_image(form_image):
@@ -378,7 +418,34 @@ def connect_people():
     return render_template('connect_people.html')
 
 
+@app.route('/display')
+def display():
+    return render_template('display.html')
 
+
+@app.route('/follower_requests')
+def followerRequests():
+    return render_template('follower_requests.html')
+
+
+@app.route('/keyboard_shortcuts')
+def keyboardShortcuts():
+    return render_template('keyboardShortcuts.html')
+
+
+@app.route('/subdomain/ads')
+def subdomain_ads():
+    return render_template('subdomain_ads.html')
+
+
+@app.route('/subdomain/analytics')
+def subdomain_analytics():
+    return render_template('subdomain_analytics.html')
+
+
+@app.route('/subdomain/support')
+def subdomain_support():
+    return render_template('subdomain_support.html')
 # posts = [
 #     {
 #         'icon': 'icon 1',
