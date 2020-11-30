@@ -130,7 +130,7 @@
                 <div class="w-12 h-12 rounded-full overflow-hidden">
                     <a href="{{ url_for('profile', handle = post.author.handle) }}">
                         <img src="{{ url_for('static', filename = 'img/profile_pics/' + post.author.profile_image) }}"
-                        alt="profile pic" class="w-full h-full object-cover">
+                            alt="profile pic" class="w-full h-full object-cover">
                     </a>
                 </div>
             </div>
@@ -157,23 +157,72 @@
                         </a>
                     </div>
 
-                    <!-- setting button -->
-                    <button class="focus:outline-none">
-                        <div class="rounded-full p-1 hover:bg-blue-700 hover:bg-opacity-25 active:bg-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                class="w-5 h-5 stroke-current text-gray-600 hover:text-blue-500">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                            </svg>
+
+                    <!-- setting button dropdown menu -->
+                    <div class="text-gray-700">
+                        <div x-data="{ open: false }" class="flex flex-col">
+                            <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow 
+                                sm:pb-0 sm:flex sm:justify-end sm:flex-row
+                                xs:pb-0 xs:flex xs:justify-end xs:flex-row">
+                                <div @click.away="open = false" class="relative" x-data="{ open: false }"
+                                    class="bg-gray-900">
+                                    <button @click="open = !open" class="flex flex-row items-center z-10 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            class="w-5 h-5 stroke-current">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                        x-transition:enter-start="transform opacity-0 scale-95"
+                                        x-transition:enter-end="transform opacity-100 scale-100"
+                                        x-transition:leave="transition ease-in duration-75"
+                                        x-transition:leave-start="transform opacity-100 scale-100"
+                                        x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-48 sm:w-48 z-50
+                                        text-white">
+                                        <div class="flex flex-col text-tiny bg-gray-900 rounded-md shadow">
+                                            <div class="flex flex-row space-x-3 text-red-700 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    class="stroke-current text-red-700 w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                                <div>Delete</div>
+                                            </div>
+                                            <div class="flex flex-row space-x-3 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    class="stroke-current text-gray-600 w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                                </svg>
+                                                <div>Pin to your profile</div>
+                                            </div>
+                                            <a class="space-x-2 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25"
+                                                href="{{ url_for('status_analytics', handle = current_user.handle, post_id = post.post_id) }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                    class="fill-current text-gray-600 w-5 h-5 inline">
+                                                    <path
+                                                        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                                                </svg>
+                                                <div class="inline align-middle">View Chirp activity</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
                         </div>
-                    </button>
+                    </div>
+                    <!--  dropdown menu ends here -->
 
                 </div>
 
                 <!-- chirp content section -->
                 <div>
                     <p class="text-base">
-                        <a href="{{ url_for('status', handle = post.author.handle, post_id = post.post_id) }}">{{ post.content }}</a>
+                        <a
+                            href="{{ url_for('status', handle = post.author.handle, post_id = post.post_id) }}">{{ post.content }}</a>
                     </p>
                 </div>
 
@@ -237,4 +286,11 @@
 
     {% endfor %}
 </div>
+
+
+
+
+<!-- dropdown script -->
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+<!-- dropdown script ends here -->
 {% endblock tabcontent %}
