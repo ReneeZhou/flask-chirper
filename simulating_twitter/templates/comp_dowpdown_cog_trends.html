@@ -1,0 +1,61 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title%} / Chirper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+</head>
+
+
+<!-- component -->
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+<!--  cog button dropdown -->
+<div class="text-gray-700">
+    <div x-data="{ open: false }" class="flex flex-col">
+        <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow 
+                                                    sm:pb-0 sm:flex sm:justify-end sm:flex-row
+                                                    xs:pb-0 xs:flex xs:justify-end xs:flex-row">
+            <div @click.away="open = false" class="relative" x-data="{ open: false }" class="bg-gray-900">
+                <button @click="open = !open"
+                    class="flex flex-row items-center z-10 focus:outline-none p-1
+                                                rounded-full hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 active:bg-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="w-6 h-6 stroke-current ">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                    </svg>
+                </button>
+                <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-75"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-64 sm:w-64 z-50
+                                                            text-white">
+                    <div class="flex flex-col text-sm bg-gray-900 rounded-md shadow">
+                        <div
+                            class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="stroke-current text-gray-600 w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>I'm not interested in this</div>
+                        </div>
+                        <div
+                            class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="stroke-current text-gray-600 w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>This trends is harmful or spam</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- end -->
