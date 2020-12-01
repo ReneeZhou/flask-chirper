@@ -1,0 +1,107 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title%} / Chirper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+    <!-- delete modal -->
+    <div>
+        <!-- delete modal button -->
+        <div
+            class="modal-delete-open bg-transparent bg-gray-900 
+            flex flex-row items-center space-x-3 text-red-700 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="stroke-current text-red-700 w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+            <div>Delete</div>
+        </div>
+
+        <!-- delete modal content -->
+        <div
+            class="modal-delete opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <!-- bg outside modal -->
+            <div class="modal-delete-overlay absolute w-full h-full bg-gray-700 opacity-25"></div>
+
+            <div class="w-76 modal-delete-container rounded-2xl bg-gray-900 text-white shadow-lg z-50 overflow-y-auto">
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-delete-content flex flex-col pt-6 px-3 pb-6">
+                    <div class="flex flex-col items-center justify-center">
+                        <!-- body -->
+                        <div class="w-68 flex flex-col space-y-2">
+                            <div class="flex flex-col justify-center items-center space-y-3 pb-3">
+                                <p class="font-bold text-xl text-center">Delete Chirp?</p>
+                                <p class="text-gray-600 text-tiny text-center leading-tight">This can't be undone and it will be
+                                    removed from your profile, the timeline of any accounts that follow you, and from Chirper search
+                                    results.
+                                </p>
+                            </div>
+
+                            <!-- buttons -->
+                            <div class="flex flex-row justify-center items-center space-x-3">
+                                <button
+                                    class="modal-delete-close block w-32 font-bold focus:outline-none bg-gray-600 rounded-full h-10 bg-opacity-25 hover:bg-opacity-50 focus:bg-gray-500">Cancel</button>
+                                <button
+                                    class="block w-32 font-bold focus:outline-none bg-red-600 rounded-full h-10 hover:bg-opacity-75 focus:bg-red-700">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- delete modal content ends here -->
+    </div>
+    <!-- delete modal ends here -->
+</body>
+
+
+<!-- delete button scripts -->
+<script>
+    var openmodalDelete = document.querySelectorAll('.modal-delete-open')
+    for (var i = 0; i < openmodalDelete.length; i++) {
+        openmodalDelete[i].addEventListener('click', function (event) {
+            event.preventDefault()
+            toggleModalDelete()
+        })
+    }
+
+
+    const overlayDelete = document.querySelector('.modal-delete-overlay')
+    overlayDelete.addEventListener('click', toggleModalDelete)
+
+
+    var closemodalDelete = document.querySelectorAll('.modal-delete-close')
+    for (var i = 0; i < closemodalDelete.length; i++) {
+        closemodalDelete[i].addEventListener('click', toggleModalDelete)
+    }
+
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event
+        var isEscape = false
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc")
+        } else {
+            isEscape = (evt.keyCode === 27)
+        }
+        if (isEscape && document.body.classList.contains('modal-delete-active')) {
+            toggleModalDelete()
+        }
+    };
+
+
+    function toggleModalDelete() {
+        const body = document.querySelector('body')
+        const modalDelete = document.querySelector('.modal-delete')
+        modalDelete.classList.toggle('opacity-0')
+        modalDelete.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-delete-active')
+    }
+</script>
+<!-- scripts end -->
