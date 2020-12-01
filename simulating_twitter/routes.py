@@ -379,6 +379,12 @@ def settings_trends():
     return render_template('settings_trends.html')
 
 
+@app.route('/settings/content_preferences')
+@login_required
+def settings_contentPreferences():
+    return render_template('settings_contentPreferences.html')
+
+
 @app.route('/compose/chirp', methods = ['GET', 'POST'])
 @login_required
 def compose_chirp():
