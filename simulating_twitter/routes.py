@@ -373,6 +373,12 @@ def settings_account():
     return render_template('settings_account.html', form = form)
 
 
+@app.route('/settings/trends')
+@login_required
+def settings_trends():
+    return render_template('settings_trends.html')
+
+
 @app.route('/compose/chirp', methods = ['GET', 'POST'])
 @login_required
 def compose_chirp():
