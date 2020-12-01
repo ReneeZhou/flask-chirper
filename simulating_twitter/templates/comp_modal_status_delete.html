@@ -35,19 +35,28 @@
                         <div class="w-68 flex flex-col space-y-2">
                             <div class="flex flex-col justify-center items-center space-y-3 pb-3">
                                 <p class="font-bold text-xl text-center">Delete Chirp?</p>
-                                <p class="text-gray-600 text-tiny text-center leading-tight">This can't be undone and it will be
-                                    removed from your profile, the timeline of any accounts that follow you, and from Chirper search
+                                <p class="text-gray-600 text-tiny text-center leading-tight">This can't be undone and it
+                                    will be
+                                    removed from your profile, the timeline of any accounts that follow you, and from
+                                    Chirper search
                                     results.
                                 </p>
                             </div>
 
-                            <!-- buttons -->
+                            <!-- delete button -->
                             <div class="flex flex-row justify-center items-center space-x-3">
                                 <button
                                     class="modal-delete-close block w-32 font-bold focus:outline-none bg-gray-600 rounded-full h-10 bg-opacity-25 hover:bg-opacity-50 focus:bg-gray-500">Cancel</button>
-                                <button
-                                    class="block w-32 font-bold focus:outline-none bg-red-600 rounded-full h-10 hover:bg-opacity-75 focus:bg-red-700">Delete</button>
+                                <div>
+                                    <form
+                                        action="{{ url_for('delete_chirp', handle = post.author.handle, post_id = post.post_id) }}"
+                                        method="POST">
+                                        <input type="submit" value="Delete" class="block w-32 font-bold focus:outline-none bg-red-600 rounded-full h-10 hover:bg-opacity-75 focus:bg-red-700
+                                    cursor-pointer">
+                                    </form>
+                                </div>
                             </div>
+                            <!-- delete button ends -->
                         </div>
                     </div>
 
