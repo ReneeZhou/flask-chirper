@@ -31,10 +31,12 @@
                     x-transition:enter-end="transform opacity-100 scale-100"
                     x-transition:leave="transition ease-in duration-75"
                     x-transition:leave-start="transform opacity-100 scale-100"
-                    x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-60 sm:w-60 z-50
+                    x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 top-0 w-full rounded-md  xs:w-60 sm:w-60 z-50
                                         text-white">
-                    <div class="flex flex-col text-tiny bg-gray-900 rounded-md shadow">
-                        {% if current_user == post.author %}
+
+                    {% if current_user == post.author %}
+                    <div class="flex flex-col text-tiny bg-gray-900
+                                        absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-48 sm:w-48 z-50">
                         <div
                             class="flex flex-row items-center space-x-3 text-red-700 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -62,7 +64,10 @@
                             </svg>
                             <div class="inline align-middle">View Chirp activity</div>
                         </a>
-                        {% elif current_user.is_authenticated and current_user != post.author %}
+                    </div>
+                    {% elif current_user.is_authenticated and current_user != post.author %}
+                    <div class="flex flex-col text-tiny bg-gray-900
+                                        absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-60 sm:w-60 z-50">
                         <div
                             class="flex flex-row items-center space-x-3 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -121,20 +126,23 @@
                             <div>Repost Chirp</div>
                         </div>
                     </div>
+                    {% else %}
+                    <div class="flex flex-col text-tiny bg-gray-900
+                                        absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-36 sm:w-36 z-50">
+                        <div
+                            class="flex flex-row items-center space-x-3 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="stroke-current text-gray-600 w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                            <div>Embed Chirp</div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
-                {% else %}
-                <div
-                    class="flex flex-row items-center space-x-3 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="stroke-current text-gray-600 w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                    <div>Embed Chirp</div>
-                </div>
-                {% endif %}
             </div>
-        </nav>
     </div>
+    </nav>
 </div>
 <!--  dropdown menu ends here -->
