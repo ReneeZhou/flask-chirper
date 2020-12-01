@@ -452,6 +452,27 @@ def subdomain_analytics():
 @app.route('/subdomain/support')
 def subdomain_support():
     return render_template('subdomain_support.html')
+
+
+@app.route('/subdomain/about')
+def subdomain_about():
+    return render_template('subdomain_about.html')
+
+
+@app.route('/subdomain/status')
+def subdomain_status():
+    return render_template('subdomain_status.html')
+
+
+@app.route('/subdomain/business')
+def subdomain_business():
+    return render_template('subdomain_business.html')
+
+
+@app.route('/subdomain/developer')
+def subdomain_developer():
+    return render_template('subdomain_developer.html')
+
 # posts = [
 #     {
 #         'icon': 'icon 1',
