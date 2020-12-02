@@ -242,7 +242,7 @@ def lists_addMember():
 
 @app.route('/<handle>')
 def profile(handle):
-    user = User.query.filter_by(handle = handle).first()
+    user = User.query.filter_by(handle = handle).first_or_404()
 
     posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).all()
     for post in posts:
@@ -253,13 +253,13 @@ def profile(handle):
 
 @app.route('/<handle>/with_replies')
 def profile_with_replies(handle):
-    user = User.query.filter_by(handle = handle).first()
+    user = User.query.filter_by(handle = handle).first_or_404()
     return render_template('profile_with_replies.html', user = user)
 
 
 @app.route('/<handle>/media')
 def profile_media(handle):
-    user = User.query.filter_by(handle = handle).first()
+    user = User.query.filter_by(handle = handle).first_or_404()
 
     if not current_user.is_authenticated:
         return redirect(url_for('profile', handle = user.handle))
@@ -269,7 +269,7 @@ def profile_media(handle):
 
 @app.route('/<handle>/likes')
 def profile_likes(handle):
-    user = User.query.filter_by(handle = handle).first()
+    user = User.query.filter_by(handle = handle).first_or_404()
 
     if not current_user.is_authenticated:
         return redirect(url_for('profile', handle = user.handle))
