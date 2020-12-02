@@ -359,9 +359,9 @@ def settings_profile():
     return render_template('settings_profile.html', form = form, background_image = background_image)
 
 
-@app.route('/settings/account', methods = ['GET', 'POST'])
+@app.route('/settings/screenName', methods = ['GET', 'POST'])
 @login_required
-def settings_account():
+def settings_screenName():
     form = UpdateAccountForm()
 
     if request.method == 'GET':
@@ -377,7 +377,7 @@ def settings_account():
         # needs fixing, it flashes when return to this page
         # return redirect(url_for('profile'))
 
-    return render_template('settings_account.html', form = form)
+    return render_template('settings_ScreenName.html', form = form)
 
 
 @app.route('/settings/trends')
