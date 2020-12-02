@@ -186,7 +186,7 @@ def home():
         db.session.commit()
         return redirect(url_for('home'))
 
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.date_posted.desc())
     for post in posts:
         post.show = show_time(post.date_posted)
     # .profile_image is a column from the User model 
@@ -244,7 +244,7 @@ def lists_addMember():
 def profile(handle):
     user = User.query.filter_by(handle = handle).first()
 
-    posts = Post.query.filter_by(user_id = user.id).all()
+    posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).all()
     for post in posts:
         post.show = show_time(post.date_posted)
 
