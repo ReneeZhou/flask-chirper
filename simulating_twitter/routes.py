@@ -7,7 +7,8 @@ from sqlalchemy.sql.visitors import replacement_traverse
 from werkzeug.utils import validate_arguments
 from simulating_twitter import app, db, bcrypt
 from simulating_twitter.models import User, Post
-from simulating_twitter.forms import LoginForm, PostForm, RegistrationForm, UpdateProfileForm, UpdateAccountForm
+from simulating_twitter.forms import LoginForm, PostForm, RegistrationForm, UpdateProfileForm, UpdateAccountForm, \
+    RequestResetForm, ResetPasswordForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -247,8 +248,9 @@ def profile(handle):
     posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).all()
     for post in posts:
         post.show = show_time(post.date_posted)
+    posts_num = len(posts)
 
-    return render_template('profile.html', user = user, posts = posts)
+    return render_template('profile.html', user = user, posts = posts, posts_num = posts_num)
 
 
 @app.route('/<handle>/with_replies')
@@ -314,6 +316,11 @@ def save_image(form_image):
 @app.route('/settings')
 def settings():
     return render_template('settings.html')
+
+
+@app.route('/settings/password')
+def settings_password():
+    return render_template('settings_password.html')
 
 
 @app.route('/settings/profile', methods = ['GET', 'POST'])
@@ -396,6 +403,17 @@ def compose_chirp():
         flash('Your Chirp was sent. View')
         return redirect(url_for('profile', handle = current_user.handle))
     return render_template('compose_chirp.html', form = form)
+
+
+@app.route('/account/begin_password_reset', methods = ['GET', 'POST'])
+def account_beginPasswordReset():
+    form = RequestResetForm()
+    return render_template('account_beginPasswordReset.html', form = form)
+
+
+@app.route('/account/send_password_reset', methods = ['GET', 'POST'])
+def account_sendPasswordReset():
+    return render_template('account_sendPasswordReset.html')
 
 
 @app.route('/account/add')
