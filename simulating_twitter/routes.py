@@ -359,7 +359,7 @@ def settings_profile():
     return render_template('settings_profile.html', form = form, background_image = background_image)
 
 
-@app.route('/settings/screenName', methods = ['GET', 'POST'])
+@app.route('/settings/screen_name', methods = ['GET', 'POST'])
 @login_required
 def settings_screenName():
     form = UpdateAccountForm()
@@ -378,6 +378,46 @@ def settings_screenName():
         # return redirect(url_for('profile'))
 
     return render_template('settings_ScreenName.html', form = form)
+
+
+@app.route('/settings/account')
+@login_required
+def settings_account():
+    return render_template('settings_account.html')
+
+
+@app.route('/settings/security_and_account_access')
+@login_required
+def settings_securityAndAccountAccess():
+    return render_template('settings_securityAndAccountAccess.html')
+
+
+@app.route('/settings/privacy_and_safety')
+@login_required
+def settings_privacyAndSafety():
+    return render_template('settings_privacyAndSafety.html')
+
+
+@app.route('/settings/notifications')
+@login_required
+def settings_notifications():
+    return render_template('settings_notifications.html')
+
+
+@app.route('/settings/accessibility_display_and_languages')
+@login_required
+def settings_accessibilityDisplayAndLanguages():
+    return render_template('settings_accessibilityDisplayAndLanguages.html')
+
+
+@app.route('/settings/about')
+def settings_about():
+    return render_template('settings_about.html')
+
+
+@app.route('/settings/your_chirper_data/account')
+def settings_yourChirperData_account():
+    return render_template('settings_yourChirperData_account.html')
 
 
 @app.route('/settings/trends')
