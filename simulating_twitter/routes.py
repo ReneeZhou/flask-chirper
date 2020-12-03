@@ -315,7 +315,15 @@ def save_image(form_image):
 
 @app.route('/settings')
 def settings():
-    return render_template('settings.html')
+    if current_user.is_authenticated:
+        return redirect(url_for('settings_account'))
+    else:
+        return redirect(url_for('settings_account_personalization'))
+
+
+@app.route('/settings/account/personalization')
+def settings_account_personalization():
+    return render_template('settings_account_personalization.html')
 
 
 @app.route('/settings/password')
@@ -456,6 +464,26 @@ def account_sendPasswordReset():
     return render_template('account_sendPasswordReset.html')
 
 
+@app.route('/account/confirm_pin_reset')
+def account_confirmPinReset():
+    return render_template('account_confirmPinReset.html')
+
+
+@app.route('/account/reset_password')
+def account_resetPassword():
+    return render_template('account_resetPassword.html')
+
+
+@app.route('/account/password_reset_survey')
+def account_passwordResetSurvey():
+    return render_template('account_passwordResetSurvey.html')
+
+
+@app.route('/account/password_reset_complete')
+def account_passwordResetComplete():
+    return render_template('account_passwordResetComplete.html')
+
+    
 @app.route('/account/add')
 @login_required
 def account_add():
