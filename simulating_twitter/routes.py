@@ -423,9 +423,62 @@ def settings_about():
     return render_template('settings_about.html')
 
 
+@app.route('/settings/your_chirper_data')
+def settings_yourChirperData():
+    return render_template('settings_yourChirperData.html')
+
+
 @app.route('/settings/your_chirper_data/account')
 def settings_yourChirperData_account():
-    return render_template('settings_yourChirperData_account.html')
+    return render_template('settings_yourChirperData_account1.html')
+
+
+@app.route('/settings/username')
+@login_required
+def settings_username():
+    return render_template('settings_username.html')
+
+
+@app.route('/settings/phone')
+@login_required
+def settings_phone():
+    return render_template('settings_phone.html')
+
+
+@app.route('/settings/email')
+@login_required
+def settings_email():
+    return render_template('settings_email.html')
+
+
+@app.route('/settings/audience_and_tagging')
+@login_required
+def settings_audienceAndTagging():
+    return render_template('settings_audienceAndTagging.html')
+
+
+@app.route('/settings/country')
+@login_required
+def settings_country():
+    return render_template('settings_country.html')
+
+
+@app.route('/settings/languages')
+@login_required
+def settings_languages():
+    return render_template('settings_languages.html')
+
+
+@app.route('/settings/your_chirp_data/gender')
+@login_required
+def settings_yourChirpData_gender():
+    return render_template('settings_yourChirpData_gender.html')
+
+
+@app.route('/settings/your_chirp_data/age')
+@login_required
+def settings_yourChirpData_age():
+    return render_template('settings_yourChirpData_age.html')
 
 
 @app.route('/settings/trends')
