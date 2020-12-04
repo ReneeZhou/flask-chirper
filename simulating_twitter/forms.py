@@ -1,15 +1,23 @@
+from datetime import datetime
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed  # FileAllowed is a validator restricting file type
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DateTimeField    # BooleanField
-from wtforms.fields.html5 import EmailField, URLField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL
+from werkzeug.datastructures import Range
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DateField
+from wtforms.fields.core import IntegerField    # BooleanField
+from wtforms.fields.html5 import DateTimeField, EmailField, URLField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL, NumberRange
 from simulating_twitter.models import User
 
 
 class RegistrationForm(FlaskForm):
     name = StringField('Name', validators = [DataRequired(), Length(max = 50)])
     email = EmailField('Email', validators = [DataRequired(), Email()])
+    
+    # dob_y = DateField('Year', validators = [DataRequired(), NumberRange(min = 1990, max = datetime.utcnow().year)], format = '%Y')
+    # dob_m = DateField('Month', validators = [DataRequired(), NumberRange(min = 1, max = 12)], format = '%B')
+    # dob_d = DateField('Day', validators = [DataRequired(), NumberRange(min = 1, max = 31)], format = '%m')
+    
     password = PasswordField('Password', validators = [DataRequired()])
     confirm_password = PasswordField('Confirm Passrowd', validators = [DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
@@ -71,3 +79,20 @@ class UpdateAccountForm(FlaskForm):
 class PostForm(FlaskForm):
     content = TextAreaField('Content', validators = [DataRequired(), Length(max = 280)])
     submit = SubmitField('Chirp')
+
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators = [DataRequired(), Email()])
+
+    def validate_email(email):
+        user = User.query.filter_by(email = email.data).first()
+        if user is None:
+            raise ValidationError("We couldn't find your account with that information")
+
+    submit = SubmitField('Search')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New password', validators = [DataRequired()])
+    confirm_password = PasswordField('Confirm password', validators = [DataRequired(), EqualTo(password)])
+    submit = SubmitField('Save')
