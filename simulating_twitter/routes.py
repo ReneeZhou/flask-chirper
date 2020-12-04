@@ -430,7 +430,7 @@ def settings_yourChirperData():
 
 @app.route('/settings/your_chirper_data/account')
 def settings_yourChirperData_account():
-    return render_template('settings_yourChirperData_account1.html')
+    return render_template('settings_yourChirperData_account_reauth.html')
 
 
 @app.route('/settings/username')
