@@ -1,5 +1,6 @@
 from datetime import datetime
-from simulating_twitter import db, login_manager
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from simulating_twitter import db, login_manager, app    # so we can use app's secret key in the serializer
 from flask_login import UserMixin
 
 # this func reloads user from the user id stored in the session
@@ -32,6 +33,28 @@ class User(db.Model, UserMixin):
 
     posts = db.relationship('Post', backref = 'author', lazy = True) 
     # referring to Post class
+
+    # method to create token for serializer
+    def get_reset_token(self, expires_sec = 1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)    # serializer obj
+        return s.dumps({'user_id': self.id}).decode('utf-8')  
+        # return the token created with this serializer
+        # that contains the payload of the current user's id
+
+
+    # method to verify a token
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(app.congif['SECRET_KEY'])
+        # exception could happen when we try to load the token
+        # when the token is invalid, time expires or something else
+        try: 
+            user_id = s.loads(token)['user_id']    # 'user_id' comes from the payload we load in
+        except:
+            return None                            # this will exit us from this method
+        return User.query.get(user_id)             # if we didn't hit the earlier return statement, we will query that user
+    # this method never used this class's instance (the self variable) -> static method
+
 
     def __repr__(self):
         return f'User("{self.name}", "{self.email}", "{self.handle}")'
