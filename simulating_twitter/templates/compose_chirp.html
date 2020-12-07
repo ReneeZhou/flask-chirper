@@ -24,19 +24,18 @@
                     <!-- profile pic -->
                     <div class="px-3 py-2">
                         <div class="w-12 h-12 rounded-full overflow-hidden">
-                            <img src="{{ url_for('static', filename = 'img/profile_pics/' + current_user.profile_image) }}" alt="profile pic" class="w-full h-full object-cover">
+                            <img src="{{ url_for('static', filename = 'img/profile_pics/' + current_user.profile_image) }}"
+                                alt="profile pic" class="w-full h-full object-cover">
                         </div>
                     </div>
 
                     <div class="pr-4 py-2 flex flex-col w-full justify-between">
                         <!-- post content -->
-                        <form>
-                            <label for="chirp"></label>
-                            {{ form.content(placeholder="What's happening?", maxlength="280", rows="6",
+                        <label for="chirp"></label>
+                        {{ form.content(placeholder="What's happening?", maxlength="280", rows="6",
                             class="resize-none bg-gray-900 text-xl focus:outline-none p-2") }}
-                            <!-- <textarea name="chirp" placeholder="What's happening?" maxlength="280" rows="6"
+                        <!-- <textarea name="chirp" placeholder="What's happening?" maxlength="280" rows="6"
                                 class="resize-none bg-gray-900 text-xl focus:outline-none p-2"></textarea> -->
-                        </form>
 
                         <!-- form control -->
                         <div class="flex flex-col space-y-2 divide-y divide-gray-700">
