@@ -3,8 +3,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed  # FileAllowed is a validator restricting file type
 from flask_login import current_user
 from werkzeug.datastructures import Range
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DateField
-from wtforms.fields.core import IntegerField    # BooleanField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DateField, RadioField, BooleanField
 from wtforms.fields.html5 import DateTimeField, EmailField, URLField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL, NumberRange
 from simulating_twitter.models import User
@@ -81,18 +80,44 @@ class PostForm(FlaskForm):
     submit = SubmitField('Chirp')
 
 
-class RequestResetForm(FlaskForm):
-    email = StringField('Email', validators = [DataRequired(), Email()])
+class BeginPasswordResetForm(FlaskForm):
+    email = EmailField('Email', validators = [DataRequired(), Email()])
+    submit = SubmitField('Search')
 
-    def validate_email(email):
+    def validate_email(self, email):
         user = User.query.filter_by(email = email.data).first()
         if user is None:
-            raise ValidationError("We couldn't find your account with that information")
+            raise ValidationError("We couldn't find your account with that information.")
 
-    submit = SubmitField('Search')
+
+class SendPasswordResetForm(FlaskForm):
+    information = RadioField('You can use the information associated with your account', \
+        validators = [DataRequired()], \
+        choices = [('Email', 'Send an email to')], default = "Email")
+            # ('Phone', 'Text a code to the phone number ending in')
+            # to generate the dynamic list, check wtf doc
+            # do it in in the view function
+    submit = SubmitField('Next')
+
+
+class ConfirmPinResetForm(FlaskForm):
+    pin = StringField('Pin', validators = [DataRequired()])
+
+    def validate_pin(self, pin):
+        raise ValidationError('Incorrect code. Please try again.')
+
+    submit = SubmitField('Verify')
 
 
 class ResetPasswordForm(FlaskForm):
-    password = PasswordField('New password', validators = [DataRequired()])
-    confirm_password = PasswordField('Confirm password', validators = [DataRequired(), EqualTo(password)])
-    submit = SubmitField('Save')
+    password = PasswordField('Enter your new password', validators = [DataRequired()])
+    confirm_password = PasswordField('Enter your password one more time', \
+        validators = [DataRequired(), EqualTo(password)])
+    remember = BooleanField('Remember me', default = "checked")
+    submit = SubmitField('Reset password')
+
+
+class PasswordResetSurveyForm(FlaskForm):
+    reason = RadioField('Reason', \
+        choices = ['Forgot password', 'Account may have been accessed by someone else', 'Another reason'])
+    submot = SubmitField('Submit')
