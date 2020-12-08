@@ -45,7 +45,7 @@ class User(db.Model, UserMixin):
     # method to verify a token
     @staticmethod
     def verify_reset_token(token):
-        s = Serializer(app.congif['SECRET_KEY'])
+        s = Serializer(app.config['SECRET_KEY'])
         # exception could happen when we try to load the token
         # when the token is invalid, time expires or something else
         try: 
