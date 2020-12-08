@@ -5,11 +5,12 @@
     <h1 class="font-bold text-3xl">Check your email</h1>
     <div class="flex flex-col space-y-5">
         <form method="POST" action="" class="flex flex-col space-y-5">
+            {{ form.hidden_tag() }}
             <div class="text-sm font-light">You'll receive a code to verify here so you can reset your account password.
             </div>
-            <input class="border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none w-88 h-10 pl-3">
-            <button class="rounded-full bg-blue-500 text-white font-bold w-20 h-8 focus:outline-none
-            hover:bg-blue-600 focus:bg-blue-700">Verify</button>
+            {{ form.pin(class="border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none w-88 h-10 pl-3") }}
+            {{ form.submit(class="rounded-full bg-blue-500 text-white font-bold w-20 h-8 focus:outline-none
+            hover:bg-blue-600 focus:bg-blue-700 cursor-pointer") }}
         </form>
     </div>
     <div class="text-sm font-light">If you don't see the email, check other places it might be, like your junk, spam,
