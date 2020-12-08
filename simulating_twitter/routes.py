@@ -2,13 +2,13 @@ import os
 from datetime import datetime
 from secrets import token_urlsafe, token_hex, randbits
 from PIL import Image
-from flask import render_template, redirect, url_for, flash, request, abort
+from flask import render_template, redirect, url_for, flash, request, abort, session
 from sqlalchemy.sql.visitors import replacement_traverse
 from werkzeug.utils import validate_arguments
 from simulating_twitter import app, db, bcrypt
 from simulating_twitter.models import User, Post
 from simulating_twitter.forms import LoginForm, PostForm, RegistrationForm, UpdateProfileForm, UpdateAccountForm, \
-    RequestResetForm, ResetPasswordForm
+    BeginPasswordResetForm, SendPasswordResetForm, ConfirmPinResetForm, ResetPasswordForm, PasswordResetSurveyForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -493,6 +493,12 @@ def settings_contentPreferences():
     return render_template('settings_contentPreferences.html')
 
 
+@app.route('/settings/apps_and_sessions')
+@login_required
+def settings_appsAndSessions():
+    return render_template('settings_appsAndSessions.html')
+
+
 @app.route('/compose/chirp', methods = ['GET', 'POST'])
 @login_required
 def compose_chirp():
@@ -508,18 +514,34 @@ def compose_chirp():
 
 @app.route('/account/begin_password_reset', methods = ['GET', 'POST'])
 def account_beginPasswordReset():
-    form = RequestResetForm()
+    form = BeginPasswordResetForm()
+
+    if form.validate_on_submit():
+        session['email'] = request.form['email']
+        return redirect(url_for('account_sendPasswordReset'))
+
     return render_template('account_beginPasswordReset.html', form = form)
 
 
 @app.route('/account/send_password_reset', methods = ['GET', 'POST'])
 def account_sendPasswordReset():
-    return render_template('account_sendPasswordReset.html')
+    form = SendPasswordResetForm()
+    user = User.query.filter_by(email = session.get('email')).first()
+    if form.validate_on_submit():
+        return redirect(url_for('account_confirmPinReset'))
+    
+    return render_template('account_sendPasswordReset.html', form = form, user = user)
 
 
-@app.route('/account/confirm_pin_reset')
+# @app.route('/account/confirm_pin_reset')
+# def account_confirmPinReset():
+#     return render_template('account_confirmPinReset.html')
+@app.route('/account/confirm_pin_reset/', methods = ['GET', 'POST'])
 def account_confirmPinReset():
-    return render_template('account_confirmPinReset.html')
+    form = ConfirmPinResetForm()
+    
+    return render_template('account_confirmPinReset.html', form = form)
+
 
 
 @app.route('/account/reset_password')
