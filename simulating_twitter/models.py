@@ -35,7 +35,7 @@ class User(db.Model, UserMixin):
     # referring to Post class
 
     # method to create token for serializer
-    def get_reset_token(self, expires_sec = 1800):
+    def get_reset_token(self, expires_sec = 180):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)    # serializer obj
         return s.dumps({'user_id': self.id}).decode('utf-8')  
         # return the token created with this serializer
