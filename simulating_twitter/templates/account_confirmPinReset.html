@@ -8,16 +8,30 @@
             {{ form.hidden_tag() }}
             <div class="text-sm font-light">You'll receive a code to verify here so you can reset your account password.
             </div>
-            {{ form.pin(class="border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none w-88 h-10 pl-3") }}
+            <span>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {{ form.pin(class="border-2 border-red-600 rounded-full focus:outline-none w-88 h-10 pl-3") }}
+                {% for message in messages %}
+                <span class="text-s text-red-600 ml-2">{{ message }}</span>
+                {% endfor %}
+                {% else %}
+                {{ form.pin(class="border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none w-88 h-10 pl-3") }}
+                {% endif %}
+                {% endwith %}
+            </span>
+
+
             {{ form.submit(class="rounded-full bg-blue-500 text-white font-bold w-20 h-8 focus:outline-none
             hover:bg-blue-600 focus:bg-blue-700 cursor-pointer") }}
         </form>
     </div>
-    <div class="text-sm font-light">If you don't see the email, check other places it might be, like your junk, spam,
+    <div class="text-sm font-light max-w-xl">If you don't see the email, check other places it might be, like your junk,
+        spam,
         social or other folders.</div>
 
 
     <a href="#" class="text-s text-blue-400 pt-20 hover:underline">Didn't receive your code?</a>
 </div>
 
-{% endblock form%}
+{% endblock form %}
