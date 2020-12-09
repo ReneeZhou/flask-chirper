@@ -5,11 +5,12 @@ from PIL import Image
 from flask import render_template, redirect, url_for, flash, request, abort, session
 from sqlalchemy.sql.visitors import replacement_traverse
 from werkzeug.utils import validate_arguments
-from simulating_twitter import app, db, bcrypt
+from simulating_twitter import app, db, bcrypt, mail
 from simulating_twitter.models import User, Post
 from simulating_twitter.forms import LoginForm, PostForm, RegistrationForm, UpdateProfileForm, UpdateAccountForm, \
     BeginPasswordResetForm, SendPasswordResetForm, ConfirmPinResetForm, ResetPasswordForm, PasswordResetSurveyForm
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_mail import Message
 
 
 
@@ -523,35 +524,78 @@ def account_beginPasswordReset():
     return render_template('account_beginPasswordReset.html', form = form)
 
 
+def send_pin_email(user):
+    pin = user.get_reset_token()
+    msg = Message('Password reset request', \
+        sender = 'reneezsr@gmail.com ', \
+        recipients = [user.email])    # user.email
+    msg.html = f'''<h1>Reset your password?</h1>
+    <p>if you requested a password reset for @{user.handle}, use 
+    the confirmation code below to complete the process. If
+    you didn't make this request, ignore this email.</p>
+
+    {pin}
+
+    <h2>Getting a lot of password reset emails?</h2>
+    <p>You can change your <a href="{url_for('settings_account', _external = True)}">account settings</a> to require
+    personal information to reset your password.
+
+    <h3>How do I know an email is from Chirper?</h3>
+    <small>Links in this email will start with "https://" and contain
+    "chirper.com." Your browser will also display a padlock icon to 
+    let you knw a site is secure. 
+    '''
+
+    mail.send(msg)
+
 @app.route('/account/send_password_reset', methods = ['GET', 'POST'])
 def account_sendPasswordReset():
     form = SendPasswordResetForm()
     user = User.query.filter_by(email = session.get('email')).first()
     if form.validate_on_submit():
+        send_pin_email(user)
         return redirect(url_for('account_confirmPinReset'))
     
     return render_template('account_sendPasswordReset.html', form = form, user = user)
 
 
-# @app.route('/account/confirm_pin_reset')
-# def account_confirmPinReset():
-#     return render_template('account_confirmPinReset.html')
-@app.route('/account/confirm_pin_reset/', methods = ['GET', 'POST'])
+@app.route('/account/confirm_pin_reset', methods = ['GET', 'POST'])
 def account_confirmPinReset():
     form = ConfirmPinResetForm()
     
+    if form.pin.data is not None:
+        user = User.verify_reset_token(form.pin.data)
+        if user is None: 
+            flash('Incorrect code. Please try again.', 'warning')
+
+        elif form.validate_on_submit():
+            return redirect(url_for('account_resetPassword'))
+        # implement something for 'didn't receive your code'
+        # and will resend a token
+
     return render_template('account_confirmPinReset.html', form = form)
 
 
-
-@app.route('/account/reset_password')
+@app.route('/account/reset_password', methods = ['GET', 'POST'])
 def account_resetPassword():
-    return render_template('account_resetPassword.html')
+    form = ResetPasswordForm()
+    user = User.query.filter_by(email = session.get('email')).first()
+
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        return redirect(url_for('account_passwordResetSurvey'))
+
+    return render_template('account_resetPassword.html', form = form, user = user)
 
 
-@app.route('/account/password_reset_survey')
+@app.route('/account/password_reset_survey', methods = ['GET', 'POST'])
 def account_passwordResetSurvey():
-    return render_template('account_passwordResetSurvey.html')
+    form = PasswordResetSurveyForm()
+    if form.validate_on_submit():
+        return redirect(url_for('account_passwordResetComplete'))
+    return render_template('account_passwordResetSurvey.html', form = form)
 
 
 @app.route('/account/password_reset_complete')
