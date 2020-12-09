@@ -102,22 +102,18 @@ class SendPasswordResetForm(FlaskForm):
 
 class ConfirmPinResetForm(FlaskForm):
     pin = StringField('Pin', validators = [DataRequired()])
-
-    def validate_pin(self, pin):
-        raise ValidationError('Incorrect code. Please try again.')
-
     submit = SubmitField('Verify')
 
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Enter your new password', validators = [DataRequired()])
     confirm_password = PasswordField('Enter your password one more time', \
-        validators = [DataRequired(), EqualTo(password)])
+        validators = [DataRequired(), EqualTo('password', message = 'Passwords do not match.')])
     remember = BooleanField('Remember me', default = "checked")
     submit = SubmitField('Reset password')
 
 
 class PasswordResetSurveyForm(FlaskForm):
-    reason = RadioField('Reason', \
+    reasons = RadioField('Reasons', \
         choices = ['Forgot password', 'Account may have been accessed by someone else', 'Another reason'])
-    submot = SubmitField('Submit')
+    submit = SubmitField('Submit')
