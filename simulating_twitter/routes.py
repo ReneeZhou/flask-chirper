@@ -528,28 +528,18 @@ def send_pin_email(user):
     pin = user.get_reset_token()
     msg = Message('Password reset request', \
         sender = 'reneezsr@gmail.com ', \
-        recipients = [user.email])    # user.email
-    msg.html = f'''<h1>Reset your password?</h1>
-    <p>if you requested a password reset for @{user.handle}, use 
-    the confirmation code below to complete the process. If
-    you didn't make this request, ignore this email.</p>
-
-    {pin}
-
-    <h2>Getting a lot of password reset emails?</h2>
-    <p>You can change your <a href="{url_for('settings_account', _external = True)}">account settings</a> to require
-    personal information to reset your password.
-
-    <h3>How do I know an email is from Chirper?</h3>
-    <small>Links in this email will start with "https://" and contain
-    "chirper.com." Your browser will also display a padlock icon to 
-    let you knw a site is secure. 
-    '''
-
+        recipients = [user.email], \
+        html = render_template('mail_password_reset_request.html', \
+            pin = 'temp_pin', handle = 'test_handle'))    # user.email
     mail.send(msg)
+
 
 @app.route('/account/send_password_reset', methods = ['GET', 'POST'])
 def account_sendPasswordReset():
+    # not allowing request from outside a URL
+    if request.referrer is None:
+        return redirect(url_for('account_beginPasswordReset'))
+
     form = SendPasswordResetForm()
     user = User.query.filter_by(email = session.get('email')).first()
     if form.validate_on_submit():
@@ -561,6 +551,9 @@ def account_sendPasswordReset():
 
 @app.route('/account/confirm_pin_reset', methods = ['GET', 'POST'])
 def account_confirmPinReset():
+    if request.referrer is None:
+        return redirect(url_for('account_beginPasswordReset'))
+
     form = ConfirmPinResetForm()
     
     if form.pin.data is not None:
@@ -578,6 +571,9 @@ def account_confirmPinReset():
 
 @app.route('/account/reset_password', methods = ['GET', 'POST'])
 def account_resetPassword():
+    if request.referrer is None:
+        return redirect(url_for('account_beginPasswordReset'))
+
     form = ResetPasswordForm()
     user = User.query.filter_by(email = session.get('email')).first()
 
@@ -592,6 +588,9 @@ def account_resetPassword():
 
 @app.route('/account/password_reset_survey', methods = ['GET', 'POST'])
 def account_passwordResetSurvey():
+    if request.referrer is None:
+        return redirect(url_for('account_beginPasswordReset'))
+
     form = PasswordResetSurveyForm()
     if form.validate_on_submit():
         return redirect(url_for('account_passwordResetComplete'))
@@ -600,6 +599,9 @@ def account_passwordResetSurvey():
 
 @app.route('/account/password_reset_complete')
 def account_passwordResetComplete():
+    if request.referrer is None:
+        return redirect(url_for('account_beginPasswordReset'))
+        
     return render_template('account_passwordResetComplete.html')
 
     
