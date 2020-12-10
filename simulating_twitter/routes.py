@@ -538,6 +538,8 @@ def send_pin_email(user):
 def account_sendPasswordReset():
     # not allowing request from outside a URL
     if request.referrer is None:
+        session['email'] = ''
+        # if session.pop('email') would raise a keyError
         return redirect(url_for('account_beginPasswordReset'))
 
     form = SendPasswordResetForm()
@@ -552,6 +554,7 @@ def account_sendPasswordReset():
 @app.route('/account/confirm_pin_reset', methods = ['GET', 'POST'])
 def account_confirmPinReset():
     if request.referrer is None:
+        session['email'] = ''
         return redirect(url_for('account_beginPasswordReset'))
 
     form = ConfirmPinResetForm()
@@ -572,6 +575,7 @@ def account_confirmPinReset():
 @app.route('/account/reset_password', methods = ['GET', 'POST'])
 def account_resetPassword():
     if request.referrer is None:
+        session['email'] = ''
         return redirect(url_for('account_beginPasswordReset'))
 
     form = ResetPasswordForm()
@@ -589,6 +593,7 @@ def account_resetPassword():
 @app.route('/account/password_reset_survey', methods = ['GET', 'POST'])
 def account_passwordResetSurvey():
     if request.referrer is None:
+        session['email'] = ''
         return redirect(url_for('account_beginPasswordReset'))
 
     form = PasswordResetSurveyForm()
@@ -600,8 +605,9 @@ def account_passwordResetSurvey():
 @app.route('/account/password_reset_complete')
 def account_passwordResetComplete():
     if request.referrer is None:
+        session['email'] = ''
         return redirect(url_for('account_beginPasswordReset'))
-        
+
     return render_template('account_passwordResetComplete.html')
 
     
