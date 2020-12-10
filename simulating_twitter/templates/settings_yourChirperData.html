@@ -35,7 +35,7 @@
         <input name="password" type="password" requred
             class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none">
     </div>
-    <a href="#" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
+    <a href="{{ url_for('account_beginPasswordReset') }}" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
         password?</a>
 
     <input type="submit" value="Confirm"
@@ -43,7 +43,7 @@
 </div>
 {% else %}
 <div class="text-gray-600 text-s divide-y divide-gray-700 mt-2 border-b border-gray-700">
-    <a href="#"
+    <a href="{{ url_for('settings_yourChirperData_account') }}"
         class="flex flex-row items-center justify-between py-3 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
         <div class="flex flex-col w-120 text-white text-tiny">Account</div>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
