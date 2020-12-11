@@ -15,7 +15,7 @@
         <!-- nav bar @xs bp -->
         <nav class="xs:flex sm:flex flex-col lg:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
-                <a href=" {{url_for('home_notauth') }}" class="rounded-full px-2">
+                <a href=" {{url_for('auth.home_notauth') }}" class="rounded-full px-2">
                     <div class="home-btn">
                         <!-- chirpy icon -->
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -34,7 +34,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('explore') }}" class="home-a">
+                <a href="{{ url_for('main.explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -45,7 +45,7 @@
                 </a>
 
                 <!-- settings svg -->
-                <a href="{{ url_for('settings') }}" class="home-a">
+                <a href="{{ url_for('user_settings.settings') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -62,7 +62,7 @@
         <!-- nav bar @lg bp -->
         <nav class="xs:hidden sm:hidden lg:flex flex-col xl:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
-                <a href=" {{url_for('home_notauth') }}" class="rounded-full px-2">
+                <a href=" {{url_for('auth.home_notauth') }}" class="rounded-full px-2">
                     <div class="home-btn">
                         <!-- chirpy icon -->
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -81,7 +81,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('explore') }}" class="home-a">
+                <a href="{{ url_for('main.explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
                         <!-- hashtag icon -->
@@ -92,7 +92,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('settings') }}" class="home-a">
+                <a href="{{ url_for('user_settings.settings') }}" class="home-a">
                     <div class="home-btn">
                         <!-- settings icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -108,7 +108,7 @@
         <!-- nav bar @xl bp -->
         <nav class="xs:hidden sm:hidden xl:flex flex-col h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
-                <a href=" {{url_for('home_notauth') }}" class="rounded-full px-2">
+                <a href=" {{url_for('auth.home_notauth') }}" class="rounded-full px-2">
                     <!-- chirpy icon -->
                     <div class="home-btn w-12">
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -127,7 +127,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('explore') }}" class="home-a">
+                <a href="{{ url_for('main.explore') }}" class="home-a">
                     <!-- explore icon -->
                     <div class="home-btn space-x-4">
                         <!-- hashtag icon -->
@@ -139,7 +139,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('settings') }}" class="home-a">
+                <a href="{{ url_for('user_settings.settings') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- explore icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -160,7 +160,7 @@
             <div class="font-bold text-xl px-3 py-2 ">Settings</div>
             <div class="font-bold text-xl px-3 py-2 ">Privacy</div>
             <!-- personalization and data -->
-            <a href="{{ url_for('settings_account_personalization') }}"
+            <a href="{{ url_for('user_settings.settings_account_personalization') }}"
                 class="flex flex-row items-center justify-between py-3 px-3 hover:bg-gray-800 hover:bg-opacity-50">
                 <div class="text-white text-tiny">
                     <div>Personalization and data</div>
@@ -172,7 +172,7 @@
                 </svg>
             </a>
             <!-- your chirper data -->
-            <a href="{{ url_for('settings_yourChirperData') }}"
+            <a href="{{ url_for('user_settings.settings_yourChirperData') }}"
                 class="flex flex-row items-center justify-between py-3 px-3 hover:bg-gray-800 hover:bg-opacity-50">
                 <div class="text-white text-tiny">Your Chirper data</div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -187,7 +187,7 @@
             </div>
             <div class="h-3 bg-gray-800 bg-opacity-50"></div>
             <div class="font-bold text-xl px-3 py-2 border-blue-500">General</div>
-            <a href="{{ url_for('settings_about') }}"
+            <a href="{{ url_for('user_settings.settings_about') }}"
                 class="flex flex-row items-center justify-between py-3 px-3 hover:bg-gray-800 hover:bg-opacity-50">
                 <div class="text-white text-tiny">Additional resources</div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -225,12 +225,12 @@
             <!-- xs, sm buttons -->
             <div class="flex-row items-center md:hidden space-x-3">
                 <!-- login -->
-                <a href="{{ url_for('login') }}">
+                <a href="{{ url_for('auth.login') }}">
                     <button class="w-56 border border-white rounded-full h-10 text-white font-semibold
                      hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
                 </a>
                 <!-- signup -->
-                <a href="{{ url_for('signup') }}">
+                <a href="{{ url_for('auth.signup') }}">
                     <button class="w-56 bg-white rounded-full h-10 text-blue-500 font-semibold 
                     hover:bg-gray-300 focus:outline-none">Sign up</button>
                 </a>
@@ -247,12 +247,12 @@
                 <!-- buttons -->
                 <div class="flex flex-row items-center space-x-3 mr-4">
                     <!-- login -->
-                    <a href="{{ url_for('login') }}">
+                    <a href="{{ url_for('auth.login') }}">
                         <button class="w-20 border border-white rounded-full h-10 text-white font-semibold
                  hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
                     </a>
                     <!-- signup -->
-                    <a href="{{ url_for('signup') }}">
+                    <a href="{{ url_for('auth.signup') }}">
                         <button class="w-20 bg-white rounded-full h-10 text-blue-500 font-semibold 
                 hover:bg-gray-300 focus:outline-none">Sign up</button>
                     </a>

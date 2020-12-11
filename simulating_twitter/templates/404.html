@@ -4,7 +4,7 @@
 {% block header %}Chirp{% endblock header %}
 
 {% block presvg %}
-<a href="{{ url_for('home') }}">
+<a href="{{ url_for('main.home') }}">
     <div class="svg-bg-div mr-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             class="w-6 h-6 stroke-current text-blue-500">
@@ -19,7 +19,7 @@
     <div class="pt-10 flex flex-col items-center space-y-8">
         <h1 class="text-white text-2xl font-bold">Sorry, that page doesn’t exist!</h1>
         <p class="text-sm font-medium">Why not try a 
-            <a href="{{ url_for('explore') }}" class="text-blue-500 hover:underline">search</a> 
+            <a href="{{ url_for('main.explore') }}" class="text-blue-500 hover:underline">search</a> 
             to find something else?</p>
     </div>
 </div>

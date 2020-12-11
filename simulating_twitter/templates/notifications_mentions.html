@@ -14,11 +14,11 @@
 {% endblock %}
 {% block tab %}
 <div class="flex flex-row text-gray-600 font-bold">
-    <a href="{{ url_for('notifications') }}" class="w-1/2 h-12 flex justify-center items-center
+    <a href="{{ url_for('main.notifications') }}" class="w-1/2 h-12 flex justify-center items-center
      hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500">
         <div class="">All</div>
     </a>
-    <a href="{{ url_for('notifications_mentions') }}" class="w-1/2 h-12 flex justify-center items-center
+    <a href="{{ url_for('main.notifications_mentions') }}" class="w-1/2 h-12 flex justify-center items-center
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500  text-blue-500 border-b-2 border-blue-500">
         <div class="flex justify-center">Mentions</div>
     </a>

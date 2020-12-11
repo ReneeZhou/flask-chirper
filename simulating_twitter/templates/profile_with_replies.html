@@ -6,11 +6,11 @@
 <!-- 4 tabs -->
 {% block tabs %}
 <div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
-    <a href="{{ url_for('profile', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <div>Chirps</div>
     </a>
-    <a href="{{ url_for('profile_with_replies', handle = user.handle) }}" class="w-56 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile_with_replies', handle = user.handle) }}" class="w-56 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
         <div>Chirps & replies</div>
     </a>
@@ -18,12 +18,12 @@
     <!-- media modal -->
     <!-- <div class="w-40 flex flex-row justify-center items-center pb-3 pt-2 hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500"> -->
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('profile_media', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
+        <a href="{{ url_for('user.profile_media', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
             <div>Media</div>
         </a>
         {% else %}
-        <a href="{{ url_for('profile_media', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
+        <a href="{{ url_for('user.profile_media', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
             <!-- media modal button -->
             <div>Media</div>
@@ -82,11 +82,11 @@
                             <!-- buttons -->
                             <div
                                 class="flex flex-col justify-center items-center text-center font-bold space-y-4 pt-2 pb-2">
-                                <a href="{{ url_for('login') }}">
+                                <a href="{{ url_for('auth.login') }}">
                                     <button class="w-80 bg-blue-500 rounded-full h-12 font-semibold 
                             hover:bg-blue-600 focus:outline-none">Log in</button>
                                 </a>
-                                <a href="{{ url_for('signup') }}">
+                                <a href="{{ url_for('auth.signup') }}">
                                     <button class="w-80 border border-blue-500 rounded-full h-12 text-blue-500 font-semibold
                              hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Sign up</button>
                                 </a>
@@ -103,12 +103,12 @@
     
         <!-- likes modal -->
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('profile_likes', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
+        <a href="{{ url_for('user.profile_likes', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
             <div>Likes</div>
         </a>
         {% else %}
-        <a href="{{ url_for('profile_likes', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
+        <a href="{{ url_for('user.profile_likes', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
             <!-- likes modal button -->
             <div>Likes</div>

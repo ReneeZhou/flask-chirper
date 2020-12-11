@@ -14,7 +14,7 @@
         <!-- nav bar @xs bp -->
         <nav class="xs:flex sm:flex flex-col lg:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
-                <a href=" {{url_for('home') }}" class="rounded-full px-2">
+                <a href=" {{url_for('main.home') }}" class="rounded-full px-2">
                     <div class="home-btn">
                         <!-- chirpy icon -->
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -32,7 +32,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('home') }}" class="home-a">
+                <a href="{{ url_for('main.home') }}" class="home-a">
                     <div class="home-btn">
                         <!-- home icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -41,7 +41,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('explore') }}" class="home-a">
+                <a href="{{ url_for('main.explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -50,7 +50,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('notifications') }}" class="home-a">
+                <a href="{{ url_for('main.notifications') }}" class="home-a">
                     <div class="home-btn">
                         <!-- notification icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -59,7 +59,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('messages') }}" class="home-a">
+                <a href="{{ url_for('main.messages') }}" class="home-a">
                     <div class="home-btn">
                         <!-- message icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -68,7 +68,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('bookmarks') }}" class="home-a">
+                <a href="{{ url_for('main.bookmarks') }}" class="home-a">
                     <div class="home-btn">
                         <!-- bookmark icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -77,7 +77,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('profile_lists') }}" class="home-a">
+                <a href="{{ url_for('user.profile_lists') }}" class="home-a">
                     <div class="home-btn">
                         <!-- list icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -85,7 +85,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('profile', handle = current_user.handle) }}" class="home-a">
+                <a href="{{ url_for('user.profile', handle = current_user.handle) }}" class="home-a">
                     <div class="home-btn">
                         <!-- profile icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -104,7 +104,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('compose_chirp') }}">
+                <a href="{{ url_for('post.compose_chirp') }}">
                     <!-- pen icon -->
                     <div class="rounded-full m-2 p-2 bg-blue-500 hover:bg-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8">
@@ -117,7 +117,7 @@
 
             <div class="flex flex-col items-center">
                 <!-- manage account -->
-                <a href="{{ url_for('settings_screenName') }}">
+                <a href="{{ url_for('user_settings.settings_screenName') }}">
                     <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
                     w-16 h-16">
                         <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
@@ -127,7 +127,7 @@
                     </button>
                 </a>
                 <!-- log out button -->
-                <a href="{{ url_for('logout') }}">
+                <a href="{{ url_for('auth.logout') }}">
                     <button
                         class="text-xs px-2 rounded-full hover:bg-gray-800 bg-gray-700 bg-opacity-25 focus:outline-none">Log
                         out</button>
@@ -138,7 +138,7 @@
         <!-- nav bar @lg bp -->
         <nav class="xs:hidden sm:hidden lg:flex flex-col xl:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
-                <a href=" {{url_for('home') }}" class="rounded-full px-2">
+                <a href=" {{url_for('main.home') }}" class="rounded-full px-2">
                     <div class="home-btn">
                         <!-- chirpy icon -->
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -156,7 +156,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('home') }}" class="home-a">
+                <a href="{{ url_for('main.home') }}" class="home-a">
                     <div class="home-btn">
                         <!-- home icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -165,7 +165,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('explore') }}" class="home-a">
+                <a href="{{ url_for('main.explore') }}" class="home-a">
                     <div class="home-btn">
                         <!-- explore icon -->
                         <!-- hashtag icon -->
@@ -175,7 +175,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('notifications') }}" class="home-a">
+                <a href="{{ url_for('main.notifications') }}" class="home-a">
                     <div class="home-btn">
                         <!-- notification icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -184,7 +184,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('messages') }}" class="home-a">
+                <a href="{{ url_for('main.messages') }}" class="home-a">
                     <div class="home-btn">
                         <!-- message icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -193,7 +193,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('bookmarks') }}" class="home-a">
+                <a href="{{ url_for('main.bookmarks') }}" class="home-a">
                     <div class="home-btn">
                         <!-- bookmark icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -202,7 +202,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('profile_lists') }}" class="home-a">
+                <a href="{{ url_for('user.profile_lists') }}" class="home-a">
                     <div class="home-btn">
                         <!-- list icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -210,7 +210,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('profile', handle = current_user.handle) }}" class="home-a">
+                <a href="{{ url_for('user.profile', handle = current_user.handle) }}" class="home-a">
                     <div class="home-btn">
                         <!-- profile icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -229,7 +229,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('compose_chirp') }}">
+                <a href="{{ url_for('post.compose_chirp') }}">
                     <div class="rounded-full p-2 m-2 bg-blue-500 hover:bg-blue-600">
                         <!-- pen icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8">
@@ -243,7 +243,7 @@
 
             <div class="flex flex-col items-center">
                 <!-- manage account -->
-                <a href="{{ url_for('settings_screenName') }}">
+                <a href="{{ url_for('user_settings.settings_screenName') }}">
                     <button class="flex justify-center items-center focus:outline-none rounded-full hover:bg-gray-700 hover:bg-opacity-25
                     w-16 h-16">
                         <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden">
@@ -253,7 +253,7 @@
                 </a>
 
                 <!-- log out button -->
-                <a href="{{ url_for('logout') }}">
+                <a href="{{ url_for('auth.logout') }}">
                     <button
                         class="text-xs px-2 rounded-full hover:bg-gray-800 bg-gray-700 bg-opacity-25 focus:outline-none">Log
                         out</button>
@@ -265,7 +265,7 @@
         <!-- nav bar @xl bp -->
         <nav class="xs:hidden sm:hidden xl:flex flex-col h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
-                <a href=" {{url_for('home') }}" class="rounded-full px-2">
+                <a href=" {{url_for('main.home') }}" class="rounded-full px-2">
                     <!-- chirpy icon -->
                     <div class="home-btn w-12">
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
@@ -283,7 +283,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="{{ url_for('home') }}" class="home-a">
+                <a href="{{ url_for('main.home') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- home icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -293,7 +293,7 @@
                         <div class="pr-5">Home</div>
                     </div>
                 </a>
-                <a href="{{ url_for('explore') }}" class="home-a">
+                <a href="{{ url_for('main.explore') }}" class="home-a">
                     <!-- explore icon -->
                     <div class="home-btn space-x-4">
                         <!-- hashtag icon -->
@@ -304,7 +304,7 @@
                         <div class="pr-5">Explore</div>
                     </div>
                 </a>
-                <a href="{{ url_for('notifications') }}" class="home-a">
+                <a href="{{ url_for('main.notifications') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- notification icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -314,7 +314,7 @@
                         <div class="pr-5">Notifications</div>
                     </div>
                 </a>
-                <a href="{{ url_for('messages') }}" class="home-a">
+                <a href="{{ url_for('main.messages') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- message icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -324,7 +324,7 @@
                         <div class="pr-5">Messages</div>
                     </div>
                 </a>
-                <a href="{{ url_for('bookmarks') }}" class="home-a">
+                <a href="{{ url_for('main.bookmarks') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- bookmark icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -334,7 +334,7 @@
                         <div class="pr-5">Bookmarks</div>
                     </div>
                 </a>
-                <a href="{{ url_for('profile_lists') }}" class="home-a">
+                <a href="{{ url_for('user.profile_lists') }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- list icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -343,7 +343,7 @@
                         <div class="pr-5">Lists</div>
                     </div>
                 </a>
-                <a href="{{ url_for('profile', handle = current_user.handle) }}" class="home-a">
+                <a href="{{ url_for('user.profile', handle = current_user.handle) }}" class="home-a">
                     <div class="home-btn space-x-4">
                         <!-- profile icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
@@ -364,7 +364,7 @@
                     </div>
                 </a>
 
-                <a href="{{ url_for('compose_chirp') }}" class="">
+                <a href="{{ url_for('post.compose_chirp') }}" class="">
                     <div class="w-56 h-12 m-2 rounded-full bg-blue-500 hover:bg-blue-600 font-semibold text-base
                         flex flex-row justify-center items-center">Chirp</div>
                 </a>
@@ -372,7 +372,7 @@
 
             <div class="space-y-1">
                 <!-- manage account -->
-                <a href="{{ url_for('settings_screenName') }}">
+                <a href="{{ url_for('user_settings.settings_screenName') }}">
                     <div class="flex flex-row justify-between items-center p-2
                     rounded-full hover:bg-gray-700 hover:bg-opacity-25 active:bg-gray-600 cursor-pointer">
                         <div class="flex flex-row space-x-2">
@@ -396,7 +396,7 @@
                 </a>
 
                 <!-- log out button -->
-                <a href="{{ url_for('logout') }}" class="flex flex-col">
+                <a href="{{ url_for('auth.logout') }}" class="flex flex-col">
                     <button
                         class="text-xs px-2 rounded-full hover:bg-gray-800 bg-gray-700 bg-opacity-25 focus:outline-none">Log
                         out</button>

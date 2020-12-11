@@ -45,7 +45,7 @@
                     <div class="-space-x-1">
                         {% if post.author == current_user %}
                         <!-- edit button -->
-                        <a href="{{ url_for('update_chirp', handle = post.author.handle, post_id = post.post_id) }}">
+                        <a href="{{ url_for('post.update_chirp', handle = post.author.handle, post_id = post.post_id) }}">
                             <button class="focus:outline-none">
                                 <div class="rounded-full p-2 hover:bg-blue-700 hover:bg-opacity-25 active:bg-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -59,7 +59,7 @@
 
 
                         <!-- delete button -->
-                        <form action="{{ url_for('delete_chirp', handle = post.author.handle, post_id = post.post_id) }}"
+                        <form action="{{ url_for('post.delete_chirp', handle = post.author.handle, post_id = post.post_id) }}"
                         method="POST" class="inline">
                             <button class="focus:outline-none">
                                 <div class="rounded-full p-2 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
@@ -114,7 +114,7 @@
             <!-- svg group -->
             <div class="flex flex-row pt-2 -mb-1 justify-around">
                 <!-- comment -->
-                <a href="{{ url_for('compose_chirp') }}">
+                <a href="{{ url_for('post.compose_chirp') }}">
                     <div class="rounded-full p-2 hover:bg-blue-700 hover:bg-opacity-25 active:bg-blue-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             class="w-6 h-6 stroke-current stroke-1 text-gray-500 hover:text-blue-500 ">
@@ -125,7 +125,7 @@
                 </a>
 
                 <!-- rechirp -->
-                <a href="{{ url_for('compose_chirp') }}">
+                <a href="{{ url_for('post.compose_chirp') }}">
                     <div class="rounded-full p-2 hover:bg-green-700 hover:bg-opacity-25 active:bg-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             class="w-6 h-6 stroke-current stroke-1 text-gray-500 hover:text-green-500 ">

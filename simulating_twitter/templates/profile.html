@@ -8,11 +8,11 @@
 <!-- 4 tabs -->
 {% block tabs %}
 <div class="flex flex-row justify-center h-12 text-gray-600 font-bold border-b border-gray-700 mt-4">
-    <a href="{{ url_for('profile', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2 text-blue-500 border-b-2 border-blue-500">
         <div>Chirps</div>
     </a>
-    <a href="{{ url_for('profile_with_replies', handle = user.handle) }}" class="w-56 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile_with_replies', handle = user.handle) }}" class="w-56 flex flex-row justify-center items-center 
         hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <div>Chirps & replies</div>
     </a>
@@ -20,12 +20,12 @@
     <!-- media modal -->
     <!-- <div class="w-40 flex flex-row justify-center items-center pb-3 pt-2 hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500"> -->
     {% if current_user.is_authenticated %}
-    <a href="{{ url_for('profile_media', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile_media', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <div>Media</div>
     </a>
     {% else %}
-    <a href="{{ url_for('profile_media', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile_media', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <!-- media modal button -->
         <div>Media</div>
@@ -84,11 +84,11 @@
                         <!-- buttons -->
                         <div
                             class="flex flex-col justify-center items-center text-center font-bold space-y-4 pt-2 pb-2">
-                            <a href="{{ url_for('login') }}">
+                            <a href="{{ url_for('auth.login') }}">
                                 <button class="w-80 bg-blue-500 rounded-full h-12 font-semibold 
                         hover:bg-blue-600 focus:outline-none">Log in</button>
                             </a>
-                            <a href="{{ url_for('signup') }}">
+                            <a href="{{ url_for('auth.signup') }}">
                                 <button class="w-80 border border-blue-500 rounded-full h-12 text-blue-500 font-semibold
                          hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Sign up</button>
                             </a>
@@ -105,12 +105,12 @@
 
     <!-- likes modal -->
     {% if current_user.is_authenticated %}
-    <a href="{{ url_for('profile_likes', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile_likes', handle = user.handle) }}" class="w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <div>Likes</div>
     </a>
     {% else %}
-    <a href="{{ url_for('profile_likes', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
+    <a href="{{ url_for('user.profile_likes', handle = user.handle) }}" class="modal-media-open w-40 flex flex-row justify-center items-center 
     hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 pb-3 pt-2">
         <!-- media modal button -->
         <div>Likes</div>
@@ -128,7 +128,7 @@
             <!-- user icon -->
             <div class="w-12 h-12">
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <a href="{{ url_for('profile', handle = post.author.handle) }}">
+                    <a href="{{ url_for('user.profile', handle = post.author.handle) }}">
                         <img src="{{ url_for('static', filename = 'img/profile_pics/' + post.author.profile_image) }}"
                             alt="profile pic" class="w-full h-full object-cover">
                     </a>
@@ -142,7 +142,7 @@
                     <!-- author, handle, timestamp -->
                     <div class="flex flex-row space-x-2">
                         <!-- link to user page -->
-                        <a href="{{ url_for('profile', handle = post.author.handle) }}">
+                        <a href="{{ url_for('user.profile', handle = post.author.handle) }}">
                             <div class="flex flex-row space-x-1">
                                 <div class="text-base font-bold hover:underline">{{ post.author.name }}</div>
                                 <div class="text-gray-600">@{{ post.author.handle }}</div>
@@ -240,7 +240,7 @@
                                                                             class="modal-delete-close block w-32 font-bold focus:outline-none bg-gray-600 rounded-full h-10 bg-opacity-25 hover:bg-opacity-50 focus:bg-gray-500">Cancel</button>
                                                                         <div>
                                                                             <form
-                                                                                action="{{ url_for('delete_chirp', handle = post.author.handle, post_id = post.post_id) }}"
+                                                                                action="{{ url_for('post.delete_chirp', handle = post.author.handle, post_id = post.post_id) }}"
                                                                                 method="POST">
                                                                                 <input type="submit" value="Delete"
                                                                                     class="block w-32 font-bold focus:outline-none bg-red-600 rounded-full h-10 hover:bg-opacity-75 focus:bg-red-700
@@ -271,7 +271,7 @@
                                                 <div>Pin to your profile</div>
                                             </div>
                                             <a class="space-x-2 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25"
-                                                href="{{ url_for('status_analytics', handle = current_user.handle, post_id = post.post_id) }}">
+                                                href="{{ url_for('post.status_analytics', handle = current_user.handle, post_id = post.post_id) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                     class="fill-current text-gray-600 w-5 h-5 inline">
                                                     <path
@@ -294,7 +294,7 @@
                                                 <div>Unfollow @{{ post.author.handle }}</div>
                                             </div>
                                             <a class="space-x-2 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25"
-                                                href="{{ url_for('lists_addMember') }}">
+                                                href="{{ url_for('main.lists_addMember') }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     class="stroke-current text-gray-600 w-5 h-5 inline">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -373,14 +373,14 @@
                 <div>
                     <p class="text-base">
                         <a
-                            href="{{ url_for('status', handle = post.author.handle, post_id = post.post_id) }}">{{ post.content }}</a>
+                            href="{{ url_for('post.status', handle = post.author.handle, post_id = post.post_id) }}">{{ post.content }}</a>
                     </p>
                 </div>
 
                 <!-- svg group -->
                 <div class="flex flex-row justify-between pr-20">
                     <!-- comment -->
-                    <a href="{{ url_for('compose_chirp') }}">
+                    <a href="{{ url_for('post.compose_chirp') }}">
                         <div class="rounded-full p-1 hover:bg-blue-700 hover:bg-opacity-25 active:bg-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 class="w-5 h-5 stroke-current stroke-1 text-gray-500 hover:text-blue-500 ">
@@ -391,7 +391,7 @@
                     </a>
 
                     <!-- rechirp -->
-                    <a href="{{ url_for('compose_chirp') }}">
+                    <a href="{{ url_for('post.compose_chirp') }}">
                         <div class="rounded-full p-1 hover:bg-green-700 hover:bg-opacity-25 active:bg-green-500">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 class="w-5 h-5 stroke-current stroke-1 text-gray-500 hover:text-green-500 ">

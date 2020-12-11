@@ -83,7 +83,7 @@
             </div>
         </div>
         {% endfor %}
-        <a href="{{ url_for('trends') }}" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
+        <a href="{{ url_for('main.trends') }}" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
     </div>
 
     <!-- what's happening -->
@@ -112,7 +112,7 @@
         </div>
 
         {% endfor %}
-        <a href="{{ url_for('timeline') }}" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
+        <a href="{{ url_for('main.timeline') }}" class="block text-blue-500 hover:bg-gray-800 hover:bg-opacity-25 p-3">Show more</a>
     </div>
 </div>
 {% endblock content %}

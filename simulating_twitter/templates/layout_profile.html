@@ -43,7 +43,7 @@
 
                     <!-- edit button -->
                     {% if current_user.is_authenticated and current_user.handle == user.handle %}
-                    <a href="{{ url_for('settings_profile') }}">
+                    <a href="{{ url_for('user_settings.settings_profile') }}">
                         <div class="text-blue-500 font-bold px-3 py-2 mb-2 rounded-full border
                             border-blue-500 hover:bg-blue-800 hover:bg-opacity-25">Edit Profile</div>
                     </a>
@@ -105,11 +105,11 @@ hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focu
                                             <!-- buttons -->
                                             <div
                                                 class="flex flex-col justify-center items-center text-center font-bold space-y-4">
-                                                <a href="{{ url_for('login') }}">
+                                                <a href="{{ url_for('auth.login') }}">
                                                     <button class="w-108 bg-blue-500 rounded-full h-12 font-semibold 
     hover:bg-blue-600 focus:outline-none">Log in</button>
                                                 </a>
-                                                <a href="{{ url_for('signup') }}">
+                                                <a href="{{ url_for('auth.signup') }}">
                                                     <button class="w-108 border border-blue-500 rounded-full h-12 text-blue-500 font-semibold
      hover:bg-gray-800 hover:bg-opacity-50 focus:outline-none">Sign up</button>
                                                 </a>
