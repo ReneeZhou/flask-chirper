@@ -13,7 +13,8 @@ class RegistrationForm(FlaskForm):
     # dob_m = DateField('Month', validators = [DataRequired(), NumberRange(min = 1, max = 12)], format = '%B')
     # dob_d = DateField('Day', validators = [DataRequired(), NumberRange(min = 1, max = 31)], format = '%m')
     
-    password = PasswordField('Password', validators = [DataRequired()])
+    password = PasswordField('Password', validators = [DataRequired(), \
+        Length(min = 8, message = 'Your password needs to be at least 8 characters. Please enter a long one.')])
     confirm_password = PasswordField('Confirm Passrowd', validators = [DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
