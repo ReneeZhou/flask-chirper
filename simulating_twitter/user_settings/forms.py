@@ -2,7 +2,8 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.fields.html5 import URLField, EmailField
-from wtforms.validators import DataRequired, Length, Email, ValidationError
+from wtforms.fields.simple import PasswordField
+from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from flask_login import current_user
 from simulating_twitter.models import User
 
@@ -38,3 +39,12 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email = email.data).first()
             if user:
                 raise ValidationError('This email has been taken. Please choose another one.')
+
+
+class UpdatePasswordForm(FlaskForm):
+    current_password = PasswordField('Current password', validators = [DataRequired()])
+    new_password = PasswordField('New password', validators = [DataRequired(), \
+        Length(min = 8, message = 'Your password needs to be at least 8 characters. Please enter a long one.')])
+    confirm_password = PasswordField('Confirm password', validators = [DataRequired(), \
+        EqualTo('new_password', 'Passwords do not match.')])
+    submit = SubmitField('Save')
