@@ -41,6 +41,11 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('This email has been taken. Please choose another one.')
 
 
+class ConfirmPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators = [DataRequired()])
+    submit = SubmitField('Confirm')
+
+
 class UpdatePasswordForm(FlaskForm):
     current_password = PasswordField('Current password', validators = [DataRequired()])
     new_password = PasswordField('New password', validators = [DataRequired(), \
