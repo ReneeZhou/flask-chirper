@@ -17,8 +17,9 @@
 
 
 {% block content %}
+{{ session }}
 <div class="text-gray-600 text-s divide-y divide-gray-700 mt-1 border-b border-gray-700">
-    <a href="{{ url_for('user_settings.settings_username') }}" class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+    <a href="{{ url_for('user_settings.settings_screenName') }}" class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
         <div class="flex flex-col w-120 text-white text-tiny">
             <div class="">Username</div>
             <div class="text-gray-600 text-xs">@handle</div>
