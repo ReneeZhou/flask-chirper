@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
-from simulating_twitter import db
-from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm
+from simulating_twitter import db, bcrypt
+from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
+    UpdatePasswordForm
 from simulating_twitter.user_settings.utils import save_image
 
 
@@ -20,9 +21,22 @@ def settings_account_personalization():
     return render_template('settings_account_personalization.html')
 
 
-@user_settings.route('/settings/password')
+@user_settings.route('/settings/password', methods = ['GET', 'POST'])
 def settings_password():
-    return render_template('settings_password.html')
+    form = UpdatePasswordForm()
+
+    if form.validate_on_submit():
+        # check if password is the same
+        if bcrypt.check_password_hash(current_user.password, form.new_password.data):
+            flash('New password cannot be the same as your existing password.')
+        elif bcrypt.check_password_hash(current_user.password, form.current_password.data):
+            current_user.password = bcrypt.generate_password_hash(form.new_password.data).decode('utf-8')
+            db.session.commit()
+            return redirect(url_for('user_settings.settings_account'))
+        else:
+            flash('The password you entered was incorrect.')
+
+    return render_template('settings_password.html', form = form)
 
 
 @user_settings.route('/settings/profile', methods = ['GET', 'POST'])
@@ -126,7 +140,7 @@ def settings_yourChirperData():
 def settings_yourChirperData_account():
     return render_template('settings_yourChirperData_account_reauth.html')
 
-
+# needs fixing
 @user_settings.route('/settings/username')
 @login_required
 def settings_username():
