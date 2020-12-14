@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash, request, session
+from flask.signals import request_started
 from flask_login import login_required, current_user
 from simulating_twitter import db, bcrypt
 from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
-    UpdatePasswordForm
+    UpdatePasswordForm, ConfirmPasswordForm
 from simulating_twitter.user_settings.utils import save_image
 
 
@@ -91,7 +92,7 @@ def settings_screenName():
             db.session.commit()
             flash('Your account has been updated!', 'success')    
         # needs fixing, it flashes when return to this page
-        # return redirect(url_for('user.profile'))
+        return redirect(url_for('user_settings.settings_account'))
 
     return render_template('settings_ScreenName.html', form = form)
 
@@ -131,20 +132,26 @@ def settings_about():
     return render_template('settings_about.html')
 
 
-@user_settings.route('/settings/your_chirper_data')
+@user_settings.route('/settings/your_chirper_data', methods = ['GET', 'POST'])
 def settings_yourChirperData():
-    return render_template('settings_yourChirperData.html')
+    form = ConfirmPasswordForm()
+    if form.validate_on_submit():
+        if bcrypt.check_password_hash(current_user.password, form.password.data):
+            return render_template('settings_yourChirperData.html')
+        else:
+            flash('The password you entered was incorrect.')
+    return render_template('settings_yourChirperData_auth.html', form = form)
 
 
-@user_settings.route('/settings/your_chirper_data/account')
+@user_settings.route('/settings/your_chirper_data/account', methods = ['GET', 'POST'])
 def settings_yourChirperData_account():
-    return render_template('settings_yourChirperData_account_reauth.html')
-
-# needs fixing
-@user_settings.route('/settings/username')
-@login_required
-def settings_username():
-    return render_template('settings_username.html')
+    form = ConfirmPasswordForm()
+    if form.validate_on_submit():
+        if bcrypt.check_password_hash(current_user.password, form.password.data):
+            return render_template('settings_yourChirperData_account.html')
+        else:
+            flash('The password you entered was incorrect.')
+    return render_template('settings_yourChirperData_auth.html', form = form)
 
 
 @user_settings.route('/settings/phone')
