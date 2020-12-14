@@ -17,44 +17,158 @@
 
 
 {% block content %}
+{% if current_user.is_authenticated %}
 <div class="text-gray-600 text-s divide-y divide-gray-700 mt-1 border-b border-gray-700">
-    <div class="text-white text-lg font-bold p-3">Confirm your password</div>
-    <div class="p-3">
-        Please enter your password in order to get this.
+    <a href="{{ url_for('user_settings.settings_screenName') }}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Username</div>
+            <div class="text-gray-600 text-xs">@handle</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <a href="{{ url_for('user_settings.settings_phone' )}}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Phone</div>
+            <div class="text-gray-600 text-xs">+phone</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <a href="{{ url_for('user_settings.settings_email') }}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Email</div>
+            <div class="text-gray-600 text-xs">@chirp.com</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <div class="flex flex-row items-center justify-between py-2 pl-4 pr-3">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Verified</div>
+            <div class="text-gray-600 text-xs">No <a href="#" class="text-blue-500">Learn more</a></div>
+        </div>
+    </div>
+    <a href="{{ url_for('user_settings.settings_audienceAndTagging') }}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Protected Chirps</div>
+            <div class="text-gray-600 text-xs">Yes</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <div class="flex flex-row items-center justify-between py-2 pl-4 pr-3">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Account creation</div>
+            <div class="text-gray-600 text-xs">13 Feb 2018, 16:08:29</div>
+            <div class="text-gray-600 text-xs">219.84.8.121 (Taiwan)</div>
+        </div>
+    </div>
+    <a href="{{ url_for('user_settings.settings_country') }}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Country</div>
+            <div class="text-gray-600 text-xs">Taiwan</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <a href="{{ url_for('user_settings.settings_languages') }}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Languages</div>
+            <div class="text-gray-600 text-xs">English (United Kingdom)</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <a href="{{ url_for('user_settings.settings_yourChirpData_gender') }}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Gender</div>
+            <div class="text-gray-600 text-xs">Female</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <div class="flex flex-row items-center justify-between py-2 pl-4 pr-3">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Birth date</div>
+            <div class="text-gray-600 text-xs">Add your date of birth to your <a
+                    href="{{ url_for('user.profile', handle = current_user.handle) }}"
+                    class="text-blue-500">profile</a>.</div>
+        </div>
+    </div>
+    <a href="{{ url_for('user_settings.settings_yourChirpData_age') }}"
+        class="flex flex-row items-center justify-between py-2 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Age</div>
+            <div class="text-gray-600 text-xs">13-54</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+</div>
+{% else %}
+<div class="text-gray-600 text-s divide-y divide-gray-700 mt-1 border-b border-gray-700 pt-1">
+    <a href="{{ url_for('user_settings.settings_yourChirpData_gender') }}"
+        class="flex flex-row items-center justify-between py-3 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Gender</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <a href="{{ url_for('user_settings.settings_yourChirpData_age') }}"
+        class="flex flex-row items-center justify-between py-3 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Age</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <a href="{{ url_for('user_settings.settings_languages') }}"
+        class="flex flex-row items-center justify-between py-3 pl-4 pr-3 hover:bg-gray-800 hover:bg-opacity-50">
+        <div class="flex flex-col w-120 text-white text-tiny">
+            <div class="">Languages</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="w-5 h-5 stroke-current text-gray-600 justify-self-end">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+    <div class="py-3 pl-4 pr-3 space-y-4">
+        <p>This information applies to your browser or device while you’re logged out. It may be different when you’re
+            logged in.</p>
+        <p>Control how Chirper customizes your experience in 
+            <a href="{{ url_for('user_settings.settings_account_personalization') }}"
+            class="text-blue-500 hover:underline">your personalization and data settings</a>
+        </p>
     </div>
 </div>
-
-<div class="flex flex-col mx-4 my-3">
-    <form action="" method="POST">
-        {{ form.hidden_tag() }}
-        <div>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div
-                class="flex flex-col bg-gray-800 border-b-2 border-red-700 bg-opacity-25 w-140 h-16 text-red-700 focus-within:text-red-600 focus-within:border-red-600">
-                {{ form.password.label(class="my-1 ml-2") }}
-                {{ form.password(class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none") }}
-            </div>
-            <div class="text-red-700 text-s mt-1 ml-2">
-                {% for message in messages %}
-                {{ message }}
-                {% endfor %}
-
-            </div>
-            {% else %}
-            <div
-                class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-140 h-16 text-gray-600 focus-within:text-blue-500 focus-within:border-blue-500">
-                {{ form.password.label(class="my-1 ml-2") }}
-                {{ form.password(class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none") }}
-            </div>
-            {% endif %}
-            {% endwith %}
-            <a href="{{ url_for('account.account_beginPasswordReset') }}"
-                class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
-                password?</a>
-        </div>
-        {{ form.submit(class="font-semibold bg-blue-500 cursor-pointer rounded-full w-24 h-10 focus:outline-none self-end") }}
-    </form>
-
-</div>
+{% endif %}
 {% endblock content %}
