@@ -1,7 +1,19 @@
 {% extends 'layout_settings.html' %}
 
-{% block title %}Your Chirper data{% endblock title%}
-{% block header %}Your Chirper data{% endblock header %}
+{% block title %}
+{% if current_user.is_authenticated %}
+Download an archive of your data
+{% else %}
+Your Chirper data
+{% endif %}
+{% endblock title %}
+{% block header %}
+{% if current_user.is_authenticated %}
+Download an archive of your data
+{% else %}
+Your Chirper data
+{% endif %}
+{% endblock header %}
 
 {% block presvg %}
 <div onclick="history.go(-1)">
@@ -22,25 +34,30 @@
     <div class="p-3">
         Get insights into the type of information stored for your account.
     </div>
-    <div class="text-white text-lg font-bold p-3">Confirm your password</div>
+    <div class="text-white text-lg font-bold p-3">Chirper data</div>
     <div class="p-3">
-        Please enter your password in order to get this.
+        You can request a ZIP file with an archive of the data we think is most important to you. You’ll get an in-app
+        notification when the archive of your data is ready to download. You can download it in the app. Or, if you have
+        a verified email, you can download it using the link in the email you received.
+        <a href="#" class="text-blue-500 hover:underline">Learn more</a>
+    </div>
+    <div class="flex flex-row items-center justify-between py-3 pl-4 pr-3 text-white  text-tiny">
+        <div class="flex flex-col w-120 ">Chirper</div>
+        <input type="submit" value="Request archive"
+            class="font-bold bg-blue-500 cursor-pointer rounded-full py-1 px-5 focus:outline-none self-end">
+    </div>
+    <div class="h-3 bg-gray-800 bg-opacity-50"></div>
+    <div class="text-white text-lg font-bold p-3">Periscope data</div>
+    <div class="p-3">
+        You can request an archive of your Periscope data on Periscope directly.
+    </div>
+    <div class="flex flex-row items-center justify-between py-3 pl-4 pr-3 text-white  text-tiny">
+        <div class="flex flex-col w-120 ">Periscope</div>
+        <input type="submit" value="Go to Periscope"
+            class="font-bold bg-blue-500 cursor-pointer rounded-full py-1 px-5 focus:outline-none self-end">
     </div>
 </div>
 
-<div class="flex flex-col mx-4 my-3">
-    <div
-        class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-140 h-16 text-gray-600 focus-within:text-blue-500 focus-within:border-blue-500">
-        <label for="passpord" class="my-1 ml-2">Password</label>
-        <input name="password" type="password" requred
-            class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none">
-    </div>
-    <a href="{{ url_for('account.account_beginPasswordReset') }}" class="text-blue-500 text-xs mt-2 ml-2 no-underline hover:underline">Forgot
-        password?</a>
-
-    <input type="submit" value="Confirm"
-        class="font-semibold bg-blue-500 cursor-pointer rounded-full w-24 h-10 focus:outline-none self-end">
-</div>
 {% else %}
 <div class="text-gray-600 text-s divide-y divide-gray-700 mt-2 border-b border-gray-700">
     <a href="{{ url_for('user_settings.settings_yourChirperData_account') }}"
