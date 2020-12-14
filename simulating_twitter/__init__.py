@@ -45,7 +45,7 @@ def create_app(config_class = Config):
     # we are importing blueprint instances and register them with our routes
     from simulating_twitter.account.routes import account
     from simulating_twitter.auth.routes import auth
-    from simulating_twitter.error.routes import error
+    from simulating_twitter.error.handlers import error
     from simulating_twitter.main.routes import main
     from simulating_twitter.post.routes import post
     from simulating_twitter.user.routes import user
