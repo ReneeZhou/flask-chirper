@@ -20,7 +20,7 @@ def home():
         db.session.commit()
         return redirect(url_for('main.home'))
 
-    posts = Post.query.order_by(Post.date_posted.desc())
+    posts = Post.query.order_by(Post.date_posted.desc()).all()
     for post in posts:
         post.show = show_time(post.date_posted)
     # .profile_image is a column from the User model 
