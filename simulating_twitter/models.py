@@ -1,7 +1,9 @@
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from simulating_twitter import db, login_manager, app    # so we can use app's secret key in the serializer
+from flask import current_app
 from flask_login import UserMixin
+from simulating_twitter import db, login_manager    # so we can use app's secret key in the serializer
+
 
 # this func reloads user from the user id stored in the session
 # use the decorator so the extension knows to get the user by id
@@ -36,7 +38,7 @@ class User(db.Model, UserMixin):
 
     # method to create token for serializer
     def get_reset_token(self, expires_sec = 180):
-        s = Serializer(app.config['SECRET_KEY'], expires_sec)    # serializer obj
+        s = Serializer(current_app.config['SECRET_KEY'], expires_sec)    # serializer obj
         return s.dumps({'user_id': self.id}).decode('utf-8')  
         # return the token created with this serializer
         # that contains the payload of the current user's id
@@ -45,7 +47,7 @@ class User(db.Model, UserMixin):
     # method to verify a token
     @staticmethod
     def verify_reset_token(token):
-        s = Serializer(app.config['SECRET_KEY'])
+        s = Serializer(current_app.config['SECRET_KEY'])
         # exception could happen when we try to load the token
         # when the token is invalid, time expires or something else
         try: 

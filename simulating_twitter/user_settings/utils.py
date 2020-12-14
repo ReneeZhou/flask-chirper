@@ -1,7 +1,8 @@
 import os
 from PIL import Image
 from secrets import token_hex
-from simulating_twitter import app
+from flask import current_app
+
 
 def save_image(form_image):
     # ramdonize user's image name so they don't collide in db
@@ -16,10 +17,10 @@ def save_image(form_image):
     i = Image.open(form_image)
 
     if form_image.name == 'profile_image':
-        picture_path = os.path.join(app.root_path, 'static/img/profile_pics', picture_fn)
+        picture_path = os.path.join(current_app.root_path, 'static/img/profile_pics', picture_fn)
         i.thumbnail(output_size['profile'])
     elif form_image.name == 'background_image':
-        picture_path = os.path.join(app.root_path, 'static/img/background_pics', picture_fn)
+        picture_path = os.path.join(current_app.root_path, 'static/img/background_pics', picture_fn)
         i.thumbnail(output_size['background'])
     
     i.save(picture_path)
