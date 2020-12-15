@@ -1,5 +1,5 @@
+from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
-from flask.signals import request_started
 from flask_login import login_required, current_user
 from simulating_twitter import db, bcrypt
 from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
@@ -135,22 +135,45 @@ def settings_about():
 @user_settings.route('/settings/your_chirper_data', methods = ['GET', 'POST'])
 def settings_yourChirperData():
     form = ConfirmPasswordForm()
-    if form.validate_on_submit():
-        if bcrypt.check_password_hash(current_user.password, form.password.data):
+
+    if 'auth_timestamp' not in session:
+        if form.validate_on_submit():
+            if bcrypt.check_password_hash(current_user.password, form.password.data):
+                session['auth_timestamp'] = datetime.utcnow()
+                return render_template('settings_yourChirperData.html')
+            else:
+                flash('The password you entered was incorrect.')
+
+    else:
+        if (datetime.utcnow() - session.get('auth_timestamp')).seconds < 300:
             return render_template('settings_yourChirperData.html')
+
         else:
-            flash('The password you entered was incorrect.')
+            session.pop('auth_timestamp')
+            return redirect(url_for('user_settings.settings_yourChirperData'))
+
     return render_template('settings_yourChirperData_auth.html', form = form)
 
 
 @user_settings.route('/settings/your_chirper_data/account', methods = ['GET', 'POST'])
 def settings_yourChirperData_account():
     form = ConfirmPasswordForm()
-    if form.validate_on_submit():
-        if bcrypt.check_password_hash(current_user.password, form.password.data):
+
+    if 'auth_timestamp' not in session:
+        if form.validate_on_submit():
+            if bcrypt.check_password_hash(current_user.password, form.password.data):
+                session['auth_timestamp'] = datetime.utcnow()
+                return render_template('settings_yourChirperData_account.html')
+            else:
+                flash('The password you entered was incorrect.')
+    else:
+        if (datetime.utcnow() - session.get('auth_timestamp')).seconds < 300:
             return render_template('settings_yourChirperData_account.html')
-        else:
-            flash('The password you entered was incorrect.')
+        else: 
+            session.pop('auth_timestamp')
+            return redirect(url_for('user_settings.settings_yourChirperData_account'))
+
+    
     return render_template('settings_yourChirperData_auth.html', form = form)
 
 
