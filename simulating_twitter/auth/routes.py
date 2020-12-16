@@ -21,7 +21,7 @@ def home_notauth():
     elif form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user) # , remember = True)
+            login_user(user, remember = True)
             return redirect(url_for('main.home'))
         else: 
             flash('Something went wrong.')
@@ -41,7 +41,7 @@ def login():
         # if user exists & password correct 
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             # log the user in with the flask extension
-            login_user(user) # , remember = True)
+            login_user(user, remember = True)
             # using .get() instead of [] to get the dict value will avoid error from not having a value
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home')) # ternary conditional
