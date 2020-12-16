@@ -9,5 +9,5 @@ def send_pin_email(user):
         sender = 'reneezsr@gmail.com ', \
         recipients = [user.email], \
         html = render_template('mail_passwordResetRequest.html', \
-            pin = 'temp_pin', handle = 'test_handle'))    # user.email
+            pin = pin, handle = user.handle))    # user.email
     mail.send(msg)
