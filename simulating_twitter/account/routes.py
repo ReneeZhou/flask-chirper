@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from flask_login import current_user
+from flask_login.utils import login_user
 from simulating_twitter import db, bcrypt
 from simulating_twitter.models import User
 from simulating_twitter.account.forms import BeginPasswordResetForm, SendPasswordResetForm, \
@@ -84,6 +85,10 @@ def account_resetPassword():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user.password = hashed_password
         db.session.commit()
+
+        # login user even if they don't do the survey
+        login_user(user)
+
         return redirect(url_for('account.account_passwordResetSurvey'))
 
     return render_template('account_resetPassword.html', form = form, user = user)
