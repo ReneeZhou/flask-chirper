@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
+from flask_login import current_user
 from simulating_twitter import db, bcrypt
 from simulating_twitter.models import User
 from simulating_twitter.account.forms import BeginPasswordResetForm, SendPasswordResetForm, \
@@ -10,6 +11,12 @@ account = Blueprint('account', __name__)
 # __name__ is showing you the current file name
 # whether that be __main__ (run directly) or .py name (run indirectly)
 # we are importing from this users package itself
+
+
+@account.route('/account/access_password_reset', methods = ['GET'])
+def account_accessPasswordReset():
+    session['email'] = current_user.email
+    return redirect(url_for('account.account_sendPasswordReset'))
 
 
 @account.route('/account/begin_password_reset', methods = ['GET', 'POST'])
