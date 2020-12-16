@@ -15,8 +15,11 @@ account = Blueprint('account', __name__)
 
 @account.route('/account/access_password_reset', methods = ['GET'])
 def account_accessPasswordReset():
-    session['email'] = current_user.email
-    return redirect(url_for('account.account_sendPasswordReset'))
+    if current_user.is_authenticated:
+        session['email'] = current_user.email
+        return redirect(url_for('account.account_sendPasswordReset'))
+    else:
+        return redirect(url_for('account.account_beginPasswordReset'))
 
 
 @account.route('/account/begin_password_reset', methods = ['GET', 'POST'])
