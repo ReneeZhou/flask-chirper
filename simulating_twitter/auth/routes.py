@@ -66,7 +66,8 @@ def signup():
         if handle == User.query.filter_by(handle = handle).first():
             handle = token_urlsafe(5)
 
-        user = User(handle = handle, name = form.name.data, email = form.email.data, password = hashed_password)
+        user = User(handle = handle, name = form.name.data, email = form.email.data, password = hashed_password,\
+            created_at_ip = request.remote_addr)
             # dob_y = form.dob_y.data, dob_m = form.dob_m.data, dob_d = form.dob_d.data)
         
         # user = User(username = form.username.data, email = form.email.data, password = hashed_password)
