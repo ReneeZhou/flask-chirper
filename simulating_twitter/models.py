@@ -27,6 +27,7 @@ class User(db.Model, UserMixin, TimestampMixin):
     handle = db.Column(db.String(20), nullable = False, unique = True)  # handle
     name = db.Column(db.String(50), nullable = False)                   # profile name
     email = db.Column(db.String(120), nullable = False, unique = True)
+    phone = db.Column(db.String(20), nullable = False, default = '', unique = True)
     # dob = db.Column(db.Date, nullable = False)
     # dob_y = db.Column(db.Date, nullable = False)
     # dob_m = db.Column(db.Date, nullable = False)
