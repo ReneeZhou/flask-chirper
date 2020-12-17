@@ -54,7 +54,7 @@ def update_chirp(handle, post_id):
     
     if form.validate_on_submit():
         post.content = form.content.data
-        # post.date_posted = datetime.utcnow()  optional
+        # post.created_at = datetime.utcnow()  optional
         db.session.commit()
         # flash('Your chirp has been updated. ', 'success')
         return redirect(url_for('post.status', handle = handle, post_id = post.post_id))

@@ -14,10 +14,15 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+# don't need @declared_attr as it doesn't involve ForeignKey
+class TimestampMixin:    # causing error if inherit from db.Model here
+    created_at = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
-class User(db.Model, UserMixin):
+
+
+class User(db.Model, UserMixin, TimestampMixin):
     id = db.Column(db.Integer, primary_key = True)
-    account_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    # account_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     handle = db.Column(db.String(20), nullable = False, unique = True)  # handle
     name = db.Column(db.String(50), nullable = False)                   # profile name
     email = db.Column(db.String(120), nullable = False, unique = True)
@@ -63,10 +68,10 @@ class User(db.Model, UserMixin):
      
 
 
-class Post(db.Model):
+class Post(db.Model, TimestampMixin):
     # id = db.Column(db.Integer, primary_key = True)
     # title = db.Column(db.String(100), nullable = False)
-    date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    # date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     post_id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
@@ -74,4 +79,4 @@ class Post(db.Model):
     # referring to user table and id col
 
     def __repr__(self):
-        return f'Post("{self.user_id}", "{self.post_id}", "{self.date_posted}", f"{self.content}")'
+        return f'Post("{self.user_id}", "{self.post_id}", "{self.created_at}", f"{self.content}")'

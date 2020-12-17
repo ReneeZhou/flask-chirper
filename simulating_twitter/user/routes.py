@@ -10,9 +10,9 @@ user = Blueprint('user', __name__)
 def profile(handle):
     user = User.query.filter_by(handle = handle).first_or_404()
 
-    posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).all()
+    posts = Post.query.filter_by(user_id = user.id).order_by(Post.created_at.desc()).all()
     for post in posts:
-        post.show = show_time(post.date_posted)
+        post.show = show_time(post.created_at)
     posts_num = len(posts)
 
     return render_template('profile.html', user = user, posts = posts, posts_num = posts_num)

@@ -98,7 +98,7 @@
 
                 <!-- post timestamp -->
                 <div class="flex flex-row text-gray-600 space-x-1 text-tiny border-b border-gray-600 py-4">
-                    <div>{{ post.date_posted.strftime('%I:%M %p · %d %b %Y').lstrip('0') }}</div>
+                    <div>{{ post.created_at.strftime('%I:%M %p · %d %b %Y').lstrip('0') }}</div>
                     <div>·</div>
                     <div>Source Label</div>
                 </div>
