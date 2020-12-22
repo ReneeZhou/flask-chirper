@@ -58,3 +58,8 @@ class UpdatePasswordForm(FlaskForm):
 class UpdateScreenNameForm(FlaskForm):
     screen_name = StringField('Username', validators = [DataRequired()])
     submit = SubmitField('Save')
+
+    def validate_screen_name(self, screen_name):
+        user = User.query.filter_by(handle = screen_name.data).first()
+        if user:
+            raise ValidationError('That username has been taken. Please choose another.')
