@@ -53,3 +53,8 @@ class UpdatePasswordForm(FlaskForm):
     confirm_password = PasswordField('Confirm password', validators = [DataRequired(), \
         EqualTo('new_password', 'Passwords do not match.')])
     submit = SubmitField('Save')
+
+
+class UpdateScreenNameForm(FlaskForm):
+    screen_name = StringField('Username', validators = [DataRequired()])
+    submit = SubmitField('Save')
