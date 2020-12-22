@@ -138,6 +138,7 @@ def signup_5():
             handle = token_urlsafe(5)
 
         user = User(name = session.get('name'), email = session.get('email'), \
+        dob = session.get('dob'), \
         password = bcrypt.generate_password_hash(form.password.data).decode('utf-8'), \
         handle = handle, created_at_ip = request.remote_addr)
 
