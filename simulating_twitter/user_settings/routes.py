@@ -2,9 +2,11 @@ from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 from flask_login import login_required, current_user
 from simulating_twitter import db, bcrypt
+from simulating_twitter.models import User
 from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
     UpdatePasswordForm, ConfirmPasswordForm, UpdateScreenNameForm
 from simulating_twitter.user_settings.utils import save_image
+
 
 
 user_settings = Blueprint('user_settings', __name__)
@@ -99,6 +101,17 @@ def settings_profile():
 @login_required
 def settings_screenName():
     form = UpdateScreenNameForm()
+
+    if request.method == 'GET':
+        form.screen_name.data = current_user.handle
+
+    if request.method == 'POST':
+        if form.screen_name.data == current_user.handle:
+            return redirect(url_for('user_settings.settings_yourChirperData_account'))
+        elif form.validate_on_submit():
+            current_user.handle = form.screen_name.data
+            db.session.commit()
+            return redirect(url_for('user_settings.settings_yourChirperData_account'))
 
 
     return render_template('settings_ScreenName.html', form = form)
