@@ -35,6 +35,8 @@ class ResetPasswordForm(FlaskForm):
     confirm_password = PasswordField('Enter your password one more time', \
         validators = [DataRequired(), EqualTo('password', message = 'Passwords do not match.')])
     remember = BooleanField('Remember me', default = "checked")
+    # this might currently serve any purpose as our default is remembering user's login
+    # until they manually log out
     submit = SubmitField('Reset password')
 
 
