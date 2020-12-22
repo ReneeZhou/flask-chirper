@@ -15,13 +15,20 @@
 {% endblock presvg %}
 
 {% block content %}
-<div class="flex flex-col mx-4 my-4 space-y-2 text-tiny">
+<div class="flex flex-col mx-4 mt-3 space-y-4 text-tiny">
     <form action="" method="POST">
-        {{ form.hidden_tag() }}
-        <div
-            class="flex flex-col bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-140 h-16 text-gray-600 focus-within:text-blue-500 focus-within:border-blue-500">
-            {{ form.screen_name.label(class="my-1 ml-2") }}
-            {{ form.screen_name(class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none") }}
+        <div>
+            {{ form.hidden_tag() }}
+            <div
+                class="flex flex-col  bg-gray-800 border-b-2 border-gray-600 bg-opacity-25 w-140 h-16 text-gray-600 focus-within:text-blue-500 focus-within:border-blue-500">
+                {{ form.screen_name.label(class="my-1 ml-2") }}
+                {{ form.screen_name(class="ml-2 bg-gray-800 bg-opacity-0 text-lg text-white outline-none") }}
+            </div>
+            {% if form.screen_name.errors %}
+            {% for error in form.screen_name.errors %}
+            <div class="text-tiny text-red-600 mt-1 mb-2">{{ error }}</div>
+            {% endfor %}
+            {% endif %}
         </div>
         <div class="h-3 bg-gray-800 bg-opacity-50 border-t border-b border-gray-700 -mx-4"></div>
         <div class="space-y-5 py-1">
