@@ -51,12 +51,12 @@
                     focus-within:border-blue-500 focus-within:text-blue-500">
                             {{ form.code.label(class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
                             {% if form.code.errors %}
-                            {{ form.code(maxlength="50", class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                            {{ form.code(maxlength="200", class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                             {% for error in form.code.errors %}
                             <span class="flash_warning">{{ error }}</span>
                             {% endfor %}
                             {% else %}
-                            {{ form.code(maxlength="50", class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
+                            {{ form.code(maxlength="200", class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                             {% endif %}
 
                         </div>
