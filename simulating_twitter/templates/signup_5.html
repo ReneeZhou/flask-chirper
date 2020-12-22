@@ -2,16 +2,6 @@
 
 {% block title %}Sign up for Chirper{% endblock title %}
 
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-{{ message }}
-{% endfor %}
-{% endif %}
-{% endwith %}
-
-
 {% block content %}
 <div class="h-screen sm:bg-gray-900 md:bg-gray-800 md:bg-opacity-100 flex flex-col items-center md:justify-center">
     <div class="flex flex-col bg-gray-900 md:rounded-2xl px-8 h-164 pt-2">
