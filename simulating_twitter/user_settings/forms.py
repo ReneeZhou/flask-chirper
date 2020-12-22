@@ -63,3 +63,8 @@ class UpdateScreenNameForm(FlaskForm):
         user = User.query.filter_by(handle = screen_name.data).first()
         if user:
             raise ValidationError('That username has been taken. Please choose another.')
+
+
+class UpdatePhoneForm(FlaskForm):
+    phone = StringField('Current', validators = [Length(max = 20)])
+    submit = SubmitField()
