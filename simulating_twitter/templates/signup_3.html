@@ -14,7 +14,7 @@
 
 {% block content %}
 <div class="h-screen sm:bg-gray-900 md:bg-gray-800 md:bg-opacity-100 flex flex-col items-center md:justify-center">
-    <div class="flex flex-col bg-gray-900 md:rounded-2xl px-8 pb-14 pt-2">
+    <div class="flex flex-col bg-gray-900 md:rounded-2xl px-8 pt-2 h-164">
         <div class="flex flex-row items-center">
             <div onclick="history.go(-1)">
                 <!-- svg redirects to whatever last page user was on -->
@@ -64,28 +64,36 @@
                     <div class="flex flex-col  bg-gray-700 bg-opacity-25 border-b-2 border-gray-600 
                     focus-within:border-blue-500 focus-within:text-blue-500">
                         {{ form.email.label(class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
-                        {% if form.email.errors %}
+                        <div class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white
+                        cursor-default">
+                            {{ email }}
+                        </div>
+                        <!-- {% if form.email.errors %}
                         {{ form.email(class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% for error in form.email.errors %}
                         <span class="flash_warning">{{ error }}</span>
                         {% endfor %}
                         {% else %}
                         {{ form.email(class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
-                        {% endif %}
+                        {% endif %} -->
                     </div>
 
                     <!-- birthdate -->
                     <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600 
                     focus-within:border-blue-500 focus-within:text-blue-500">
                         {{ form.birthdate.label(class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
-                        {% if form.birthdate.errors %}
+                        <div class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white
+                        cursor-default">
+                            {{ birthdate }}
+                        </div>
+                        <!-- {% if form.birthdate.errors %}
                         {{ form.birthdate(class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         {% for error in form.birthdate.errors %}
                         <span class="flash_warning">{{ error }}</span>
                         {% endfor %}
                         {% else %}
                         {{ form.birthdate(class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
-                        {% endif %}
+                        {% endif %} -->
                     </div>
 
 
