@@ -112,9 +112,10 @@
     <div class="flex flex-row items-center justify-between py-2 pl-4 pr-3">
         <div class="flex flex-col w-120 text-white text-tiny">
             <div class="">Birth date</div>
-            <div class="text-gray-600 text-xs">Add your date of birth to your <a
+            <div class="text-gray-600 text-xs">{{ current_user.birthdate }}</div>
+            <!-- <div class="text-gray-600 text-xs">Add your date of birth to your <a
                     href="{{ url_for('user.profile', handle = current_user.handle) }}"
-                    class="text-blue-500">profile</a>.</div>
+                    class="text-blue-500">profile</a>.</div> -->
         </div>
     </div>
     <a href="{{ url_for('user_settings.settings_yourChirpData_age') }}"
