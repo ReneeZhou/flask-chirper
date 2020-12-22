@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from simulating_twitter import db, bcrypt
 from simulating_twitter.models import User
 from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
-    UpdatePasswordForm, ConfirmPasswordForm, UpdateScreenNameForm
+    UpdatePasswordForm, ConfirmPasswordForm, UpdateScreenNameForm, UpdatePhoneForm
 from simulating_twitter.user_settings.utils import save_image
 
 
@@ -208,7 +208,16 @@ def settings_yourChirperData_account():
 @user_settings.route('/settings/phone')
 @login_required
 def settings_phone():
-    return render_template('settings_phone.html')
+    form = UpdatePhoneForm()
+    return render_template('settings_phone.html', form = form)
+
+
+# i
+@user_settings.route('/settings/add_phone', methods = ['GET', 'POST'])
+@login_required
+def settings_addPhone():
+    form = ConfirmPasswordForm()
+    return render_template('settings_yourChirperData_auth.html', form = form)
 
 
 @user_settings.route('/settings/email')
