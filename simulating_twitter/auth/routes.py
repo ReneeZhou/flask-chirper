@@ -35,32 +35,6 @@ def home_notauth():
     return render_template('home_notauth.html', form = form)
 
 
-@auth.route('/signup', methods = ['GET', 'POST'])
-def signup():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
-
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-
-        # generate a random url/handle for the user, check if duplicate in the db
-        handle = token_urlsafe(5)
-        if handle == User.query.filter_by(handle = handle).first():
-            handle = token_urlsafe(5)
-
-        user = User(handle = handle, name = form.name.data, email = form.email.data, password = hashed_password,\
-            created_at_ip = request.remote_addr)
-            # dob_y = form.dob_y.data, dob_m = form.dob_m.data, dob_d = form.dob_d.data)
-        
-        # user = User(username = form.username.data, email = form.email.data, password = hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('auth.login'))
-    return render_template('signup.html', form = form)
-
-
 @auth.route('/signup/1', methods = ['GET', 'POST'])
 def signup_1():
     form = PersonalInfoForm()
@@ -138,7 +112,7 @@ def signup_5():
             handle = token_urlsafe(5)
 
         user = User(name = session.get('name'), email = session.get('email'), \
-        dob = session.get('dob'), \
+        birthdate = session.get('dob'), \
         password = bcrypt.generate_password_hash(form.password.data).decode('utf-8'), \
         handle = handle, created_at_ip = request.remote_addr)
 
