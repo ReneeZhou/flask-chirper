@@ -35,7 +35,7 @@ def home_notauth():
     return render_template('home_notauth.html', form = form)
 
 
-# 
+# i
 @auth.route('/signup/1', methods = ['GET', 'POST'])
 def signup_1():
     form = PersonalInfoForm()
@@ -51,7 +51,7 @@ def signup_1():
     return render_template('signup_1.html', form = form)
 
 
-# 
+# i
 @auth.route('/signup/2', methods = ['GET', 'POST'])
 def signup_2():
     if request.referrer is None:
@@ -65,7 +65,7 @@ def signup_2():
     return render_template('signup_2.html', form = form)
 
 
-# 
+# i
 @auth.route('/signup/3', methods = ['GET', 'POST'])
 def signup_3():
     if request.referrer is None:
@@ -86,7 +86,7 @@ def signup_3():
     return render_template('signup_3.html', form = form, birthdate = birthdate, email = email)
 
 
-# 
+# i
 @auth.route('/signup/4', methods = ['GET', 'POST'])
 def signup_4():
     if request.referrer is None:
@@ -103,7 +103,7 @@ def signup_4():
     return render_template('signup_4.html', form = form)
    
 
-# 
+# i
 @auth.route('/signup/5', methods = ['GET', 'POST'])
 def signup_5():
     if request.referrer is None:
