@@ -1,6 +1,9 @@
+import pycountry
+from phonenumbers import COUNTRY_CODE_TO_REGION_CODE
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, BooleanField
+from wtforms.fields.core import SelectField
 from wtforms.fields.html5 import URLField, EmailField
 from wtforms.fields.simple import PasswordField
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
@@ -66,5 +69,16 @@ class UpdateScreenNameForm(FlaskForm):
 
 
 class UpdatePhoneForm(FlaskForm):
-    phone = StringField('Current', validators = [Length(max = 20)])
-    submit = SubmitField()
+    choices = []
+    for code, countries in COUNTRY_CODE_TO_REGION_CODE.items():
+        for country in countries: 
+            try:
+                choices.append('+' + str(code) + ' ' + pycountry.countries.get(alpha_2 = country).name)
+            except AttributeError:
+                pass
+    choices = [choice.split(',')[0] for choice in choices]
+
+    country = SelectField('Country code', validators = [DataRequired()], choices = choices)
+    phone = StringField('Your phone number', validators = [DataRequired(), Length(max = 20)])
+    public = BooleanField('Allow', default = 'checked')
+    submit = SubmitField('Submit')
