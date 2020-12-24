@@ -82,3 +82,9 @@ class UpdatePhoneForm(FlaskForm):
     phone = StringField('Your phone number', validators = [DataRequired(), Length(max = 20)])
     public = BooleanField('Allow', default = 'checked')
     submit = SubmitField('Submit')
+
+
+class UpdateEmailForm(FlaskForm):
+    email = EmailField('Email address', validators = [DataRequired(), Email()])
+    public = BooleanField('Allow', default = 'checked')
+    submit = SubmitField('Submit')
