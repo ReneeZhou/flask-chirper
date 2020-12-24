@@ -16,39 +16,41 @@
 
 {% block content %}
 <div class="flex flex-col mx-4 text-tiny">
-        <div class="mt-6 mb-3">
-            {% if current_user.phone %}
-            <div
-                class="flex flex-col  bg-gray-800 border-b-2 border-gray-700 bg-opacity-25 w-140 h-16 text-gray-700 focus-within:text-blue-500 focus-within:border-blue-500">
-                <div class="my-1 ml-2 text-sm">Current</div>
-                <div class="ml-2 text-lg">{{ current_user.phone }}</div>
-            </div>
-            {% endif %}
-        </div>
+    <div class="mt-6 mb-3">
         {% if current_user.phone %}
-        <div class="h-3 bg-gray-800 bg-opacity-50 border-t border-b border-gray-700 -mx-4"></div>
-        <div>
-            <a href="{{ url_for('user_settings.settings_addPhone_auth') }}">
-                <div class="text-center text-blue-500 py-3 -mx-4 border-b border-gray-700 
-                hover:bg-opacity-25 hover:bg-blue-800">
-                    Update phone number
-                </div>
-            </a>
-            <a href="#">
-                <div class="text-center text-red-600 py-3 -mx-4  border-b border-gray-700
-                hover:bg-opacity-25 hover:bg-red-700">Delete
-                    phone number</div>
-            </a>
-        </div>
-        {% else %}
-        <div class="mt-1">
-            <a href="{{ url_for('user_settings.settings_addPhone_auth') }}">
-                <div class="text-center text-blue-500 py-3 -mx-4 border-b border-gray-700 
-                hover:bg-opacity-25 hover:bg-blue-800">Add phone
-                    number</div>
-            </a>
+        <div
+            class="flex flex-col  bg-gray-800 border-b-2 border-gray-700 bg-opacity-25 w-140 h-16 text-gray-700 focus-within:text-blue-500 focus-within:border-blue-500">
+            <div class="my-1 ml-2 text-sm">Current</div>
+            <div class="ml-2 text-lg">{{ current_user.phone }}</div>
         </div>
         {% endif %}
-    </form>
+    </div>
+    {% if current_user.phone %}
+    <div class="h-3 bg-gray-800 bg-opacity-50 border-t border-b border-gray-700 -mx-4"></div>
+    <div>
+        <a href="{{ url_for('user_settings.settings_addPhone_auth') }}">
+            <div class="text-center text-blue-500 py-3 -mx-4 border-b border-gray-700 
+                hover:bg-opacity-25 hover:bg-blue-800">
+                Update phone number
+            </div>
+        </a>
+        <form action="{{ url_for('user_settings.settings_deletePhone') }}" method="POST">
+            <button class="focus:outline-none w-140">
+                <div class="text-center text-red-600 py-3 -mx-4  border-b border-gray-700
+                hover:bg-opacity-25 hover:bg-red-700">
+                    Delete phone number
+                </div>
+            </button>
+        </form>
+    </div>
+    {% else %}
+    <div class="-mt-5">
+        <a href="{{ url_for('user_settings.settings_addPhone_auth') }}">
+            <div class="text-center text-blue-500 py-3 -mx-4 border-b border-gray-700 
+                hover:bg-opacity-25 hover:bg-blue-800">Add phone
+                number</div>
+        </a>
+    </div>
+    {% endif %}
 </div>
 {% endblock content %}
