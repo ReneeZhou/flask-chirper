@@ -7,7 +7,8 @@ from flask_login import login_required, current_user
 from simulating_twitter import db, bcrypt
 from simulating_twitter.models import User
 from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
-    UpdatePasswordForm, ConfirmPasswordForm, UpdateScreenNameForm, UpdatePhoneForm
+    UpdatePasswordForm, ConfirmPasswordForm, UpdateScreenNameForm, UpdatePhoneForm, \
+    UpdateEmailForm
 from simulating_twitter.user_settings.utils import save_image
 
 
@@ -219,19 +220,22 @@ def settings_phone():
 @login_required
 def settings_addPhone_auth():
     form = ConfirmPasswordForm()
+    layout_title = 'Change phone'
+
     if form.validate_on_submit():
         if bcrypt.check_password_hash(current_user.password, form.password.data):
             return redirect(url_for('user_settings.settings_addPhone'))
         else:
             flash('The password you entered was incorrect.')
-    return render_template('settings_addPhone_auth.html', form = form)
+    
+    return render_template('settings_auth.html', form = form, layout_title = layout_title)
 
 # i
 @user_settings.route('/settings/add_phone', methods = ['GET', 'POST'])
 @login_required
 def settings_addPhone():
     if request.referrer is None:
-        return redirect(url_for('user_settings.settings_addPhone_auth'))
+        return redirect(url_for('user_settings.settings_auth'))
 
     form = UpdatePhoneForm()
 
@@ -260,10 +264,55 @@ def settings_deletePhone():
     return redirect(url_for('user_settings.settings_phone'))
 
 
-@user_settings.route('/settings/email')
+@user_settings.route('/settings/email', methods = ['GET', 'POST'])
 @login_required
 def settings_email():
     return render_template('settings_email.html')
+
+
+# i
+@user_settings.route('/settings/add_email/auth', methods = ['GET', 'POST'])
+@login_required
+def settings_addEmail_auth():
+    form = ConfirmPasswordForm()
+    layout_title = 'Change email'
+    if form.validate_on_submit():
+        if bcrypt.check_password_hash(current_user.password, form.password.data):
+            return redirect(url_for('user_settings.settings_addEmail'))
+        else:
+            flash('The password you entered was incorrect.')
+    
+    return render_template('settings_auth.html', form = form, layout_title = layout_title)
+
+
+@user_settings.route('/settings/add_email', methods = ['GET', 'POST'])
+@login_required
+def settings_addEmail():
+    if request.referrer is None:
+        return redirect(url_for('user_settings.settings_addEmail_auth'))
+
+    form = UpdateEmailForm()
+
+    if form.validate_on_submit():
+        
+        if current_user.email == form.email.data:
+            return redirect(url_for('user_settings.settings_email'))
+
+        elif User.query.filter_by(email = form.email.data).first():
+            form = UpdateEmailForm()
+            flash('Email has been taken.')
+            return render_template('settings_addEmail.html', form = form)
+
+        else:
+            current_user.email = form.email.data
+            db.session.commit()
+            return redirect(url_for('user_settings.settings_email'))
+
+
+    return render_template('settings_addEmail.html', form = form)
+
+
+@user_settings.route('/settings/add_email/verify', methods = ['GET', 'POST'])
 
 
 @user_settings.route('/settings/audience_and_tagging')
