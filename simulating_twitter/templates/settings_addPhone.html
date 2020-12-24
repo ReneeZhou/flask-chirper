@@ -10,7 +10,7 @@
                 <!-- action="" posts us back to the same route -->
                 {{ form.hidden_tag() }}
                 <div class="flex flex-row items-center justify-between -m-4">
-                    <div onclick="history.go(-1)">
+                    <a href="{{ url_for('user_settings.settings_phone') }}">
                         <!-- svg redirects to whatever last page user was on -->
                         <div class="svg-bg-div cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -19,7 +19,7 @@
                                     d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                         </div>
-                    </div>
+                    </a>
                     <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
                         xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current">
                         <g>
@@ -48,7 +48,7 @@
                     <div class="text-tiny text-gray-600">Enter the phone number you’d like to associate with your
                         Chirper account. You’ll get a verification code sent here.</div>
                     {% endif %}
-                    <div class="space-y-5 text-gray-600 text-tiny">
+                    <div class="text-gray-600 text-tiny">
                         <!-- country -->
                         <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                     focus-within:border-blue-500 focus-within:text-blue-500">
@@ -57,13 +57,22 @@
                             bg-gray-700 bg-opacity-0 outline-none text-white cursor-pointer") }}
                         </div>
                         <!-- phone -->
-                        <div class="flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
+                        <div class="mt-5 flex flex-col bg-gray-700 bg-opacity-25 border-b-2 border-gray-600
                     focus-within:border-blue-500 focus-within:text-blue-500">
                             {{ form.phone.label(class="bg-gray-700 bg-opacity-0 ml-2 mt-2") }}
                             {{ form.phone(maxlength="50", class="text-xl bg-gray-700 bg-opacity-0 ml-2 mt-2 outline-none text-white") }}
                         </div>
+                        <div class="mt-1">
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            {% for message in messages %}
+                            <span class="text-s text-red-600">{{ message }}</span>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
                         <!-- public -->
-                        <div class="flex flex-row items-start pt-2">
+                        <div class="flex flex-row items-start mt-5">
                             <div class="text-white">
                                 Let people who have your phone number find and connect with you on Chirper. 
                                 <a href="#" class="text-blue-500 hover:underline">Learn more</a>
@@ -74,12 +83,6 @@
                                 cursor-pointer") }}
                             </div>
                         </div>
-                        
-
-                        <!--                         
-                        {% with messages = get_flashed_messages() %}
-                        {{ messages }}
-                        {% endwith %} -->
                     </div>
                 </div>
             </form>
