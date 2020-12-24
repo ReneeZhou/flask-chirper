@@ -1,4 +1,7 @@
 from datetime import datetime
+import phonenumbers
+from phonenumbers import carrier
+from phonenumbers.phonenumberutil import NumberParseException, number_type
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 from flask_login import login_required, current_user
 from simulating_twitter import db, bcrypt
@@ -205,19 +208,47 @@ def settings_yourChirperData_account():
         return render_template('settings_yourChirperData_account.html')
 
 
-@user_settings.route('/settings/phone')
+@user_settings.route('/settings/phone', methods = ['GET', 'POST'])
 @login_required
 def settings_phone():
-    form = UpdatePhoneForm()
-    return render_template('settings_phone.html', form = form)
+    return render_template('settings_phone.html')
 
+
+# i
+@user_settings.route('/settings/add_phone/auth', methods = ['GET', 'POST'])
+@login_required
+def settings_addPhone_auth():
+    form = ConfirmPasswordForm()
+    if form.validate_on_submit():
+        if bcrypt.check_password_hash(current_user.password, form.password.data):
+            return redirect(url_for('user_settings.settings_addPhone'))
+        else:
+            flash('The password you entered was incorrect.')
+    return render_template('settings_addPhone_auth.html', form = form)
 
 # i
 @user_settings.route('/settings/add_phone', methods = ['GET', 'POST'])
 @login_required
 def settings_addPhone():
-    form = ConfirmPasswordForm()
-    return render_template('settings_yourChirperData_auth.html', form = form)
+    if request.referrer is None:
+        return redirect(url_for('user_settings.settings_addPhone_auth'))
+
+    form = UpdatePhoneForm()
+
+    if form.validate_on_submit():
+        number = form.country.data.split()[0] + str(form.phone.data)
+        try:
+            b = carrier._is_mobile(number_type(phonenumbers.parse(number)))
+            if b:
+                current_user.phone = number
+                db.session.commit()
+                return redirect(url_for('user_settings.settings_phone'))
+            else:
+                flash('Please enter a valid phone number.')
+        except NumberParseException:
+            flash('Please enter a valid phone number.')
+
+    return render_template('settings_addPhone.html', form = form)
 
 
 @user_settings.route('/settings/email')
