@@ -251,6 +251,15 @@ def settings_addPhone():
     return render_template('settings_addPhone.html', form = form)
 
 
+@user_settings.route('/settings/add_phone/delete', methods = ['POST'])
+@login_required
+def settings_deletePhone():
+    current_user.phone = None
+    db.session.commit()
+    
+    return redirect(url_for('user_settings.settings_phone'))
+
+
 @user_settings.route('/settings/email')
 @login_required
 def settings_email():
