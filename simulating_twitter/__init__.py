@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
+from elasticsearch import Elasticsearch
 from simulating_twitter.config import Config
 
 
@@ -40,6 +41,12 @@ def create_app(config_class = Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
+    # elasticsearch is not wrapped by a flask extension, so initiation is slightly different
+    if app.config['ELASTICSEARCH_URL']:
+        app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']])
+    else:
+        app.elasticsearch = None
+    
     # from simulating_twitter import routes
     # instead of importing routes registered with app (@app) like above
     # we are importing blueprint instances and register them with our routes
