@@ -43,6 +43,10 @@ class User(db.Model, UserMixin, TimestampMixin):
     posts = db.relationship('Post', backref = 'author', lazy = True) 
     # referring to Post class
 
+
+    liked = db.relationship('PostLike', backref = 'liker', lazy = 'dynamic')
+
+
     # method to create token for serializer
     def get_reset_token(self, expires_sec = 180):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)    # serializer obj
@@ -84,3 +88,9 @@ class Post(db.Model, TimestampMixin):
 
     def __repr__(self):
         return f'Post("{self.user_id}", "{self.post_id}", "{self.created_at}", f"{self.content}")'
+
+
+class PostLike(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignerKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
