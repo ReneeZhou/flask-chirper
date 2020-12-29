@@ -23,7 +23,7 @@ class TimestampMixin:    # causing error if inherit from db.Model here
 
 # not declaring this table as a model as this is an auxiliary table
 # which has no data other than foreign keys
-follower = db.Table(
+followers = db.Table(
     'followers', 
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
@@ -55,9 +55,9 @@ class User(db.Model, UserMixin, TimestampMixin):
     # referring to Post class
 
 
-    followed = db.relationship('User', secondary = follower, \
-        primaryjoin = (follower.c.follower_id == id), \
-        secondaryjoin = (follower.c.followed_id == id), \
+    followed = db.relationship('User', secondary = followers, \
+        primaryjoin = (followers.c.follower_id == id), \
+        secondaryjoin = (followers.c.followed_id == id), \
         backref = db.backref('follower', lazy = 'dynamic'), \
         lazy = 'dynamic')
 
@@ -87,6 +87,22 @@ class User(db.Model, UserMixin, TimestampMixin):
     def __repr__(self):
         return f'User("{self.name}", "{self.email}", "{self.handle}")'
      
+
+
+    def is_following(self, user):
+            return self.followed.filter(followers.c.followed_id == user.id).count() > 0
+
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+    
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+
 
 
 class Post(db.Model, TimestampMixin):
