@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
+from simulating_twitter import db
 from simulating_twitter.models import User, Post
 from simulating_twitter.post.utils import show_time
 
@@ -59,3 +60,23 @@ def profile_moments(handle):
 @user.route('/<handle>/topics')
 def profile_topics(handle):
     return render_template('profile_topics.html')
+
+
+@user.route('/<handle>/follow', methods = ['POST'])
+@login_required
+def follow(handle):
+    user = User.query.filter_by(handle = handle).first_or_404()
+    
+    current_user.follow(user)
+    db.session.commit()
+    return redirect(url_for('user.profile', handle = user.handle))
+
+
+@user.route('/<handle>/unfollow', methods = ['POST'])
+@login_required
+def unfollow(handle):
+    user = User.query.filter_by(handle = handle).first_or_404()
+
+    current_user.unfollow(user)
+    db.session.commit()
+    return redirect(url_for('user.profile', handle = user.handle))
