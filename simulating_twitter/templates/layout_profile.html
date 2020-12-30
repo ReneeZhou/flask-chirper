@@ -47,6 +47,15 @@
                         <div class="text-blue-500 font-bold px-3 py-2 mb-2 rounded-full border
                             border-blue-500 hover:bg-blue-800 hover:bg-opacity-25">Edit Profile</div>
                     </a>
+
+                    {% elif current_user.is_authenticated and current_user.handle != user.handle %}
+                    <form action="{{ url_for('user.follow', handle = user.handle) }}" method="POST">
+                        <input type="submit" value="Follow"
+                            class="bg-gray-900 border border-blue-500 text-blue-500 
+                        hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focus:outline-none cursor-pointer">
+                    </form>
+
+
                     {% else %}
 
                     <!-- <body class="bg-gray-900 flex items-center justify-center h-screen"> -->
@@ -54,7 +63,8 @@
                     <div>
                         <!-- follow modal button -->
                         <div class="modal-follow-open bg-transparent bg-gray-900 border border-blue-500 text-blue-500 
-hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focus:outline-none cursor-pointer">Follow</div>
+hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focus:outline-none cursor-pointer">Follow
+                        </div>
 
 
                         <!-- follow modal content -->
@@ -182,7 +192,8 @@ hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focu
                                         d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
                                 </svg>
                             </div>
-                            <div class="text-gray-600 text-tiny whitespace-no-wrap">Born {{ user.birthdate.strftime('%B %d, %Y') }}</div>
+                            <div class="text-gray-600 text-tiny whitespace-no-wrap">Born
+                                {{ user.birthdate.strftime('%B %d, %Y') }}</div>
                         </div>
                         {% endif %}
                         <!-- user joined date -->
@@ -288,7 +299,6 @@ hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focu
         modalMedia.classList.toggle('pointer-events-none')
         body.classList.toggle('modal-media-active')
     }
-
 </script>
 <!-- modal script ends here -->
 {% endblock content %}
