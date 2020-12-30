@@ -23,10 +23,10 @@ class TimestampMixin:    # causing error if inherit from db.Model here
 
 # not declaring this table as a model as this is an auxiliary table
 # which has no data other than foreign keys
-followers = db.Table(
-    'followers', 
+follower = db.Table(
+    'follower', 
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+    db.Column('following_id', db.Integer, db.ForeignKey('user.id'))
     )
 
 
@@ -55,11 +55,52 @@ class User(db.Model, UserMixin, TimestampMixin):
     # referring to Post class
 
 
-    followed = db.relationship('User', secondary = followers, \
-        primaryjoin = (followers.c.follower_id == id), \
-        secondaryjoin = (followers.c.followed_id == id), \
-        backref = db.backref('follower', lazy = 'dynamic'), \
+    following = db.relationship('User', secondary = follower, 
+        primaryjoin = (follower.c.follower_id == id),             # this user's following people
+        secondaryjoin = (follower.c.following_id == id),          # this user's followers
+        backref = db.backref('follower', lazy = 'dynamic'), 
         lazy = 'dynamic')
+        
+
+    def is_following(self, user):
+        return self.following.filter(follower.c.following_id == user.id).count() > 0
+        # left side foreign key set to self, right side set to user?????? 
+        # ok, essentially in the 'following' column, leave only where the following_id is this 'other' user's id
+        # and the self id is the matching follower_id, as a follower
+        # as we're asking if this row of entry of this user, is following this external user (other row, other entry)
+
+        # this syntax is probably because according to primaryjoin
+        # if switching primaryjoin & secondaryjoin, it might be different?????
+        # again, everything comes back to model tables being defined that the left table 'follows' the right table
+        # hence, primaryjoin performs the follower user joining the association table
+
+        # filter_by() can only check for equality of a certain value
+        # whereas filter() is lower level, can handle more complicated filter conditions
+        # c is an SQLAlchemy attribute for tables, where column and subattributes of c
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.following.append(user)
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.following.remove(user)
+
+
+    def following_post(self):
+        following_post = Post.query.join(follower, (follower.c.following_id == Post.user_id)).filter_by(
+            follower.c.follower_id == self.id)
+        own_post = Post.query.filter_by(user_id = self.id)
+        return following_post.union(own_post).order_by(Post.created_at.desc())
+        
+        # Post table join the follower table, with the condition of (...)
+        # the follower table's following_id col should be the sane as post's user_id 
+        # as in post being written by people we're following
+        # now only people we follow is left in the table, with all their posts
+        # [ actually not even, we don't have a specific user here, so it's the entire Post table]
+        # [ so we can think about filtering first actually, instead of joining ]
+        # we have all cols & follower table's cols
+        # so we're filtering by 
 
 
     # method to create token for serializer
@@ -87,22 +128,6 @@ class User(db.Model, UserMixin, TimestampMixin):
     def __repr__(self):
         return f'User("{self.name}", "{self.email}", "{self.handle}")'
      
-
-
-    def is_following(self, user):
-            return self.followed.filter(followers.c.followed_id == user.id).count() > 0
-
-
-    def follow(self, user):
-        if not self.is_following(user):
-            self.followed.append(user)
-    
-
-    def unfollow(self, user):
-        if self.is_following(user):
-            self.followed.remove(user)
-
-
 
 
 class Post(db.Model, TimestampMixin):
