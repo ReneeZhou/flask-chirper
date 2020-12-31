@@ -88,7 +88,7 @@ class User(db.Model, UserMixin, TimestampMixin):
 
 
     def following_post(self):
-        following_post = Post.query.join(follower, (follower.c.following_id == Post.user_id)).filter_by(
+        following_post = Post.query.join(follower, (follower.c.following_id == Post.user_id)).filter(
             follower.c.follower_id == self.id)
         own_post = Post.query.filter_by(user_id = self.id)
         return following_post.union(own_post).order_by(Post.created_at.desc())
