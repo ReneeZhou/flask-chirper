@@ -1175,9 +1175,10 @@
                             </div>
                         </div>
 
-                        <button
-                            class="self-center rounded-full font-bold text-blue-500 px-4 h-8
-        border border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">Follow</button>
+                        <form action="{{ url_for('user.follow', handle = person.handle) }}" method="POST">
+                            <input type="submit" value="Follow" class="self-center rounded-full font-bold text-blue-500 px-4 h-8 bg-transparent cursor-pointer
+        border border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">
+                        </form>
                     </div>
                     {% endfor %}
                     <!-- end recommendations -->
