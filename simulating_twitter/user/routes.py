@@ -16,7 +16,11 @@ def profile(handle):
         post.show = show_time(post.created_at)
     posts_num = len(posts)
 
-    return render_template('profile.html', user = user, posts = posts, posts_num = posts_num)
+
+    following_status = current_user.is_following(user)
+
+    return render_template('profile.html', user = user, posts = posts, posts_num = posts_num, \
+        following_status = following_status)
 
 
 @user.route('/<handle>/with_replies')

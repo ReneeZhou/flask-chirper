@@ -49,13 +49,19 @@
                     </a>
 
                     {% elif current_user.is_authenticated and current_user.handle != user.handle %}
+                    {% if following_status != True %}
                     <form action="{{ url_for('user.follow', handle = user.handle) }}" method="POST">
                         <input type="submit" value="Follow"
                             class="bg-gray-900 border border-blue-500 text-blue-500 
                         hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focus:outline-none cursor-pointer">
                     </form>
-
-
+                    {% else %}
+                    <form action="{{ url_for('user.unfollow', handle = user.handle) }}" method="POST">
+                        <input type="submit" value="Following"
+                            class="bg-blue-500 text-white font-bold py-2 px-4 mb-2 rounded-full
+                        hover:bg-red-700 focus:bg-opacity-75 focus:outline-none cursor-pointer">
+                    </form>
+                    {% endif %}
                     {% else %}
 
                     <!-- <body class="bg-gray-900 flex items-center justify-center h-screen"> -->
