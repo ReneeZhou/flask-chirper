@@ -4,6 +4,7 @@ from flask.blueprints import Blueprint
 from flask_login import current_user, login_required
 from simulating_twitter import db
 from simulating_twitter.models import Post
+from simulating_twitter.main.utils import get_recommendation
 from simulating_twitter.post.utils import show_time
 from simulating_twitter.post.forms import PostForm
 
@@ -26,7 +27,9 @@ def home():
     for post in posts:
         post.show = show_time(post.created_at)
     # .profile_image is a column from the User model 
-    return render_template('home.html', form = form, posts = posts)
+
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('home.html', form = form, posts = posts, follow_recommendation = follow_recommendation)
 
 
 @main.route('/explore', methods = ['GET', 'POST'])
