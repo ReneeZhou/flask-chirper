@@ -29,30 +29,35 @@ def home():
     # .profile_image is a column from the User model 
 
     follow_recommendation = get_recommendation(current_user)
+
     return render_template('home.html', form = form, posts = posts, follow_recommendation = follow_recommendation)
 
 
 @main.route('/explore', methods = ['GET', 'POST'])
 def explore():
-    return render_template('explore.html', trends = trends, happenings = happenings)
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('explore.html', trends = trends, happenings = happenings, follow_recommendation = follow_recommendation)
 
 
 @main.route('/notifications')
 @login_required
 def notifications():
-    return render_template('notifications.html')
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('notifications.html', follow_recommendation = follow_recommendation)
 
 
 @main.route('/notifications/mentions')
 @login_required
 def notifications_mentions():
-    return render_template('notifications_mentions.html')
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('notifications_mentions.html', follow_recommendation = follow_recommendation)
 
 
 @main.route('/messages')
 @login_required
 def messages():
-    return render_template('messages.html')
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('messages.html', follow_recommendation = follow_recommendation)
 
 
 @main.route('/follower_requests')
@@ -64,7 +69,8 @@ def followerRequests():
 @main.route('/bookmarks')
 @login_required
 def bookmarks():
-    return render_template('bookmarks.html')
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('bookmarks.html', follow_recommendation = follow_recommendation)
 
 
 # i
@@ -85,14 +91,16 @@ def lists_addMember():
 @main.route('/trends')
 @login_required
 def trends():
-    return render_template('trends.html', trends = trends)
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('trends.html', trends = trends, follow_recommendation = follow_recommendation)
 
 
 # i
 @main.route('/timeline')
 @login_required
 def timeline():
-    return render_template('timeline.html', happenings = happenings)
+    follow_recommendation = get_recommendation(current_user)
+    return render_template('timeline.html', happenings = happenings, follow_recommendation = follow_recommendation)
 
 
 # i
