@@ -1,3 +1,5 @@
+import json
+from time import time
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
@@ -60,7 +62,16 @@ class User(db.Model, UserMixin, TimestampMixin):
         secondaryjoin = (follower.c.following_id == id),          # this user's followers
         backref = db.backref('follower', lazy = 'dynamic'), 
         lazy = 'dynamic')
-        
+
+
+    message_sent = db.relationship('Message', backref = 'sender', lazy = 'dynamic', \
+        foreign_keys = 'Message.sender_id')
+
+    message_receive = db.relationship('Message', backref = 'recipient', lazy = 'dynamic', \
+        foreign_keys = 'Message.recipient_id')
+
+    last_check_message = db.Column(db.DateTime, nullable = False, default = datetime(1990, 1, 1))
+
 
     def is_following(self, user):
         return self.following.filter(follower.c.following_id == user.id).count() > 0
@@ -144,3 +155,28 @@ class Post(db.Model, TimestampMixin):
 
     def __repr__(self):
         return f'Post("{self.user_id}", "{self.post_id}", "{self.created_at}", f"{self.content}")'
+
+
+
+class Message(db.Model, TimestampMixin):
+    id = db.Column(db.Integer, primary_key = True)
+    sender_id = db.Column(db.integer, db.ForeignKey('user.id'), nullable = False)
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    body = db.Column(db.String(500))
+    read_at = db.Column(db.Datetime, nullable = True)
+
+
+    # consider making it a class/static method so it doesn't tie to a single instance
+    # and the state of the instance (or when it's evaluates/created) would affect
+    # the result, because the 'self' here is not a User but a Message
+    # return number of unread msg
+    @staticmethod
+    def new_messages(id, sender_id):
+        last_read_at = Message.get(id).read_at or datetime(1990, 1, 1)
+        return Message.query.filter_by(sender_id = sender_id).filter(
+            Message.created_at > last_read_at
+        ).count()
+
+
+    def __repr__(self):
+        return f'<Message {self.body}>'
