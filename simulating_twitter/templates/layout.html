@@ -906,9 +906,17 @@
             {% endif %}
         </nav>
     </div>
+    {% if 'messages' not in request.path %}
     <main class="w-148 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
+    {% else %}
+    <main class="xs:w-148 sm:w-148 lg:w-116 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
+    {% endif %}
         <table>
+            {% if 'messages' not in request.path %}
             <div class="fixed w-148 bg-gray-900 border-b border-gray-700">
+            {% else %}
+            <div class="fixed xs:w-148 sm:w-148 lg:w-116 bg-gray-900 border-b border-gray-700">
+            {% endif %}
                 <div class="flex justify-between items-center py-2 pl-4 pr-1 cursor-pointer">
                     <div class="flex flex-row items-center">
                         {% block presvg %}{% endblock presvg %}
@@ -978,6 +986,7 @@
 
     </main>
 
+    {% if 'messages' not in request.path %}
     <aside class="xs:hidden sm:hidden lg:flex lg:flex-col space-y-4 ml-8">
         <!-- show when vp>lg@980px  -->
         <table>
@@ -1258,10 +1267,14 @@
 
         </table>
     </aside>
+    {% else %}
+    <aside class="xs:hidden sm:hidden lg:flex lg:flex-col space-y-4 ml-8 w-1/3">{% block messages %}{% endblock %}</aside>
+    {% endif %}
 
 
     <!-- message tab -->
     {% if current_user.is_authenticated %}
+    {% if 'messages' not in request.path %}
     <div class="fixed bottom-0 right-0 px-4 h-12 xs:hidden sm:hidden lg:flex cursor-pointer">
         <div
             class="flex flex-row w-100 justify-between items-center rounded-t-2xl py-4 pl-4 pr-2 shadow-msg bg-gray-900">
@@ -1285,6 +1298,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     {% endif %}
     <!-- message tab ends here -->
 </body>
