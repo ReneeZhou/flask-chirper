@@ -60,6 +60,12 @@ def messages():
     return render_template('messages.html', follow_recommendation = follow_recommendation)
 
 
+@main.route('/messages/compose')
+@login_required
+def messages_compose():
+    return render_template('messages_compose.html')
+
+
 @main.route('/follower_requests')
 def followerRequests():
     return render_template('followerRequests.html')
