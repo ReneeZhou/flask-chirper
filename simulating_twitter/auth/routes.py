@@ -1,6 +1,5 @@
-import calendar
 import datetime
-from secrets import token_urlsafe
+from secrets import token_urlsafe, randbits
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 from flask_login import current_user, login_user, logout_user, login_required
 from itsdangerous import NoneAlgorithm
@@ -116,10 +115,10 @@ def signup_5():
         if handle == User.query.filter_by(handle = handle).first():
             handle = token_urlsafe(5)
 
-        user = User(name = session.get('name'), email = session.get('email'), \
-        birthdate = session.get('dob'), \
-        password = bcrypt.generate_password_hash(form.password.data).decode('utf-8'), \
-        handle = handle, created_at_ip = request.remote_addr)
+        user = User(id = randbits(60), name = session.get('name'), \
+            email = session.get('email'), birthdate = session.get('dob'), \
+                password = bcrypt.generate_password_hash(form.password.data).decode('utf-8'), \
+                    handle = handle, created_at_ip = request.remote_addr)
 
         db.session.add(user)
         db.session.commit()
