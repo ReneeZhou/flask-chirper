@@ -58,11 +58,38 @@ px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:te
 {% endblock content %}
 
 {% block messages %}
-<div class="border-r border-gray-700 h-full overflow-y-auto flex flex-col items-center justify-center space-y-2 -mt-8">
-    <h1 class="font-bold text-xl">You don't have a message selected</h1>
-    <p class="text-gray-600 text-tiny pb-3">Choose one from your existing messagesm or start a new one.</p>
-    <a href="{{ url_for('main.messages_compose') }}">
-        <div class="font-bold bg-blue-500 rounded-full px-4 py-2">New message</div>
-    </a>
+<div class="border-r border-gray-700 h-full overflow-y-auto flex flex-col -ml-8">
+    <!-- counterpart info -->
+    <div class="fixed flex flex-row justify-between items-center border-b border-gray-700 py-1 pr-3 w-152">
+        <div class="flex flex-row items-center">
+            <!-- user icon -->
+            <div class="w-8 h-8 mx-3 my-2">
+                <div class="w-8 h-8 rounded-full overflow-hidden">
+                    <img src="{{ url_for('static', filename = 'img/profile_pics/' + current_user.profile_image) }}"
+                        alt="profile pic" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <!-- link to user page -->
+            <div class="flex flex-col justify-center -space-y-1">
+                <div class="text-xl font-bold">{{ current_user.name }}</div>
+                <div class="text-gray-600 text-s">@{{ current_user.handle }}</div>
+            </div>
+        </div>
+
+        <!-- info svg -->
+        <a href="#">
+            <div class="svg-bg-div">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="w-6 h-6 stroke-current text-blue-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+        </a>
+        <!-- svg end -->
+    </div>
+    <!-- couterpart info end -->
+
+
 </div>
 {% endblock messages %}
