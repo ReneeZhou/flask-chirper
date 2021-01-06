@@ -43,11 +43,11 @@ px-4 py-2 border border-transparent focus-within:text-blue-500">
                     </div>
 
                     <!-- list of folloing users/contacts -->
-                    <div class="mt-10 divide-y divide-gray-700">
+                    <div class="mt-10">
                         {% for user in following_users %}
-                        <div class="flex flex-row ">
+                        <div class="flex flex-row border-b border-gray-700">
                             <!-- user icon -->
-                            <div class="w-12 h-12 mx-3 my-2">
+                            <div class="w-12 h-12 ml-4 mr-3 my-3">
                                 <div class="w-12 h-12 rounded-full overflow-hidden">
                                     <img src="{{ url_for('static', filename = 'img/profile_pics/' + user.profile_image) }}"
                                         alt="profile pic" class="w-full h-full object-cover">
