@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for
 from flask.blueprints import Blueprint
 from flask_login import current_user, login_required
 from simulating_twitter import db
-from simulating_twitter.models import Post
+from simulating_twitter.models import Post, User, follower
 from simulating_twitter.main.utils import get_recommendation
 from simulating_twitter.post.utils import show_time
 from simulating_twitter.post.forms import PostForm
@@ -63,7 +63,8 @@ def messages():
 @main.route('/messages/compose')
 @login_required
 def messages_compose():
-    return render_template('messages_compose.html')
+    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
+    return render_template('messages_compose.html', following_users = following_users)
 
 
 @main.route('/follower_requests')
