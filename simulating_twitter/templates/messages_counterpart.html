@@ -163,8 +163,13 @@ px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:te
             </svg>
         </div>
         <form class="flex flex-row items-center p-1">
-            <input placeholder="Start a new message" class="outline-none bg-gray-700 bg-opacity-25 focus:bg-gray-900 rounded-full px-3 pr-8 py-1
-                text-tiny placeholder-gray-600 border border-transparent focus-within:border-blue-500 w-116">
+            {{ form.hidden_tag() }}
+            {{ form.message(placeholder="Start a new message", maxlength="600", rows="1",
+            class="resize-none outline-none bg-gray-700 bg-opacity-25 focus:bg-gray-900 rounded-full px-3 pr-8 py-1
+            text-tiny placeholder-gray-600 border border-transparent focus-within:border-blue-500 w-116") }}
+
+            <!-- <input placeholder="Start a new message" class="outline-none bg-gray-700 bg-opacity-25 focus:bg-gray-900 rounded-full px-3 pr-8 py-1
+                text-tiny placeholder-gray-600 border border-transparent focus-within:border-blue-500 w-116"> -->
             <div class="-ml-8 rounded-full flex items-center justify-center
             hover:bg-gray-800 active:bg-blue-900 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
