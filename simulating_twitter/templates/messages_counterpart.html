@@ -75,6 +75,7 @@ px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:te
 
 {% block messages %}
 <div class="border-r border-gray-700 h-full overflow-y-auto flex flex-col -ml-8">
+    <!-- header -->
     <!-- counterpart info -->
     <div class="fixed flex flex-row justify-between items-center border-b border-gray-700 py-1 pr-3 w-152">
         <div class="flex flex-row items-center">
@@ -108,7 +109,37 @@ px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:te
         <!-- svg end -->
     </div>
     <!-- couterpart info end -->
+    <!-- header end -->
 
+    <!-- description -->
+    <a href="{{ url_for('user.profile', handle = counterpart.handle) }}">
+        <div class="flex flex-col items-center space-y-1 mt-20 mx-4 p-4 text-gray-600
+        text-tiny hover:bg-gray-800 hover:bg-opacity-25 border-b border-gray-700">
+            <div class="flex flex-row items-center space-x-1">
+                <div class="text-white text-base font-bold">{{ counterpart.name }}</div>
+                <div>@{{ counterpart.handle }}</div>
+            </div>
+            <div class="text-white self-start">{{ counterpart.bio }}</div>
+            <div class="flex flex-row space-x-4">
+                <div class="flex flex-row space-x-1">
+                    <p class="text-white font-bold">100</p>
+                    <p>Following</p>
+                </div>
+                <div class="flex flex-row space-x-1">
+                    <p class="text-white font-bold">100</p>
+                    <p>Followers</p>
+                </div>
+            </div>
+            <div class="flex flex-row space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <div>Joined {{ counterpart.created_at.strftime('%B %Y') }}</div>
+            </div>
+        </div>
+    </a>
+    <!-- description end -->
 
 </div>
 {% endblock messages %}
