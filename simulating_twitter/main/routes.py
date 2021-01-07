@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for
 from flask.blueprints import Blueprint
 from flask_login import current_user, login_required
 from simulating_twitter import db
-from simulating_twitter.models import Post, User, follower
+from simulating_twitter.models import User, Post, follower
 from simulating_twitter.main.utils import get_recommendation
 from simulating_twitter.post.utils import show_time
 from simulating_twitter.post.forms import PostForm
@@ -57,7 +57,9 @@ def notifications_mentions():
 @login_required
 def messages():
     follow_recommendation = get_recommendation(current_user)
-    return render_template('messages.html', follow_recommendation = follow_recommendation)
+    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
+    return render_template('messages.html', follow_recommendation = follow_recommendation,\
+        following_users = following_users)
 
 
 @main.route('/messages/compose')
@@ -65,6 +67,21 @@ def messages():
 def messages_compose():
     following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
     return render_template('messages_compose.html', following_users = following_users)
+
+
+@main.route('/messages/<int:counterpart>-<int:currentuser>')
+def messages_counterpart(counterpart, currentuser):
+    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
+    counterpart = User.query.get(counterpart)
+
+    if currentuser != current_user.id:
+        return redirect(url_for('main.messages_counterpart', counterpart = counterpart, 
+        currentuser = current_user.id))
+
+
+    # add logics for when user manually enter url
+    return render_template('messages_counterpart.html', following_users = following_users, \
+        counterpart = counterpart)
 
 
 @main.route('/follower_requests')
