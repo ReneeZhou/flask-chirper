@@ -1,5 +1,3 @@
-import json
-from time import time
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
@@ -63,14 +61,22 @@ class User(db.Model, UserMixin, TimestampMixin):
         backref = db.backref('follower', lazy = 'dynamic'), 
         lazy = 'dynamic')
 
+    
+    message_sent = db.relationship('Message', backref = 'sender', lazy = 'dynamic', foreign_keys = 'Message.sender_id')
+    message_received = db.relationship('Message', backref = 'recipient', lazy = 'dynamic', foreign_keys = 'Message.recipient_id')
+    last_read_message_at = db.Column(db.DateTime, nullable = True)
 
-    message_sent = db.relationship('Message', backref = 'sender', lazy = 'dynamic', \
-        foreign_keys = 'Message.sender_id')
 
-    message_receive = db.relationship('Message', backref = 'recipient', lazy = 'dynamic', \
-        foreign_keys = 'Message.recipient_id')
-
-    last_check_message = db.Column(db.DateTime, nullable = False, default = datetime(1990, 1, 1))
+    # return numbers of unread messages
+    def new_messages(self):
+        last_read_time = self.last_read_message_at or datetime(1990, 1, 1)
+        return Message.query.filter_by(recipient_id = self.id).filter(
+            Message.created_at > last_read_time).count()
+            # same as Message.query.filter_by(recipient = self).filter(
+                # Message.created_at > last_read_time).count()
+            # can either filter_by a column value
+            # or filter_by the entire matching obj to that 'relationship'
+            # 'relationship' is not a column
 
 
     def is_following(self, user):
@@ -160,23 +166,10 @@ class Post(db.Model, TimestampMixin):
 
 class Message(db.Model, TimestampMixin):
     id = db.Column(db.Integer, primary_key = True)
-    sender_id = db.Column(db.integer, db.ForeignKey('user.id'), nullable = False)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
     recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-    body = db.Column(db.String(500))
-    read_at = db.Column(db.Datetime, nullable = True)
+    body = db.Column(db.String(500), nullable = False)
+    read_at = db.Column(db.DateTime, nullable = True)
 
-
-    # consider making it a class/static method so it doesn't tie to a single instance
-    # and the state of the instance (or when it's evaluates/created) would affect
-    # the result, because the 'self' here is not a User but a Message
-    # return number of unread msg
-    @staticmethod
-    def new_messages(id, sender_id):
-        last_read_at = Message.get(id).read_at or datetime(1990, 1, 1)
-        return Message.query.filter_by(sender_id = sender_id).filter(
-            Message.created_at > last_read_at
-        ).count()
-
-
-    def __repr__(self):
+    def repr(self):
         return f'<Message {self.body}>'
