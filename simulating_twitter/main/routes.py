@@ -83,6 +83,8 @@ def messages_counterpart(counterpart_id, currentuser_id):
             recipient_id = counterpart.id, body = form.message.data)
         db.session.add(message)
         db.session.commit()
+        return redirect(url_for('main.messages_counterpart', \
+            counterpart_id = counterpart_id, currentuser_id = current_user.id))
     
 
     current_user.last_read_message_at = datetime.utcnow()
