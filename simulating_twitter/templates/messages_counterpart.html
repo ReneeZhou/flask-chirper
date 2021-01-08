@@ -294,7 +294,7 @@ px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:te
                     </div>
                     <!-- svg set ends here -->
 
-                    <div class="text-tiny rounded-2xl rounded-br-none bg-blue-500 py-2 px-3 mb-1 w-96">
+                    <div class="text-tiny rounded-2xl rounded-br-none bg-blue-500 py-2 px-3 mb-1 w-96 break-words">
                         {{ message.body }}
                     </div>
                 </div>
@@ -311,7 +311,7 @@ px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:te
             <div class="self-start">
                 <div class="flex flex-row">
                     <div class="text-tiny rounded-2xl rounded-bl-none bg-gray-600 py-2 px-3 mb-1
-            w-96">
+            w-96 break-words">
                         {{ message.body }}
                     </div>
 
@@ -482,7 +482,7 @@ flex flex-row items-center space-x-3 text-red-700 py-3 px-3 hover:bg-gray-800 ho
 
 
     <!-- message form -->
-    <div class="fixed bottom-0 flex flex-row items-center border-t pl-2 border-gray-700 w-152">
+    <div class="fixed bottom-0 flex flex-row items-center border-t border-r pl-2 border-gray-700 w-152 bg-gray-900">
         <!-- uploac pic -->
         <div class="rounded-full w-10 h-10 flex items-center justify-center
         hover:bg-gray-800 active:bg-blue-900 cursor-pointer">
@@ -501,7 +501,7 @@ flex flex-row items-center space-x-3 text-red-700 py-3 px-3 hover:bg-gray-800 ho
                     d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
             </svg>
         </div>
-        <form class="flex flex-row items-center p-1" method="POST">
+        <form class="flex flex-row items-center p-1" method="POST" action="">
             {{ form.hidden_tag() }}
             {{ form.message(placeholder="Start a new message", maxlength="600", rows="1",
             class="resize-none outline-none bg-gray-700 bg-opacity-25 focus:bg-gray-900 rounded-full px-3 pr-10 py-1
