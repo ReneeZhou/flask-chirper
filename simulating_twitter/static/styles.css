@@ -24089,6 +24089,22 @@ video {
   visibility: hidden;
 }
 
+.hover\:visible:hover {
+  visibility: visible;
+}
+
+.hover\:invisible:hover {
+  visibility: hidden;
+}
+
+.focus\:visible:focus {
+  visibility: visible;
+}
+
+.focus\:invisible:focus {
+  visibility: hidden;
+}
+
 .whitespace-normal {
   white-space: normal;
 }
@@ -50716,6 +50732,22 @@ video {
     visibility: hidden;
   }
 
+  .sm\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .sm\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
+  .sm\:focus\:visible:focus {
+    visibility: visible;
+  }
+
+  .sm\:focus\:invisible:focus {
+    visibility: hidden;
+  }
+
   .sm\:whitespace-normal {
     white-space: normal;
   }
@@ -77275,6 +77307,22 @@ video {
   }
 
   .md\:invisible {
+    visibility: hidden;
+  }
+
+  .md\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .md\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
+  .md\:focus\:visible:focus {
+    visibility: visible;
+  }
+
+  .md\:focus\:invisible:focus {
     visibility: hidden;
   }
 
@@ -103840,6 +103888,22 @@ video {
     visibility: hidden;
   }
 
+  .lg\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .lg\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
+  .lg\:focus\:visible:focus {
+    visibility: visible;
+  }
+
+  .lg\:focus\:invisible:focus {
+    visibility: hidden;
+  }
+
   .lg\:whitespace-normal {
     white-space: normal;
   }
@@ -130402,6 +130466,22 @@ video {
     visibility: hidden;
   }
 
+  .xl\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .xl\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
+  .xl\:focus\:visible:focus {
+    visibility: visible;
+  }
+
+  .xl\:focus\:invisible:focus {
+    visibility: hidden;
+  }
+
   .xl\:whitespace-normal {
     white-space: normal;
   }
@@ -156961,6 +157041,22 @@ video {
   }
 
   .xs\:invisible {
+    visibility: hidden;
+  }
+
+  .xs\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .xs\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
+  .xs\:focus\:visible:focus {
+    visibility: visible;
+  }
+
+  .xs\:focus\:invisible:focus {
     visibility: hidden;
   }
 
