@@ -310,7 +310,19 @@ px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:te
             {% else %}
             <div class="self-start">
                 <div class="flex flex-row">
-                    <div class="text-tiny rounded-2xl rounded-bl-none bg-gray-600 py-2 px-3 mb-1
+
+                    <!-- user icon -->
+                    <a href="{{ url_for('user.profile', handle = counterpart.handle) }}"
+                    class="self-end">
+                        <div class="w-10 h-10 mr-3">
+                            <div class="w-10 h-10 rounded-full overflow-hidden">
+                                <img src="{{ url_for('static', filename = 'img/profile_pics/' + counterpart.profile_image) }}"
+                                    alt="profile pic" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="text-tiny rounded-2xl rounded-bl-none bg-gray-700 py-2 px-3 mb-1
             w-96 break-words">
                         {{ message.body }}
                     </div>
@@ -468,7 +480,7 @@ flex flex-row items-center space-x-3 text-red-700 py-3 px-3 hover:bg-gray-800 ho
                     <!-- svg set ends here -->
                 </div>
 
-                <div class="text-s text-gray-600 mb-4">
+                <div class="text-s text-gray-600 mb-4 ml-16">
                     {{ message.created_at.strftime('%b %d, %Y, %I:%M %p') }}
                 </div>
             </div>
