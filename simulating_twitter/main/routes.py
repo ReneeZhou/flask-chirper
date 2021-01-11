@@ -106,6 +106,9 @@ def messages_counterpart(counterpart_id, currentuser_id):
 
 @main.route('/messages/<int:counterpart_id>-<int:currentuser_id>/info')
 def messages_counterpart_info(counterpart_id, currentuser_id):
+    if currentuser_id != current_user.id or User.query.get(counterpart_id) is None: 
+        return redirect(url_for('main.messages'))
+
     following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
     counterpart = User.query.get(counterpart_id)
 
