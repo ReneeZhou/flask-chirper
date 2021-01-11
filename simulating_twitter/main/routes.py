@@ -104,6 +104,17 @@ def messages_counterpart(counterpart_id, currentuser_id):
             message_history = message_history)
 
 
+@main.route('/messages/<int:counterpart_id>-<int:currentuser_id>/info')
+def messages_counterpart_info(counterpart_id, currentuser_id):
+    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
+    counterpart = User.query.get(counterpart_id)
+
+    return render_template('messages_counterpart_info.html', following_users = following_users, \
+        counterpart_id = counterpart_id, currentuser_id = currentuser_id, \
+        counterpart = counterpart)
+
+
+
 @main.route('/follower_requests')
 def followerRequests():
     return render_template('followerRequests.html')
