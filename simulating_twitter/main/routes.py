@@ -59,6 +59,10 @@ def notifications_mentions():
 @login_required
 def messages():
     following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
+    
+    current_user.last_read_message_at = datetime.utcnow()
+    db.session.commit()
+    
     return render_template('messages.html', following_users = following_users)
 
 
@@ -86,9 +90,6 @@ def messages_counterpart(counterpart_id, currentuser_id):
         return redirect(url_for('main.messages_counterpart', \
             counterpart_id = counterpart_id, currentuser_id = current_user.id))
     
-
-    current_user.last_read_message_at = datetime.utcnow()
-    db.session.commit()
     
     message_history = current_user.message_received.filter_by(
         sender_id = counterpart.id).union(current_user.message_sent.filter_by(
