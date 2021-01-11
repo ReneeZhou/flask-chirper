@@ -64,14 +64,12 @@ class User(db.Model, UserMixin, TimestampMixin):
     
     message_sent = db.relationship('Message', backref = 'sender', lazy = 'dynamic', foreign_keys = 'Message.sender_id')
     message_received = db.relationship('Message', backref = 'recipient', lazy = 'dynamic', foreign_keys = 'Message.recipient_id')
-    last_read_message_at = db.Column(db.DateTime, nullable = True)
-
+    last_read_message_at = db.Column(db.DateTime, nullable = False, default = datetime(1990, 1, 1))
 
     # return numbers of unread messages
     def new_messages(self):
-        last_read_time = self.last_read_message_at or datetime(1990, 1, 1)
         return Message.query.filter_by(recipient_id = self.id).filter(
-            Message.created_at > last_read_time).count()
+            Message.created_at > self.last_read_message_at).count()
             # same as Message.query.filter_by(recipient = self).filter(
                 # Message.created_at > last_read_time).count()
             # can either filter_by a column value
