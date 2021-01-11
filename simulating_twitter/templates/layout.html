@@ -86,8 +86,10 @@
                             </svg>
                         </div>
                     </a>
+
+                    {% if current_user.new_messages() == 0 %}
                     <a href="{{ url_for('main.messages') }}" class="home-a">
-                        <div class="home-btn">
+                        <div class="home-btn border">
                             <!-- message icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -95,6 +97,35 @@
                             </svg>
                         </div>
                     </a>
+                    {% else %}
+                    <a href="{{ url_for('main.messages') }}" class="home-a">
+                        <div class="home-btn">
+                            <!-- message icon -->
+                            <?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve"
+                                class="home-svg ml-1 fill-current hover:text-blue-500">
+                                <path d="M405.333,213.874V106.667c0-23.531-19.135-42.667-42.667-42.667h-320C19.135,64,0,83.135,0,106.667V320
+			c0,23.531,19.135,42.667,42.667,42.667h239.215C295.858,411.84,341.073,448,394.667,448c20.625,0,40.906-5.427,58.677-15.708
+			c5.094-2.948,6.844-9.469,3.885-14.573c-2.948-5.104-9.479-6.865-14.573-3.885c-14.521,8.396-31.115,12.833-47.99,12.833
+			c-52.938,0-96-43.063-96-96s43.063-96,96-96s96,43.063,96,96v10.667c0,11.76-9.573,21.333-21.333,21.333
+			c-11.76,0-21.333-9.573-21.333-21.333v-42.667c0-5.896-4.771-10.667-10.667-10.667c-2.869,0-5.447,1.161-7.362,3
+			c-9.428-8.401-21.714-13.667-35.305-13.667c-29.406,0-53.333,23.927-53.333,53.333S365.26,384,394.667,384
+			c15.896,0,30.03-7.131,39.81-18.202c7.727,10.977,20.44,18.202,34.857,18.202C492.865,384,512,364.865,512,341.333v-10.667
+			C512,269.569,465.044,219.288,405.333,213.874z M42.667,85.333h320c0.444,0,0.816,0.227,1.254,0.254L211.438,210.75
+			c-5.427,3.417-13.292,2.708-16.823,0.542L41.426,85.585C41.859,85.559,42.227,85.333,42.667,85.333z M384,213.874
+			c-59.711,5.414-106.667,55.695-106.667,116.793c0,3.6,0.221,7.148,0.54,10.667H42.667c-11.76,0-21.333-9.573-21.333-21.333
+			V106.667c0-3.021,0.667-5.874,1.805-8.48l158.883,130.293c6.208,4.052,13.344,6.188,20.646,6.188
+			c7.021,0,13.885-1.979,19.927-5.729c0.604-0.323,1.177-0.708,1.719-1.156l157.88-129.598c1.139,2.608,1.807,5.461,1.807,8.483
+			V213.874z M394.667,362.667c-17.646,0-32-14.354-32-32c0-17.646,14.354-32,32-32s32,14.354,32,32
+			C426.667,348.313,412.313,362.667,394.667,362.667z" />
+                            </svg>
+                        </div>
+                    </a>
+                    {% endif %}
+
                     <a href="{{ url_for('main.bookmarks') }}" class="home-a">
                         <div class="home-btn">
                             <!-- bookmark icon -->
@@ -377,6 +408,8 @@
                             </svg>
                         </div>
                     </a>
+
+                    {% if current_user.new_messages() == 0  %}
                     <a href="{{ url_for('main.messages') }}" class="home-a">
                         <div class="home-btn">
                             <!-- message icon -->
@@ -386,6 +419,35 @@
                             </svg>
                         </div>
                     </a>
+                    {% else %}
+                    <a href="{{ url_for('main.messages') }}" class="home-a">
+                        <div class="home-btn">
+                            <!-- message icon -->
+                            <?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve"
+                                class="home-svg ml-1 fill-current hover:text-blue-500">
+                                <path d="M405.333,213.874V106.667c0-23.531-19.135-42.667-42.667-42.667h-320C19.135,64,0,83.135,0,106.667V320
+			c0,23.531,19.135,42.667,42.667,42.667h239.215C295.858,411.84,341.073,448,394.667,448c20.625,0,40.906-5.427,58.677-15.708
+			c5.094-2.948,6.844-9.469,3.885-14.573c-2.948-5.104-9.479-6.865-14.573-3.885c-14.521,8.396-31.115,12.833-47.99,12.833
+			c-52.938,0-96-43.063-96-96s43.063-96,96-96s96,43.063,96,96v10.667c0,11.76-9.573,21.333-21.333,21.333
+			c-11.76,0-21.333-9.573-21.333-21.333v-42.667c0-5.896-4.771-10.667-10.667-10.667c-2.869,0-5.447,1.161-7.362,3
+			c-9.428-8.401-21.714-13.667-35.305-13.667c-29.406,0-53.333,23.927-53.333,53.333S365.26,384,394.667,384
+			c15.896,0,30.03-7.131,39.81-18.202c7.727,10.977,20.44,18.202,34.857,18.202C492.865,384,512,364.865,512,341.333v-10.667
+			C512,269.569,465.044,219.288,405.333,213.874z M42.667,85.333h320c0.444,0,0.816,0.227,1.254,0.254L211.438,210.75
+			c-5.427,3.417-13.292,2.708-16.823,0.542L41.426,85.585C41.859,85.559,42.227,85.333,42.667,85.333z M384,213.874
+			c-59.711,5.414-106.667,55.695-106.667,116.793c0,3.6,0.221,7.148,0.54,10.667H42.667c-11.76,0-21.333-9.573-21.333-21.333
+			V106.667c0-3.021,0.667-5.874,1.805-8.48l158.883,130.293c6.208,4.052,13.344,6.188,20.646,6.188
+			c7.021,0,13.885-1.979,19.927-5.729c0.604-0.323,1.177-0.708,1.719-1.156l157.88-129.598c1.139,2.608,1.807,5.461,1.807,8.483
+			V213.874z M394.667,362.667c-17.646,0-32-14.354-32-32c0-17.646,14.354-32,32-32s32,14.354,32,32
+			C426.667,348.313,412.313,362.667,394.667,362.667z" />
+                            </svg>
+                        </div>
+                    </a>
+                    {% endif %}
+
                     <a href="{{ url_for('main.bookmarks') }}" class="home-a">
                         <div class="home-btn">
                             <!-- bookmark icon -->
@@ -673,6 +735,8 @@
                             <div class="pr-5">Notifications</div>
                         </div>
                     </a>
+
+                    {% if current_user.new_messages() == 0 %}
                     <a href="{{ url_for('main.messages') }}" class="home-a">
                         <div class="home-btn space-x-4">
                             <!-- message icon -->
@@ -683,6 +747,37 @@
                             <div class="pr-5">Messages</div>
                         </div>
                     </a>
+                    {% else %}
+                    <a href="{{ url_for('main.messages') }}" class="home-a">
+                        <div class="home-btn space-x-3">
+                            <!-- message icon -->
+                            <?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve"
+                                class="home-svg ml-1 fill-current hover:text-blue-500">
+                                <path d="M405.333,213.874V106.667c0-23.531-19.135-42.667-42.667-42.667h-320C19.135,64,0,83.135,0,106.667V320
+			c0,23.531,19.135,42.667,42.667,42.667h239.215C295.858,411.84,341.073,448,394.667,448c20.625,0,40.906-5.427,58.677-15.708
+			c5.094-2.948,6.844-9.469,3.885-14.573c-2.948-5.104-9.479-6.865-14.573-3.885c-14.521,8.396-31.115,12.833-47.99,12.833
+			c-52.938,0-96-43.063-96-96s43.063-96,96-96s96,43.063,96,96v10.667c0,11.76-9.573,21.333-21.333,21.333
+			c-11.76,0-21.333-9.573-21.333-21.333v-42.667c0-5.896-4.771-10.667-10.667-10.667c-2.869,0-5.447,1.161-7.362,3
+			c-9.428-8.401-21.714-13.667-35.305-13.667c-29.406,0-53.333,23.927-53.333,53.333S365.26,384,394.667,384
+			c15.896,0,30.03-7.131,39.81-18.202c7.727,10.977,20.44,18.202,34.857,18.202C492.865,384,512,364.865,512,341.333v-10.667
+			C512,269.569,465.044,219.288,405.333,213.874z M42.667,85.333h320c0.444,0,0.816,0.227,1.254,0.254L211.438,210.75
+			c-5.427,3.417-13.292,2.708-16.823,0.542L41.426,85.585C41.859,85.559,42.227,85.333,42.667,85.333z M384,213.874
+			c-59.711,5.414-106.667,55.695-106.667,116.793c0,3.6,0.221,7.148,0.54,10.667H42.667c-11.76,0-21.333-9.573-21.333-21.333
+			V106.667c0-3.021,0.667-5.874,1.805-8.48l158.883,130.293c6.208,4.052,13.344,6.188,20.646,6.188
+			c7.021,0,13.885-1.979,19.927-5.729c0.604-0.323,1.177-0.708,1.719-1.156l157.88-129.598c1.139,2.608,1.807,5.461,1.807,8.483
+			V213.874z M394.667,362.667c-17.646,0-32-14.354-32-32c0-17.646,14.354-32,32-32s32,14.354,32,32
+			C426.667,348.313,412.313,362.667,394.667,362.667z" />
+                            </svg>
+                            <div class="pr-5">Messages</div>
+                        </div>
+                    </a>
+                    {% endif %}
+
+
                     <a href="{{ url_for('main.bookmarks') }}" class="home-a">
                         <div class="home-btn space-x-4">
                             <!-- bookmark icon -->
@@ -906,401 +1001,408 @@
             {% endif %}
         </nav>
     </div>
+
     {% if 'messages' not in request.path %}
     <main class="w-148 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
-    {% else %}
-    <main class="xs:w-148 sm:w-148 lg:w-116 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
-    {% endif %}
-        <table>
-            {% if 'messages' not in request.path %}
-            <div class="fixed w-148 bg-gray-900 border-b border-gray-700">
-            {% else %}
-            <div class="fixed xs:w-148 sm:w-148 lg:w-116 bg-gray-900 border-b border-gray-700">
+        {% else %}
+        <main
+            class="xs:w-148 sm:w-148 lg:w-116 h-full border-l border-r border-gray-700 divide-y divide-gray-700 box-content">
             {% endif %}
-                <div class="flex justify-between items-center py-2 pl-4 pr-1 cursor-pointer">
-                    <div class="flex flex-row items-center">
-                        {% block presvg %}{% endblock presvg %}
-                        <h1 class="text-xl font-bold">
-                            {% block header %}{% endblock header %}
-                            {% block small %}{% endblock small%}
-                        </h1>
+            <table>
+                {% if 'messages' not in request.path %}
+                <div class="fixed w-148 bg-gray-900 border-b border-gray-700">
+                    {% else %}
+                    <div class="fixed xs:w-148 sm:w-148 lg:w-116 bg-gray-900 border-b border-gray-700">
+                        {% endif %}
+                        <div class="flex justify-between items-center py-2 pl-4 pr-1 cursor-pointer">
+                            <div class="flex flex-row items-center">
+                                {% block presvg %}{% endblock presvg %}
+                                <h1 class="text-xl font-bold">
+                                    {% block header %}{% endblock header %}
+                                    {% block small %}{% endblock small%}
+                                </h1>
+                            </div>
+                            {% block svg %}{% endblock svg %}
+                        </div>
+                        <div>
+                            {% block tab %}{% endblock tab %}
+                        </div>
                     </div>
-                    {% block svg %}{% endblock svg %}
-                </div>
-                <div>
-                    {% block tab %}{% endblock tab %}
-                </div>
-            </div>
 
-            <tbody>
-                <div class="mt-14 overflow-y-scroll h-screen">{% block content %}{% endblock content %}</div>
-            </tbody>
+                    <tbody>
+                        <div class="mt-14 overflow-y-scroll h-screen">{% block content %}{% endblock content %}</div>
+                    </tbody>
 
-        </table>
+            </table>
 
-        {% if not current_user.is_authenticated %}
-        <!-- temp -->
-        <!-- banner -->
-        <div
-            class="fixed inset-x-0 bottom-0 flex flex-row justify-center items-center xs:h-16 sm:h-16 md:h-18 bg-blue-500">
-            <!-- xs, sm buttons -->
-            <div class="flex-row items-center md:hidden space-x-3">
-                <!-- login -->
-                <a href="{{ url_for('auth.login') }}">
-                    <button class="w-56 border border-white rounded-full h-10 text-white font-semibold
-                     hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
-                </a>
-                <!-- signup -->
-                <a href="{{ url_for('auth.signup_1') }}">
-                    <button class="w-56 bg-white rounded-full h-10 text-blue-500 font-semibold 
-                    hover:bg-gray-300 focus:outline-none">Sign up</button>
-                </a>
-
-            </div>
-
-            <!-- md and above -->
-            <div class="xs:hidden sm:hidden md:flex flex-row justify-between lg:ml-20 xl:ml-48">
-                <div class="flex flex-col justify-self-center -space-y-1 md:w-148 lg:w-196">
-                    <p class="text-2xl font-bold">Don’t miss what’s happening</p>
-                    <p class="text-tiny">People on Chirper are the first to know.</p>
-                </div>
-
-                <!-- buttons -->
-                <div class="flex flex-row items-center space-x-3 mr-4">
+            {% if not current_user.is_authenticated %}
+            <!-- temp -->
+            <!-- banner -->
+            <div
+                class="fixed inset-x-0 bottom-0 flex flex-row justify-center items-center xs:h-16 sm:h-16 md:h-18 bg-blue-500">
+                <!-- xs, sm buttons -->
+                <div class="flex-row items-center md:hidden space-x-3">
                     <!-- login -->
                     <a href="{{ url_for('auth.login') }}">
-                        <button class="w-20 border border-white rounded-full h-10 text-white font-semibold
-                 hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
+                        <button class="w-56 border border-white rounded-full h-10 text-white font-semibold
+                     hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
                     </a>
                     <!-- signup -->
                     <a href="{{ url_for('auth.signup_1') }}">
-                        <button class="w-20 bg-white rounded-full h-10 text-blue-500 font-semibold 
-                hover:bg-gray-300 focus:outline-none">Sign up</button>
+                        <button class="w-56 bg-white rounded-full h-10 text-blue-500 font-semibold 
+                    hover:bg-gray-300 focus:outline-none">Sign up</button>
                     </a>
+
                 </div>
-            </div>
 
-
-        </div>
-        {% endif %}
-
-    </main>
-
-    {% if 'messages' not in request.path %}
-    <aside class="xs:hidden sm:hidden lg:flex lg:flex-col space-y-4 ml-8">
-        <!-- show when vp>lg@980px  -->
-        <table>
-            <!-- search bar -->
-            <div class="fixed bg-gray-900 pb-3 pt-2">
-                <div class="inline-flex w-88 text-gray-600 bg-gray-800 bg-opacity-75 rounded-full overflow-hidden
-                  px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:text-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="w-5 h-5 stroke-current focus:text-blue-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <form class="ml-4">
-                        <label for="search"></label>
-                        <input name="search" type="text" placeholder="Search Chirper"
-                            class="bg-gray-800 bg-opacity-0 outline-none">
-                    </form>
-                </div>
-            </div>
-
-
-            <div class="pt-12 space-y-4 overflow-y-scroll h-screen">
-                {% if not current_user.is_authenticated %}
-                <!-- new to chirper -->
-                <div class="w-88 flex flex-col border border-gray-700 rounded-xl px-4 pt-1 pb-4 space-y-2">
-                    <div class="text-xl font-bold">New to Chirper?</div>
-                    <div class="text-s text-gray-600">Sign up now to get your own personalized timeline!</div>
-                    <a href="{{ url_for('auth.login') }}">
-                        <div class="bg-blue-500 rounded-full w-80 h-10 text-white font-semibold hover:bg-opacity-75
-                        flex justify-center items-center mt-2">Sign up</div>
-                    </a>
-                </div>
-                {% endif %}
-
-
-                <!-- user media -->
-                {% if not current_user.is_authenticated %}
-                <div class="w-88 h-52 flex flex-col border border-gray-700 rounded-xl px-4 pt-1 pb-4 space-y-2">user
-                    media</div>
-                {% endif %}
-
-                <!-- avatar template -->
-                {% if not current_user.is_authenticated %}
-                <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
-                    <div class="text-xl font-bold px-4 py-2">You might like</div>
-
-                    <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
-                                <img src="{{ url_for('static', filename = 'img/profile_pics/ocean2.jpg') }}"
-                                    alt="profile pic" class="w-full h-full object-cover">
-                            </a>
-                            <div>
-                                <a href="#" class="font-bold hover:underline">Renee Zhou</a>
-                                <p class="text-gray-600 text-base">@handle</p>
-                            </div>
-                        </div>
-
-                        <button
-                            class="self-center rounded-full font-bold text-blue-500 px-4 h-8 border 
-                        border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">Follow</button>
+                <!-- md and above -->
+                <div class="xs:hidden sm:hidden md:flex flex-row justify-between lg:ml-20 xl:ml-48">
+                    <div class="flex flex-col justify-self-center -space-y-1 md:w-148 lg:w-196">
+                        <p class="text-2xl font-bold">Don’t miss what’s happening</p>
+                        <p class="text-tiny">People on Chirper are the first to know.</p>
                     </div>
 
-
-                    <div
-                        class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl cursor-pointer">
-                        <a href="{{ url_for('main.connect_people') }}">Show more</a>
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- trends template -->
-                <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
-                    <div class="flex justify-between items-center px-4 py-1">
-                        <div class="text-xl font-bold">Trends for you</div>
-                        <a href="{{ url_for('user_settings.settings_trends') }}">
-                            <div class="rounded-full hover:bg-blue-800 hover:bg-opacity-25 p-2 cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    class="w-6 h-6 stroke-current text-blue-500 stroke-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
+                    <!-- buttons -->
+                    <div class="flex flex-row items-center space-x-3 mr-4">
+                        <!-- login -->
+                        <a href="{{ url_for('auth.login') }}">
+                            <button class="w-20 border border-white rounded-full h-10 text-white font-semibold
+                 hover:bg-blue-400 hover:bg-opacity-50 focus:outline-none">Log in</button>
                         </a>
-
+                        <!-- signup -->
+                        <a href="{{ url_for('auth.signup_1') }}">
+                            <button class="w-20 bg-white rounded-full h-10 text-blue-500 font-semibold 
+                hover:bg-gray-300 focus:outline-none">Sign up</button>
+                        </a>
                     </div>
+                </div>
 
-                    <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
-                        <div>
-                            <small class="text-gray-600">Trending in Taiwan</small>
-                            <p class="font-bold">Christmas</p>
-                            <small class="text-gray-600">1.19M Chirps</small>
+
+            </div>
+            {% endif %}
+
+        </main>
+
+        {% if 'messages' not in request.path %}
+        <aside class="xs:hidden sm:hidden lg:flex lg:flex-col space-y-4 ml-8">
+            <!-- show when vp>lg@980px  -->
+            <table>
+                <!-- search bar -->
+                <div class="fixed bg-gray-900 pb-3 pt-2">
+                    <div class="inline-flex w-88 text-gray-600 bg-gray-800 bg-opacity-75 rounded-full overflow-hidden
+                  px-4 py-2 border border-transparent focus-within:border-blue-500 focus-within:text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            class="w-5 h-5 stroke-current focus:text-blue-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <form class="ml-4">
+                            <label for="search"></label>
+                            <input name="search" type="text" placeholder="Search Chirper"
+                                class="bg-gray-800 bg-opacity-0 outline-none">
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="pt-12 space-y-4 overflow-y-scroll h-screen">
+                    {% if not current_user.is_authenticated %}
+                    <!-- new to chirper -->
+                    <div class="w-88 flex flex-col border border-gray-700 rounded-xl px-4 pt-1 pb-4 space-y-2">
+                        <div class="text-xl font-bold">New to Chirper?</div>
+                        <div class="text-s text-gray-600">Sign up now to get your own personalized timeline!</div>
+                        <a href="{{ url_for('auth.login') }}">
+                            <div class="bg-blue-500 rounded-full w-80 h-10 text-white font-semibold hover:bg-opacity-75
+                        flex justify-center items-center mt-2">Sign up</div>
+                        </a>
+                    </div>
+                    {% endif %}
+
+
+                    <!-- user media -->
+                    {% if not current_user.is_authenticated %}
+                    <div class="w-88 h-52 flex flex-col border border-gray-700 rounded-xl px-4 pt-1 pb-4 space-y-2">user
+                        media</div>
+                    {% endif %}
+
+                    <!-- avatar template -->
+                    {% if not current_user.is_authenticated %}
+                    <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
+                        <div class="text-xl font-bold px-4 py-2">You might like</div>
+
+                        <div
+                            class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
+                                    <img src="{{ url_for('static', filename = 'img/profile_pics/ocean2.jpg') }}"
+                                        alt="profile pic" class="w-full h-full object-cover">
+                                </a>
+                                <div>
+                                    <a href="#" class="font-bold hover:underline">Renee Zhou</a>
+                                    <p class="text-gray-600 text-base">@handle</p>
+                                </div>
+                            </div>
+
+                            <button
+                                class="self-center rounded-full font-bold text-blue-500 px-4 h-8 border 
+                        border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">Follow</button>
                         </div>
-                        <div>
 
 
-                            <!--  cog button dropdown -->
-                            <div class="text-gray-700">
-                                <div x-data="{ open: false }" class="flex flex-col">
-                                    <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow 
+                        <div
+                            class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl cursor-pointer">
+                            <a href="{{ url_for('main.connect_people') }}">Show more</a>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- trends template -->
+                    <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
+                        <div class="flex justify-between items-center px-4 py-1">
+                            <div class="text-xl font-bold">Trends for you</div>
+                            <a href="{{ url_for('user_settings.settings_trends') }}">
+                                <div class="rounded-full hover:bg-blue-800 hover:bg-opacity-25 p-2 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        class="w-6 h-6 stroke-current text-blue-500 stroke-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                            </a>
+
+                        </div>
+
+                        <div
+                            class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
+                            <div>
+                                <small class="text-gray-600">Trending in Taiwan</small>
+                                <p class="font-bold">Christmas</p>
+                                <small class="text-gray-600">1.19M Chirps</small>
+                            </div>
+                            <div>
+
+
+                                <!--  cog button dropdown -->
+                                <div class="text-gray-700">
+                                    <div x-data="{ open: false }" class="flex flex-col">
+                                        <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow 
                                                     sm:pb-0 sm:flex sm:justify-end sm:flex-row
                                                     xs:pb-0 xs:flex xs:justify-end xs:flex-row">
-                                        <div @click.away="open = false" class="relative" x-data="{ open: false }"
-                                            class="bg-gray-900">
-                                            <button @click="open = !open"
-                                                class="flex flex-row items-center z-10 focus:outline-none p-1
+                                            <div @click.away="open = false" class="relative" x-data="{ open: false }"
+                                                class="bg-gray-900">
+                                                <button @click="open = !open"
+                                                    class="flex flex-row items-center z-10 focus:outline-none p-1
                                                 rounded-full hover:bg-blue-800 hover:bg-opacity-25 hover:text-blue-500 active:bg-blue-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    class="w-6 h-6 stroke-current ">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                                                </svg>
-                                            </button>
-                                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
-                                                x-transition:enter-start="transform opacity-0 scale-95"
-                                                x-transition:enter-end="transform opacity-100 scale-100"
-                                                x-transition:leave="transition ease-in duration-75"
-                                                x-transition:leave-start="transform opacity-100 scale-100"
-                                                x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-64 sm:w-64 z-50
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" class="w-6 h-6 stroke-current ">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                                    </svg>
+                                                </button>
+                                                <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                                    x-transition:enter-start="transform opacity-0 scale-95"
+                                                    x-transition:enter-end="transform opacity-100 scale-100"
+                                                    x-transition:leave="transition ease-in duration-75"
+                                                    x-transition:leave-start="transform opacity-100 scale-100"
+                                                    x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-64 sm:w-64 z-50
                                                             text-white">
-                                                <div class="flex flex-col text-sm bg-gray-900 rounded-md shadow">
-                                                    <div
-                                                        class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            class="stroke-current text-gray-600 w-5 h-5">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                        </svg>
-                                                        <div>I'm not interested in this</div>
-                                                    </div>
-                                                    <div
-                                                        class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            class="stroke-current text-gray-600 w-5 h-5">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                        </svg>
-                                                        <div>This trends is harmful or spam</div>
+                                                    <div class="flex flex-col text-sm bg-gray-900 rounded-md shadow">
+                                                        <div
+                                                            class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                class="stroke-current text-gray-600 w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                            <div>I'm not interested in this</div>
+                                                        </div>
+                                                        <div
+                                                            class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                class="stroke-current text-gray-600 w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                            <div>This trends is harmful or spam</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </nav>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- end -->
+                            </div>
+                        </div>
+                        <div
+                            class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl cursor-pointer">
+                            <a href="{{ url_for('main.trends') }}">Show more</a>
+                        </div>
+                    </div>
+
+                    {% if current_user.is_authenticated %}
+                    <!-- avatar template -->
+                    <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
+                        <div class="text-xl font-bold px-4 py-2">Who to follow</div>
+
+                        <div
+                            class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
+                                    <img src="{{ url_for('static', filename = 'img/profile_pics/ocean2.jpg') }}"
+                                        alt="profile pic" class="w-full h-full object-cover">
+                                </a>
+                                <div>
+                                    <a href="#" class="font-bold hover:underline">Renee Zhou</a>
+                                    <p class="text-gray-600 text-base">@handle</p>
                                 </div>
                             </div>
-                            <!-- end -->
-                        </div>
-                    </div>
-                    <div
-                        class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl cursor-pointer">
-                        <a href="{{ url_for('main.trends') }}">Show more</a>
-                    </div>
-                </div>
 
-                {% if current_user.is_authenticated %}
-                <!-- avatar template -->
-                <div class="w-88 bg-gray-800 bg-opacity-50 rounded-xl divide-y divide-gray-700">
-                    <div class="text-xl font-bold px-4 py-2">Who to follow</div>
-
-                    <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
-                                <img src="{{ url_for('static', filename = 'img/profile_pics/ocean2.jpg') }}"
-                                    alt="profile pic" class="w-full h-full object-cover">
-                            </a>
-                            <div>
-                                <a href="#" class="font-bold hover:underline">Renee Zhou</a>
-                                <p class="text-gray-600 text-base">@handle</p>
-                            </div>
-                        </div>
-
-                        <button
-                            class="self-center rounded-full font-bold text-blue-500 px-4 h-8
+                            <button
+                                class="self-center rounded-full font-bold text-blue-500 px-4 h-8
         border border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">Follow</button>
-                    </div>
-
-                    <!-- recommended users to follow -->
-                    {% for person in follow_recommendation %}
-                    <div class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
-                                <img src="{{ url_for('static', filename = 'img/profile_pics/' + person.profile_image) }}"
-                                    alt="profile pic" class="w-full h-full object-cover">
-                            </a>
-                            <div>
-                                <a href="#" class="font-bold hover:underline">{{ person.name }}</a>
-                                <p class="text-gray-600 text-base">@{{ person.handle }}</p>
-                            </div>
                         </div>
 
-                        <form action="{{ url_for('user.follow', handle = person.handle) }}" method="POST">
-                            <input type="submit" value="Follow" class="self-center rounded-full font-bold text-blue-500 px-4 h-8 bg-transparent cursor-pointer
+                        <!-- recommended users to follow -->
+                        {% for person in follow_recommendation %}
+                        <div
+                            class="py-2 px-4 flex justify-between hover:bg-gray-800 hover:bg-opacity-50 cursor-pointer">
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 rounded-full overflow-hidden">
+                                    <img src="{{ url_for('static', filename = 'img/profile_pics/' + person.profile_image) }}"
+                                        alt="profile pic" class="w-full h-full object-cover">
+                                </a>
+                                <div>
+                                    <a href="#" class="font-bold hover:underline">{{ person.name }}</a>
+                                    <p class="text-gray-600 text-base">@{{ person.handle }}</p>
+                                </div>
+                            </div>
+
+                            <form action="{{ url_for('user.follow', handle = person.handle) }}" method="POST">
+                                <input type="submit" value="Follow" class="self-center rounded-full font-bold text-blue-500 px-4 h-8 bg-transparent cursor-pointer
         border border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">
-                        </form>
+                            </form>
+                        </div>
+                        {% endfor %}
+                        <!-- end recommendations -->
+
+                        <div
+                            class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl cursor-pointer">
+                            <a href="{{ url_for('main.connect_people') }}">Show more</a>
+                        </div>
                     </div>
-                    {% endfor %}
-                    <!-- end recommendations -->
+                    {% endif %}
 
-                    <div
-                        class="py-3 px-4 text-sm text-blue-500 hover:bg-gray-800 hover:bg-opacity-50 rounded-b-xl cursor-pointer">
-                        <a href="{{ url_for('main.connect_people') }}">Show more</a>
-                    </div>
-                </div>
-                {% endif %}
+                    <!-- footer -->
+                    <footer class="text-left w-88 text-gray-600 text-xs tracking-wide leading-loose">
+                        <a href="#" class="hover:underline whitespace-no-wrap px-2">Terms of Service</a>
+                        <a href="#" class="hover:underline whitespace-no-wrap px-2">Privacy Policy</a>
+                        <a href="#" class="hover:underline whitespace-no-wrap px-2">Cookie Policy</a>
+                        <a href="#" class="hover:underline whitespace-no-wrap px-2">Ads info</a>
 
-                <!-- footer -->
-                <footer class="text-left w-88 text-gray-600 text-xs tracking-wide leading-loose">
-                    <a href="#" class="hover:underline whitespace-no-wrap px-2">Terms of Service</a>
-                    <a href="#" class="hover:underline whitespace-no-wrap px-2">Privacy Policy</a>
-                    <a href="#" class="hover:underline whitespace-no-wrap px-2">Cookie Policy</a>
-                    <a href="#" class="hover:underline whitespace-no-wrap px-2">Ads info</a>
-
-                    <!--  more button dropdown -->
-                    <div class="inline-flex flex-row items-center space-x-1 px-2">
-                        <div x-data="{ open: false }" class="flex flex-col">
-                            <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow 
+                        <!--  more button dropdown -->
+                        <div class="inline-flex flex-row items-center space-x-1 px-2">
+                            <div x-data="{ open: false }" class="flex flex-col">
+                                <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow 
                                             sm:pb-0 sm:flex sm:justify-end sm:flex-row
                                             xs:pb-0 xs:flex xs:justify-end xs:flex-row">
-                                <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                                    <button @click="open = !open" class="flex flex-row items-center z-10 focus:outline-none p-1 hover:underline whitespace-no-wrap
+                                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                                        <button @click="open = !open" class="flex flex-row items-center z-10 focus:outline-none p-1 hover:underline whitespace-no-wrap
                                         rounded-full">More
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            class="w-3 h-3 stroke-current ">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                                        </svg>
-                                    </button>
-                                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
-                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                        x-transition:leave="transition ease-in duration-75"
-                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                        x-transition:leave-end="transform opacity-0 scale-95" class="absolute left-0 top-0 w-full rounded-md shadow-msg xs:w-40 sm:w-40 z-50
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                class="w-3 h-3 stroke-current ">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                            </svg>
+                                        </button>
+                                        <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                            x-transition:enter-start="transform opacity-0 scale-95"
+                                            x-transition:enter-end="transform opacity-100 scale-100"
+                                            x-transition:leave="transition ease-in duration-75"
+                                            x-transition:leave-start="transform opacity-100 scale-100"
+                                            x-transition:leave-end="transform opacity-0 scale-95" class="absolute left-0 top-0 w-full rounded-md shadow-msg xs:w-40 sm:w-40 z-50
                                                     text-white">
-                                        <div class="flex flex-col text-sm bg-gray-900 rounded-md shadow">
-                                            <div
-                                                class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                                                <div>About</div>
-                                            </div>
-                                            <div
-                                                class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                                                <div>Status</div>
-                                            </div>
-                                            <div
-                                                class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                                                <div>Chirper for Business</div>
-                                            </div>
-                                            <div
-                                                class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                                                <div>Develpers</div>
+                                            <div class="flex flex-col text-sm bg-gray-900 rounded-md shadow">
+                                                <div
+                                                    class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                    <div>About</div>
+                                                </div>
+                                                <div
+                                                    class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                    <div>Status</div>
+                                                </div>
+                                                <div
+                                                    class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                    <div>Chirper for Business</div>
+                                                </div>
+                                                <div
+                                                    class="flex flex-row items-center space-x-3 py-3 pl-3 pr-1 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                    <div>Develpers</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </nav>
+                                </nav>
+                            </div>
                         </div>
-                    </div>
-                    <!-- dropdown ends -->
+                        <!-- dropdown ends -->
 
 
-                    <p class="inline whitespace-no-wrap px-2">© 2020 Chirper, Inc</p>
+                        <p class="inline whitespace-no-wrap px-2">© 2020 Chirper, Inc</p>
 
-                    <!-- credit for bird icon -->
-                    <div class="text-xxs px-2 text-gray-800">Bird icon made by
-                        <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from
-                        <a href="https://www.flaticon.com/" title="Flaticon">Flaticon</a>
-                    </div>
+                        <!-- credit for bird icon -->
+                        <div class="text-xxs px-2 text-gray-800">Bird icon made by
+                            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from
+                            <a href="https://www.flaticon.com/" title="Flaticon">Flaticon</a>
+                        </div>
 
-                </footer>
-            </div>
-
-        </table>
-    </aside>
-    {% else %}
-    <aside class="xs:hidden sm:hidden lg:flex lg:flex-col space-y-4 ml-8 w-144">{% block messages %}{% endblock %}</aside>
-    {% endif %}
-
-
-    <!-- message tab -->
-    {% if current_user.is_authenticated %}
-    {% if 'messages' not in request.path %}
-    <div class="fixed bottom-0 right-0 px-4 h-12 xs:hidden sm:hidden lg:flex cursor-pointer">
-        <div
-            class="flex flex-row w-100 justify-between items-center rounded-t-2xl py-4 pl-4 pr-2 shadow-msg bg-gray-900">
-            <p class="text-xl font-bold">Messages</p>
-            <div class="flex flex-row">
-                <div
-                    class="rounded-full hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700 w-10 h-10 flex justify-center items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="w-6 h-6 stroke-current text-blue-500 stroke-2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                    </footer>
                 </div>
-                <div
-                    class="rounded-full hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700 w-10 h-10 flex justify-center items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="w-6 h-6 stroke-current text-blue-500 stroke-2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
-                    </svg>
+
+            </table>
+        </aside>
+        {% else %}
+        <aside class="xs:hidden sm:hidden lg:flex lg:flex-col space-y-4 ml-8 w-144">{% block messages %}{% endblock %}
+        </aside>
+        {% endif %}
+
+
+        <!-- message tab -->
+        {% if current_user.is_authenticated %}
+        {% if 'messages' not in request.path %}
+        <div class="fixed bottom-0 right-0 px-4 h-12 xs:hidden sm:hidden lg:flex cursor-pointer">
+            <div
+                class="flex flex-row w-100 justify-between items-center rounded-t-2xl py-4 pl-4 pr-2 shadow-msg bg-gray-900">
+                <p class="text-xl font-bold">Messages</p>
+                <div class="flex flex-row">
+                    <div
+                        class="rounded-full hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700 w-10 h-10 flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            class="w-6 h-6 stroke-current text-blue-500 stroke-2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div
+                        class="rounded-full hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700 w-10 h-10 flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            class="w-6 h-6 stroke-current text-blue-500 stroke-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% endif %}
-    {% endif %}
-    <!-- message tab ends here -->
+        {% endif %}
+        {% endif %}
+        <!-- message tab ends here -->
 </body>
 
 </html>
