@@ -283,16 +283,22 @@
                                         {% elif current_user.is_authenticated and current_user != post.author %}
                                         <div class="flex flex-col text-tiny bg-gray-900
                                         absolute right-0 top-0 w-full rounded-md shadow-msg xs:w-60 sm:w-60 z-50">
-                                            <div
-                                                class="flex flex-row items-center space-x-3 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    class="stroke-current text-gray-600 w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6" />
-                                                </svg>
-                                                <div>Unfollow @{{ post.author.handle }}</div>
-                                            </div>
+                                            <form action="{{ url_for('user.unfollow', handle = post.author.handle) }}"
+                                                method="POST">
+                                                <button class="focus:outline-none">
+                                                    <div
+                                                        class="flex flex-row items-center space-x-3 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25 cursor-pointer">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            class="stroke-current text-gray-600 w-5 h-5">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6" />
+                                                        </svg>
+                                                        <div>Unfollow @{{ post.author.handle }}</div>
+                                                    </div>
+                                                </button>
+                                            </form>
                                             <a class="space-x-2 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25"
                                                 href="{{ url_for('main.lists_addMember') }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -406,8 +412,8 @@
                     {% if current_user.liked_post(post) %}
                     <div>
                         <form
-                        action="{{ url_for('post.unlike_chirp', handle = current_user.handle, post_id = post.id) }}"
-                        method="POST">
+                            action="{{ url_for('post.unlike_chirp', handle = current_user.handle, post_id = post.id) }}"
+                            method="POST">
                             <button class="focus:outline-none flex flex-row items-center space-x-1">
                                 <div class="rounded-full p-1 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -422,9 +428,8 @@
                     </div>
                     {% else %}
                     <div>
-                        <form
-                        action="{{ url_for('post.like_chirp', handle = current_user.handle, post_id = post.id) }}"
-                        method="POST">
+                        <form action="{{ url_for('post.like_chirp', handle = current_user.handle, post_id = post.id) }}"
+                            method="POST">
                             <button class="focus:outline-none flex flex-row items-center space-x-1">
                                 <div class="rounded-full p-1 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
