@@ -14,7 +14,7 @@ def status(handle, post_id):
     
     if handle != post.author.handle:
         handle = post.author.handle
-        post_id = post.post_id
+        post_id = post.id
         return redirect(url_for('post.status', handle = handle, post_id = post_id))
     
     return render_template('status.html', post = post)
@@ -27,7 +27,7 @@ def status_analytics(handle, post_id):
 
     if handle != post.author.handle:
         handle = post.author.handle
-        post_id = post.post_id
+        post_id = post.id
         return redirect(url_for('post.status_analytics', handle = handle, post_id = post_id))
 
     return render_template('status_analytics.html', post = post)
@@ -40,7 +40,7 @@ def update_chirp(handle, post_id):
 
     if handle != post.author.handle:
         handle = post.author.handle
-        post_id = post.post_id
+        post_id = post.id
         return redirect(url_for('post.status', handle = handle, post_id = post_id))
 
     # route forbidded if it's not post owner
@@ -57,7 +57,7 @@ def update_chirp(handle, post_id):
         # post.created_at = datetime.utcnow()  optional
         db.session.commit()
         # flash('Your chirp has been updated. ', 'success')
-        return redirect(url_for('post.status', handle = handle, post_id = post.post_id))
+        return redirect(url_for('post.status', handle = handle, post_id = post.id))
 
     return render_template('status_update.html', post = post, form = form)
 
@@ -76,12 +76,34 @@ def delete_chirp(handle, post_id):
     return redirect(url_for('user.profile', handle = current_user.handle))
 
 
+@post.route('/<handle>/status/<int:post_id>/like', methods = ['POST'])
+@login_required
+def like_chirp(handle, post_id):
+    post = Post.query.get(post_id)
+    
+    current_user.liking(post)
+    db.session.commit()
+
+    return redirect(url_for('main.home'))
+
+
+@post.route('/<handle>/status/<int:post_id>/unlike', methods = ['POST'])
+@login_required
+def unlike_chirp(handle, post_id):
+    post = Post.query.get(post_id)
+
+    current_user.unliking(post)
+    db.session.commit()
+
+    return redirect(url_for('main.home'))
+
+
 @post.route('/compose/chirp', methods = ['GET', 'POST'])
 @login_required
 def compose_chirp():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(post_id = randbits(60), content = form.content.data, author = current_user)  # from the backref in db
+        post = Post(id = randbits(60), content = form.content.data, author = current_user)  # from the backref in db
         db.session.add(post)
         db.session.commit()
         flash('Your Chirp was sent. View')
