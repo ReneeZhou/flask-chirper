@@ -18,7 +18,7 @@ main = Blueprint('main', __name__)
 def home():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(post_id = randbits(60), content = form.content.data, author = current_user)
+        post = Post(id = randbits(60), content = form.content.data, author = current_user)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.home'))
@@ -91,8 +91,8 @@ def messages_counterpart(counterpart_id, currentuser_id):
             counterpart_id = counterpart_id, currentuser_id = current_user.id))
     
     
-    message_history = current_user.message_received.filter_by(
-        sender_id = counterpart.id).union(current_user.message_sent.filter_by(
+    message_history = current_user.messages_received.filter_by(
+        sender_id = counterpart.id).union(current_user.messages_sent.filter_by(
             recipient_id = counterpart_id)).order_by(Message.created_at)
         
         # filter_by(

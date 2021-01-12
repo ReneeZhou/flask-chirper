@@ -240,7 +240,7 @@
                                                                             class="modal-delete-close block w-32 font-bold focus:outline-none bg-gray-600 rounded-full h-10 bg-opacity-25 hover:bg-opacity-50 focus:bg-gray-500">Cancel</button>
                                                                         <div>
                                                                             <form
-                                                                                action="{{ url_for('post.delete_chirp', handle = post.author.handle, post_id = post.post_id) }}"
+                                                                                action="{{ url_for('post.delete_chirp', handle = post.author.handle, post_id = post.id) }}"
                                                                                 method="POST">
                                                                                 <input type="submit" value="Delete"
                                                                                     class="block w-32 font-bold focus:outline-none bg-red-600 rounded-full h-10 hover:bg-opacity-75 focus:bg-red-700
@@ -271,7 +271,7 @@
                                                 <div>Pin to your profile</div>
                                             </div>
                                             <a class="space-x-2 py-3 px-3 hover:bg-gray-800 hover:bg-opacity-25"
-                                                href="{{ url_for('post.status_analytics', handle = current_user.handle, post_id = post.post_id) }}">
+                                                href="{{ url_for('post.status_analytics', handle = current_user.handle, post_id = post.id) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                     class="fill-current text-gray-600 w-5 h-5 inline">
                                                     <path
@@ -373,7 +373,7 @@
                 <div>
                     <p class="text-base">
                         <a
-                            href="{{ url_for('post.status', handle = post.author.handle, post_id = post.post_id) }}">{{ post.content }}</a>
+                            href="{{ url_for('post.status', handle = post.author.handle, post_id = post.id) }}">{{ post.content }}</a>
                     </p>
                 </div>
 
