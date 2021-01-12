@@ -144,7 +144,7 @@
                 <div>
                     <form action="{{ url_for('post.unlike_chirp', handle = current_user.handle, post_id = post.id) }}"
                         method="POST">
-                        <button class="focus:outline-none">
+                        <button class="focus:outline-none flex flex-row items-center space-x-1">
                             <div class="rounded-full p-2 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     class="w-6 h-6 stroke-current stroke-1 fill-current text-red-600 hover:text-red-500 ">
@@ -152,6 +152,7 @@
                                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
                             </div>
+                            <div class="text-red-600">{{ post.like_count() }}</div>
                         </button>
                     </form>
                 </div>
@@ -159,7 +160,7 @@
                 <div>
                     <form action="{{ url_for('post.like_chirp', handle = current_user.handle, post_id = post.id) }}"
                         method="POST">
-                        <button class="focus:outline-none">
+                        <button class="focus:outline-none flex flex-row items-center space-x-1">
                             <div class="rounded-full p-2 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     class="w-6 h-6 stroke-current stroke-1 text-gray-500 hover:text-red-500 ">
@@ -167,6 +168,7 @@
                                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
                             </div>
+                            <div class="text-gray-600">{{ post.like_count() }}</div>
                         </button>
                     </form>
                 </div>
