@@ -31,6 +31,13 @@ follower = db.Table(
 
 
 
+like = db.Table(
+    'like',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id')))
+
+
+
 class User(db.Model, UserMixin, TimestampMixin):
     # account_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     created_at_ip = db.Column(db.String, nullable = False)
@@ -62,9 +69,30 @@ class User(db.Model, UserMixin, TimestampMixin):
         lazy = 'dynamic')
 
     
-    message_sent = db.relationship('Message', backref = 'sender', lazy = 'dynamic', foreign_keys = 'Message.sender_id')
-    message_received = db.relationship('Message', backref = 'recipient', lazy = 'dynamic', foreign_keys = 'Message.recipient_id')
+    messages_sent = db.relationship('Message', backref = 'sender', lazy = 'dynamic', foreign_keys = 'Message.sender_id')
+    messages_received = db.relationship('Message', backref = 'recipient', lazy = 'dynamic', foreign_keys = 'Message.recipient_id')
     last_read_message_at = db.Column(db.DateTime, nullable = False, default = datetime(1990, 1, 1))
+
+
+    posts_liked = db.relationship('Post', secondary = 'like', backref = 'user', lazy = 'dynamic')
+
+
+    # check if user alread liked the post
+    def liked_post(self, post):
+        return self.posts_liked.filter(like.c.post_id == post.id).count() > 0
+
+
+    # action to like this post
+    def liking(self, post):
+        if not self.liked_post(post):
+            self.posts_liked.append(post)
+
+
+    # action to dislike this post
+    def unliking(self, post):
+        if self.liked_post(post):
+            self.posts_liked.remove(post)
+
 
     # return numbers of unread messages
     def new_messages(self):
@@ -95,11 +123,11 @@ class User(db.Model, UserMixin, TimestampMixin):
 
     def follow(self, user):
         if not self.is_following(user):
-            self.following.append(user)
+            self.following.append(user)    # SQLAlchemy ORM treats relationship like a list
 
     def unfollow(self, user):
         if self.is_following(user):
-            self.following.remove(user)
+            self.following.remove(user)    # SQLAlchemy ORM treats relationship like a list
 
 
     def following_post(self):
@@ -151,14 +179,15 @@ class Post(db.Model, TimestampMixin):
     # id = db.Column(db.Integer, primary_key = True)
     # title = db.Column(db.String(100), nullable = False)
     # date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
-    post_id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-    
     # referring to user table and id col
 
+    liked_by = db.relationship('User', secondary = 'like', backref = 'post', lazy = 'dynamic')
+
     def __repr__(self):
-        return f'Post("{self.user_id}", "{self.post_id}", "{self.created_at}", f"{self.content}")'
+        return f'Post("{self.user_id}", "{self.id}", "{self.created_at}", f"{self.content}")'
 
 
 
