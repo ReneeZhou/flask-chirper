@@ -20,12 +20,14 @@
     <div class="p-1 m-2 text-sm flex flex-col ">
         <div class="flex flex-row space-x-2">
             <!-- user icon -->
-            <div class="w-12 h-12">
-                <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img src=" {{ url_for('static', filename = 'img/profile_pics/' + post.author.profile_image) }} "
-                        alt="profile pic" class="w-full h-full object-cover">
+            <a href="{{ url_for('user.profile', handle = post.author.handle) }}">
+                <div class="w-12 h-12">
+                    <div class="w-12 h-12 rounded-full overflow-hidden">
+                        <img src=" {{ url_for('static', filename = 'img/profile_pics/' + post.author.profile_image) }} "
+                            alt="profile pic" class="w-full h-full object-cover">
+                    </div>
                 </div>
-            </div>
+            </a>
 
             <div class="flex flex-col w-full space-y-2">
                 <!-- small header -->
@@ -33,7 +35,7 @@
                     <!-- username, handle, timestamp -->
                     <div class="flex flex-row space-x-2">
                         <!-- link to user page -->
-                        <a href="#">
+                        <a href="{{ url_for('user.profile', handle = post.author.handle) }}">
                             <div class="flex flex-col">
                                 <div class="text-base font-bold hover:underline">{{ post.author.name }}</div>
                                 <div class="text-gray-600">@{{ post.author.handle }}</div>
@@ -59,8 +61,9 @@
 
 
                         <!-- delete button -->
-                        <form action="{{ url_for('post.delete_chirp', handle = post.author.handle, post_id = post.id) }}"
-                        method="POST" class="inline">
+                        <form
+                            action="{{ url_for('post.delete_chirp', handle = post.author.handle, post_id = post.id) }}"
+                            method="POST" class="inline">
                             <button class="focus:outline-none">
                                 <div class="rounded-full p-2 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -136,16 +139,38 @@
                 </a>
 
 
-                <!-- like -->
-                <button class="focus:outline-none">
-                    <div class="rounded-full p-2 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            class="w-6 h-6 stroke-current stroke-1 text-gray-500 hover:text-red-500 ">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </div>
-                </button>
+                <!-- like button -->
+                {% if current_user.liked_post(post) %}
+                <div>
+                    <form action="{{ url_for('post.unlike_chirp', handle = current_user.handle, post_id = post.id) }}"
+                        method="POST">
+                        <button class="focus:outline-none">
+                            <div class="rounded-full p-2 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    class="w-6 h-6 stroke-current stroke-1 fill-current text-red-600 hover:text-red-500 ">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+                {% else %}
+                <div>
+                    <form action="{{ url_for('post.like_chirp', handle = current_user.handle, post_id = post.id) }}"
+                        method="POST">
+                        <button class="focus:outline-none">
+                            <div class="rounded-full p-2 hover:bg-red-700 hover:bg-opacity-25 active:bg-red-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    class="w-6 h-6 stroke-current stroke-1 text-gray-500 hover:text-red-500 ">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
 
 
                 <!-- share -->
