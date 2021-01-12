@@ -186,6 +186,12 @@ class Post(db.Model, TimestampMixin):
 
     liked_by = db.relationship('User', secondary = 'like', backref = 'post', lazy = 'dynamic')
 
+
+    # return how many likes a post has
+    def like_count(self):
+        return self.liked_by.filter(like.c.post_id == self.id).count()
+
+
     def __repr__(self):
         return f'Post("{self.user_id}", "{self.id}", "{self.created_at}", f"{self.content}")'
 
