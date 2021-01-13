@@ -146,6 +146,16 @@ class User(db.Model, UserMixin, TimestampMixin):
         # so we're filtering by 
 
 
+    # return how many users this user is following
+    def following_count(self):
+        return db.session.query(follower).filter_by(follower_id = self.id).count()
+        # .filter(follower.c.follower_id == self.id) will do, too
+
+    # return how many followers this user has
+    def follower_count(self):
+        return db.session.query(follower).filter_by(following_id = self.id).count()
+
+
     # method to create token for serializer
     def get_reset_token(self, expires_sec = 180):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)    # serializer obj
