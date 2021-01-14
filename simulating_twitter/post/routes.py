@@ -2,8 +2,9 @@ from secrets import randbits
 from flask import Blueprint, render_template, redirect, url_for, flash, request, abort
 from flask_login import login_required, current_user
 from simulating_twitter import db
-from simulating_twitter.models import Post
+from simulating_twitter.models import Post, User, like
 from simulating_twitter.post.forms import PostForm
+from simulating_twitter.main.utils import get_recommendation
 
 
 post = Blueprint('post', __name__)
@@ -11,19 +12,31 @@ post = Blueprint('post', __name__)
 @post.route('/<handle>/status/<int:post_id>', methods = ['GET', 'POST'])
 def status(handle, post_id):
     post = Post.query.get_or_404(post_id)
-    
+    follow_recommendation = get_recommendation(current_user)
+
     if handle != post.author.handle:
         handle = post.author.handle
         post_id = post.id
         return redirect(url_for('post.status', handle = handle, post_id = post_id))
     
-    return render_template('status.html', post = post)
+    return render_template('status.html', post = post, follow_recommendation = follow_recommendation)
+
+
+@post.route('/<handle>/status/<int:post_id>/likes')
+@login_required
+def status_likes(handle, post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('status_likes.html', post = post)
+
 
 
 @post.route('/<handle>/status/<int:post_id>/analytics', methods = ['GET'])
 @login_required
 def status_analytics(handle, post_id):
     post = Post.query.get_or_404(post_id)
+
+
+    # can only check its own
 
     if handle != post.author.handle:
         handle = post.author.handle
