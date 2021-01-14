@@ -1,0 +1,85 @@
+{% extends 'layout_form.html' %}
+{% block title %}Chirps likes{% endblock title %}
+
+{% block content %}
+<div class="h-screen sm:bg-gray-900 md:bg-gray-800 md:bg-opacity-100 flex flex-col items-center md:justify-center">
+    <div class="flex flex-col bg-gray-900 md:rounded-2xl pb-32 pt-2 h-160">
+        <form method="POST" action="" enctype="multipart/form-data">
+            <!-- add a special encoding type to our form in order for our to pass our image data properly -->
+            <div class="flex flex-col w-148">
+                <!-- header -->
+                <div class="flex flex-row items-center justify-between border-b border-gray-700 pb-2 px-2">
+                    <!-- justify left -->
+                    <div class="flex flex-row items-center">
+                        <!-- close svg -->
+                        <div onclick="history.go(-1)" class="svg-bg-div mr-4 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="w-6 h-8 stroke-current text-blue-500">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                        <div class="text-xl font-bold tracking-wide">Liked by</div>
+                    </div>
+                </div>
+
+                <!-- scrollable area -->
+                <div class="h-144 overflow-y-scroll">
+
+                    <!-- list of folloing users/contacts -->
+                    <div>
+                        {% for user in post.liked_by %}
+                        <a
+                            href="{{ url_for('main.messages_counterpart', counterpart_id = user.id, currentuser_id = current_user.id) }}">
+                            <div class="flex flex-row border-b border-gray-700
+                            hover:bg-gray-800 hover:bg-opacity-25">
+                                <!-- user icon -->
+                                <div class="w-12 h-12 ml-4 mr-3 my-3">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden">
+                                        <img src="{{ url_for('static', filename = 'img/profile_pics/' + user.profile_image) }}"
+                                            alt="profile pic" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <!-- link to user page -->
+                                <div class="flex flex-col justify-center mt-3 w-full">
+                                    <div class="flex flex-row justify-between mr-3">
+                                        <div class="flex flex-col justify-center">
+                                            <div class="text-tiny font-bold">{{ user.name }}</div>
+                                            <div class="text-gray-600 text-tiny -mt-1">@{{ user.handle }}</div>
+                                        </div>
+
+                                        {% if user.handle != current_user.handle %}
+                                        {% if not current_user.is_following(user) %}
+                                        <div>
+                                            <form action="{{ url_for('user.follow', handle = user.handle) }}"
+                                                method="POST">
+                                                <input type="submit" value="Follow"
+                                                    class="self-center rounded-full font-bold text-blue-500 px-4 h-8 bg-transparent cursor-pointer
+                                                border border-blue-500 focus:outline-none hover:bg-blue-800 hover:bg-opacity-25 active:bg-blue-700">
+                                            </form>
+                                        </div>
+                                        {% else %}
+                                        <div>
+                                            <form action="{{ url_for('user.unfollow', handle = user.handle) }}"
+                                                method="POST">
+                                                <input type="submit" value="Following" class="self-center rounded-full font-bold text-white px-4 h-8 bg-transparent cursor-pointer
+                                                bg-blue-500 focus:outline-none hover:bg-red-700 focus:bg-opacity-75">
+                                            </form>
+                                        </div>
+                                        {% endif %}
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="text-tiny my-2">{{ user.bio }}</div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <!-- end list -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
