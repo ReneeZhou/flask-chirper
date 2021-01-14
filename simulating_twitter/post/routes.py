@@ -35,8 +35,8 @@ def status_likes(handle, post_id):
 def status_analytics(handle, post_id):
     post = Post.query.get_or_404(post_id)
 
-
-    # can only check its own
+    if post.author != current_user:
+        return redirect(url_for('post.status', handle = handle, post_id = post_id))
 
     if handle != post.author.handle:
         handle = post.author.handle
