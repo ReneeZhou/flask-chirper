@@ -110,7 +110,12 @@
                 <div class="flex flex-row text-gray-600 space-x-4 text-tiny border-b border-gray-600 py-4">
                     <div>{{ 171 }} Rechirps</div>
                     <div>{{ 21 }} Quotes</div>
-                    <div>{{ post.like_count() }} Likes</div>
+                    <div class="hover:underline text-white">
+                        <a href="{{ url_for('post.status_likes', handle = post.author.handle, post_id = post.id) }}">
+                            <b class="font-semibold">{{ post.like_count() }}</b>
+                            <span class="text-gray-600"> Likes</span>
+                        </a>
+                    </div>
                 </div>
 
             </div>
