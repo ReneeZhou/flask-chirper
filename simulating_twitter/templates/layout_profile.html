@@ -57,8 +57,7 @@
                     </form>
                     {% else %}
                     <form action="{{ url_for('user.unfollow', handle = user.handle) }}" method="POST">
-                        <input type="submit" value="Following"
-                            class="bg-blue-500 text-white font-bold py-2 px-4 mb-2 rounded-full
+                        <input type="submit" value="Following" class="bg-blue-500 text-white font-bold py-2 px-4 mb-2 rounded-full
                         hover:bg-red-700 focus:bg-opacity-75 focus:outline-none cursor-pointer">
                     </form>
                     {% endif %}
@@ -217,9 +216,23 @@ hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focu
                         </div>
                     </div>
 
-                    <div class="flex flex-row space-x-6">
-                        <p class="text-gray-600 text-tiny"><b class="text-white font-semibold">{{ user.following_count() }}</b> Following</p>
-                        <p class="text-gray-600 text-tiny"><b class="text-white font-semibold">{{ user.follower_count() }}</b> Followers</p>
+                    <div class="flex flex-row space-x-6 text-tiny">
+                        <a href="{{ url_for('user.profile_following', handle = user.handle) }}" class="hover:underline">
+                            <div class="flex flex-row items-center">
+                                <span class="text-gray-600">
+                                    <b class="text-white">{{ user.following_count() }}</b>
+                                    Following
+                                </span>
+                            </div>
+                        </a>
+                        <a href="{{ url_for('user.profile_followers', handle = user.handle) }}" class="hover:underline">
+                            <div class="flex flex-row items-center">
+                                <span class="text-gray-600">
+                                    <b class="text-white">{{ user.follower_count() }}</b>
+                                    Followers
+                                </span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
