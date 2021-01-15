@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
 from simulating_twitter import db
-from simulating_twitter.models import User, Post
+from simulating_twitter.models import User, Post, follower
 from simulating_twitter.post.utils import show_time
 from simulating_twitter.main.utils import get_recommendation
 
@@ -82,6 +82,37 @@ def profile_moments(handle):
 @user.route('/<handle>/topics')
 def profile_topics(handle):
     return render_template('profile_topics.html')
+
+
+@user.route('/<handle>/followers_you_know')
+@login_required
+def profile_followersYouKnow(handle):
+    user = User.query.filter_by(handle = handle).first()
+    if user == current_user:
+        return redirect(url_for('user.profile', handle = user.handle))
+
+    return render_template('profile_followersYouKnow.html', user = user)
+
+
+@user.route('/<handle>/followers')
+@login_required
+def profile_followers(handle):
+    user = User.query.filter_by(handle = handle).first()
+    return render_template('profile_followers.html', user = user)
+
+
+@user.route('/<handle>/following')
+@login_required
+def profile_following(handle):
+    user = User.query.filter_by(handle = handle).first()
+    return render_template('profile_following.html', user = user)
+
+
+@user.route('/<handle>/suggested')
+@login_required
+def profile_suggested(handle):
+    user = User.query.filter_by(handle = handle).first()
+    return render_template('profile_suggested.html', user = user)
 
 
 @user.route('/<handle>/follow', methods = ['POST'])
