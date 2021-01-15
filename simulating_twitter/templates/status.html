@@ -340,6 +340,7 @@
                 </div>
 
                 <!-- view analytics -->
+                {% if post.author.handle == current_user.handle %}
                 <a href="{{ url_for('post.status_analytics', handle = post.author.handle, post_id = post.id) }}">
                     <div class="flex flex-row items-center text-gray-600 border-b border-gray-600 py-4
                     space-x-2 hover:bg-gray-800 hover:bg-opacity-25">
@@ -350,6 +351,7 @@
                         <div class="text-tiny">View Chirp activity</div>
                     </div>
                 </a>
+                {% endif %}
 
                 <!-- counts -->
                 <div class="flex flex-row text-gray-600 space-x-4 text-tiny border-b border-gray-600 py-4">
