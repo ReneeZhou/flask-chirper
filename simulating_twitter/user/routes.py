@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
 from simulating_twitter import db
 from simulating_twitter.models import User, Post, follower
-from simulating_twitter.main.utils import get_recommendation
 
 
 user = Blueprint('user', __name__)
@@ -16,25 +15,17 @@ def profile(handle):
 
     if current_user.is_authenticated:
         following_status = current_user.is_following(user)
-        follow_recommendation = get_recommendation(current_user)
     else: 
         following_status = None
-        follow_recommendation = None
 
     return render_template('profile.html', user = user, posts = posts, posts_num = posts_num, \
-        following_status = following_status, follow_recommendation = follow_recommendation)
+        following_status = following_status)
 
 
 @user.route('/<handle>/with_replies')
 def profile_with_replies(handle):
     user = User.query.filter_by(handle = handle).first_or_404()
-
-    if current_user.is_authenticated:
-        follow_recommendation = get_recommendation(current_user)
-    else:
-        follow_recommendation = None
-
-    return render_template('profile_with_replies.html', user = user, follow_recommendation = follow_recommendation)
+    return render_template('profile_with_replies.html', user = user)
 
 
 @user.route('/<handle>/media')
@@ -43,11 +34,8 @@ def profile_media(handle):
 
     if not current_user.is_authenticated:
         return redirect(url_for('user.profile', handle = user.handle))
-    
-    if current_user.is_authenticated:
-        follow_recommendation = get_recommendation(current_user)
         
-    return render_template('profile_media.html', user = user, follow_recommendation = follow_recommendation)
+    return render_template('profile_media.html', user = user)
 
 
 @user.route('/<handle>/likes')
@@ -57,18 +45,14 @@ def profile_likes(handle):
     if not current_user.is_authenticated:
         return redirect(url_for('user.profile', handle = user.handle))
 
-    if current_user.is_authenticated:
-        follow_recommendation = get_recommendation(current_user)
-
-    return render_template('profile_likes.html', user = user, follow_recommendation = follow_recommendation)
+    return render_template('profile_likes.html', user = user)
 
 
 # needs fixing <handle>
 @user.route('/profile/lists')
 @login_required
 def profile_lists():
-    follow_recommendation = get_recommendation(current_user)
-    return render_template('profile_lists.html', follow_recommendation = follow_recommendation)
+    return render_template('profile_lists.html')
 
 
 @user.route('/<handle>/moments')

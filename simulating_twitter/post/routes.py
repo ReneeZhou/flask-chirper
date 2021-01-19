@@ -4,7 +4,6 @@ from flask_login import login_required, current_user
 from simulating_twitter import db
 from simulating_twitter.models import Post, User, like
 from simulating_twitter.post.forms import PostForm
-from simulating_twitter.main.utils import get_recommendation
 
 
 post = Blueprint('post', __name__)
@@ -12,14 +11,13 @@ post = Blueprint('post', __name__)
 @post.route('/<handle>/status/<int:post_id>', methods = ['GET', 'POST'])
 def status(handle, post_id):
     post = Post.query.get_or_404(post_id)
-    follow_recommendation = get_recommendation(current_user)
 
     if handle != post.author.handle:
         handle = post.author.handle
         post_id = post.id
         return redirect(url_for('post.status', handle = handle, post_id = post_id))
     
-    return render_template('status.html', post = post, follow_recommendation = follow_recommendation)
+    return render_template('status.html', post = post)
 
 
 @post.route('/<handle>/status/<int:post_id>/likes')

@@ -5,7 +5,6 @@ from flask.blueprints import Blueprint
 from flask_login import current_user, login_required
 from simulating_twitter import db
 from simulating_twitter.models import User, Post, follower, Message
-from simulating_twitter.main.utils import get_recommendation
 from simulating_twitter.main.forms import MessageForm
 from simulating_twitter.post.forms import PostForm
 
@@ -25,29 +24,24 @@ def home():
     # posts = Post.query.order_by(Post.created_at.desc()).all()
     posts = current_user.following_post().all()
 
-    follow_recommendation = get_recommendation(current_user)
-
-    return render_template('home.html', form = form, posts = posts, follow_recommendation = follow_recommendation)
+    return render_template('home.html', form = form, posts = posts)
 
 
 @main.route('/explore', methods = ['GET', 'POST'])
 def explore():
-    follow_recommendation = get_recommendation(current_user)
-    return render_template('explore.html', trends = trends, happenings = happenings, follow_recommendation = follow_recommendation)
+    return render_template('explore.html', trends = trends, happenings = happenings)
 
 
 @main.route('/notifications')
 @login_required
 def notifications():
-    follow_recommendation = get_recommendation(current_user)
-    return render_template('notifications.html', follow_recommendation = follow_recommendation)
+    return render_template('notifications.html')
 
 
 @main.route('/notifications/mentions')
 @login_required
 def notifications_mentions():
-    follow_recommendation = get_recommendation(current_user)
-    return render_template('notifications_mentions.html', follow_recommendation = follow_recommendation)
+    return render_template('notifications_mentions.html')
 
 
 @main.route('/messages')
@@ -123,8 +117,7 @@ def followerRequests():
 @main.route('/bookmarks')
 @login_required
 def bookmarks():
-    follow_recommendation = get_recommendation(current_user)
-    return render_template('bookmarks.html', follow_recommendation = follow_recommendation)
+    return render_template('bookmarks.html')
 
 
 # i
@@ -145,16 +138,14 @@ def lists_addMember():
 @main.route('/trends')
 @login_required
 def trends():
-    follow_recommendation = get_recommendation(current_user)
-    return render_template('trends.html', trends = trends, follow_recommendation = follow_recommendation)
+    return render_template('trends.html', trends = trends)
 
 
 # i
 @main.route('/timeline')
 @login_required
 def timeline():
-    follow_recommendation = get_recommendation(current_user)
-    return render_template('timeline.html', happenings = happenings, follow_recommendation = follow_recommendation)
+    return render_template('timeline.html', happenings = happenings)
 
 
 # i
