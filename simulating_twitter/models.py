@@ -203,6 +203,20 @@ class Post(db.Model, TimestampMixin):
         return self.liked_by.filter(like.c.post_id == self.id).count()
 
 
+    def show_time(self):
+        t = datetime.utcnow() - self.created_at
+        if t.seconds < 59:
+            return f'{t.seconds}s'
+        elif 50 <= t.seconds < 3600:
+            return f'{t.seconds//60}m'
+        elif t.days < 1:
+            return f'{t.seconds//3600}h'
+        elif self.created_at.year == datetime.utcnow().year:
+            return self.created_at.strftime('%d %b')
+        else: 
+            return self.created_at.strftime('%d %b %Y')
+
+
     def __repr__(self):
         return f'Post("{self.user_id}", "{self.id}", "{self.created_at}", f"{self.content}")'
 
