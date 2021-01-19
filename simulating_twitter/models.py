@@ -156,6 +156,18 @@ class User(db.Model, UserMixin, TimestampMixin):
         return db.session.query(follower).filter_by(following_id = self.id).count()
 
 
+    def follower_recommendation(self):
+        people = User.query.all()
+        recommendation = []
+        
+        for person in people:
+            if len(recommendation) < 4:
+                if (not self.is_following(person)) and (self != person):
+                    recommendation.append(person)
+
+        return recommendation
+
+
     # method to create token for serializer
     def get_reset_token(self, expires_sec = 180):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)    # serializer obj
