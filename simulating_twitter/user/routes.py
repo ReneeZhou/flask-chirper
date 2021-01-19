@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
 from simulating_twitter import db
 from simulating_twitter.models import User, Post, follower
-from simulating_twitter.post.utils import show_time
 from simulating_twitter.main.utils import get_recommendation
 
 
@@ -13,8 +12,6 @@ def profile(handle):
     user = User.query.filter_by(handle = handle).first_or_404()
 
     posts = Post.query.filter_by(user_id = user.id).order_by(Post.created_at.desc()).all()
-    for post in posts:
-        post.show = show_time(post.created_at)
     posts_num = len(posts)
 
     if current_user.is_authenticated:

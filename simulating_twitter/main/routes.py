@@ -7,7 +7,6 @@ from simulating_twitter import db
 from simulating_twitter.models import User, Post, follower, Message
 from simulating_twitter.main.utils import get_recommendation
 from simulating_twitter.main.forms import MessageForm
-from simulating_twitter.post.utils import show_time
 from simulating_twitter.post.forms import PostForm
 
 
@@ -25,10 +24,6 @@ def home():
 
     # posts = Post.query.order_by(Post.created_at.desc()).all()
     posts = current_user.following_post().all()
-
-    for post in posts:
-        post.show = show_time(post.created_at)
-    # .profile_image is a column from the User model 
 
     follow_recommendation = get_recommendation(current_user)
 
