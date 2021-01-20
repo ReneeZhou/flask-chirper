@@ -166,12 +166,10 @@ def logout():
 @auth.route('/account/add')
 @login_required
 def account_add():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('account_add.html', profile_image = profile_image)
+    return render_template('account_add.html')
 
 
 @auth.route('/account/switch')
 @login_required
 def account_switch():
-    profile_image = url_for('static', filename = 'img/profile_pics/' + current_user.profile_image)
-    return render_template('account_switch.html', profile_image = profile_image)
+    return render_template('account_switch.html')
