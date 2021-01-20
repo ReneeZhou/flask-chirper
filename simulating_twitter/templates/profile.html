@@ -409,7 +409,7 @@
 
 
                     <!-- like button -->
-                    {% if current_user.has_liked_post(post) %}
+                    {% if current_user.is_authenticated and current_user.has_liked_post(post) %}
                     <div>
                         <form
                             action="{{ url_for('post.unlike_chirp', handle = current_user.handle, post_id = post.id) }}"
