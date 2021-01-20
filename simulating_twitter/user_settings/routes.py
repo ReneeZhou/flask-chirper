@@ -82,25 +82,6 @@ def settings_profile():
     return render_template('settings_profile.html', form = form, background_image = background_image)
 
 
-# @user_settings.route('/settings/screen_name', methods = ['GET', 'POST'])
-# @login_required
-# def settings_screenName():
-#     form = UpdateAccountForm()
-
-#     if request.method == 'GET':
-#         form.handle.data = current_user.handle
-#         form.email.data = current_user.email
-
-#     elif form.validate_on_submit():
-#         if form.handle.data != current_user.handle or form.email.data != current_user.email: 
-#             current_user.handle = form.handle.data
-#             current_user.email = form.email.data
-#             db.session.commit()
-#             flash('Your account has been updated!', 'success')    
-#         # needs fixing, it flashes when return to this page
-#         return redirect(url_for('user_settings.settings_account'))
-
-#     return render_template('settings_ScreenName.html', form = form)
 @user_settings.route('/settings/screen_name', methods = ['GET', 'POST'])
 @login_required
 def settings_screenName():

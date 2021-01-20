@@ -21,10 +21,7 @@ def home():
         db.session.commit()
         return redirect(url_for('main.home'))
 
-    # posts = Post.query.order_by(Post.created_at.desc()).all()
-    posts = current_user.following_post().all()
-
-    return render_template('home.html', form = form, posts = posts)
+    return render_template('home.html', form = form)
 
 
 @main.route('/explore', methods = ['GET', 'POST'])
@@ -47,19 +44,16 @@ def notifications_mentions():
 @main.route('/messages')
 @login_required
 def messages():
-    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
-    
     current_user.last_read_message_at = datetime.utcnow()
     db.session.commit()
     
-    return render_template('messages.html', following_users = following_users)
+    return render_template('messages.html')
 
 
 @main.route('/messages/compose')
 @login_required
 def messages_compose():
-    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
-    return render_template('messages_compose.html', following_users = following_users)
+    return render_template('messages_compose.html')
 
 
 @main.route('/messages/<int:counterpart_id>-<int:currentuser_id>', methods = ['GET', 'POST'])
@@ -67,7 +61,6 @@ def messages_counterpart(counterpart_id, currentuser_id):
     if currentuser_id != current_user.id or User.query.get(counterpart_id) is None: 
         return redirect(url_for('main.messages'))
 
-    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
     counterpart = User.query.get(counterpart_id)
 
     form = MessageForm()
@@ -79,17 +72,11 @@ def messages_counterpart(counterpart_id, currentuser_id):
         return redirect(url_for('main.messages_counterpart', \
             counterpart_id = counterpart_id, currentuser_id = current_user.id))
     
-    
     message_history = current_user.messages_received.filter_by(
         sender_id = counterpart.id).union(current_user.messages_sent.filter_by(
             recipient_id = counterpart_id)).order_by(Message.created_at)
-        
-        # filter_by(
-        #     sender_id = (current_user.id or counterpart.id)).filter_by(
-        #         recipient_id = (current_user.id or counterpart.id)).all()
 
-
-    return render_template('messages_counterpart.html', form = form, following_users = following_users, \
+    return render_template('messages_counterpart.html', form = form, \
         counterpart_id = counterpart_id, currentuser_id = currentuser_id, counterpart = counterpart, \
             message_history = message_history)
 
@@ -99,13 +86,11 @@ def messages_counterpart_info(counterpart_id, currentuser_id):
     if currentuser_id != current_user.id or User.query.get(counterpart_id) is None: 
         return redirect(url_for('main.messages'))
 
-    following_users = current_user.following.filter(follower.c.follower_id == current_user.id).all()
     counterpart = User.query.get(counterpart_id)
 
-    return render_template('messages_counterpart_info.html', following_users = following_users, \
+    return render_template('messages_counterpart_info.html', \
         counterpart_id = counterpart_id, currentuser_id = currentuser_id, \
         counterpart = counterpart)
-
 
 
 @main.route('/follower_requests')
@@ -168,32 +153,6 @@ def keyboardShortcuts():
 
 
 
-
-
-# posts = [
-#     {
-#         'icon': 'icon 1',
-#         'username': 'username 1',
-#         'handle': '@handle 1',
-#         'time': 'date 1',
-#         'content': 'content 1',
-#         'comment': 'comment button 1',
-#         'rechirp': 'rechirp button 1',
-#         'like': 'like button 1',
-#         'share': 'share buttton dropdown 1'
-#     },
-#     {
-#         'icon': 'icon 2',
-#         'username': 'username 2',
-#         'handle': '@handle 2',
-#         'time': 'date 2',
-#         'content': 'content 2',
-#         'comment': 'comment button 2',
-#         'rechirp': 'rechirp button 2',
-#         'like': 'like button 2',
-#         'share': 'share buttton dropdown 2'
-#     },
-# ]
 
 trends = [
     {

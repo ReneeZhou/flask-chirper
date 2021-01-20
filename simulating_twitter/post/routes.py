@@ -2,7 +2,7 @@ from secrets import randbits
 from flask import Blueprint, render_template, redirect, url_for, flash, request, abort
 from flask_login import login_required, current_user
 from simulating_twitter import db
-from simulating_twitter.models import Post, User, like
+from simulating_twitter.models import Post
 from simulating_twitter.post.forms import PostForm
 
 
@@ -92,7 +92,7 @@ def delete_chirp(handle, post_id):
 def like_chirp(handle, post_id):
     post = Post.query.get(post_id)
     
-    current_user.liking(post)
+    current_user.like(post)
     db.session.commit()
 
     return redirect(url_for('main.home'))
@@ -103,7 +103,7 @@ def like_chirp(handle, post_id):
 def unlike_chirp(handle, post_id):
     post = Post.query.get(post_id)
 
-    current_user.unliking(post)
+    current_user.unlike(post)
     db.session.commit()
 
     return redirect(url_for('main.home'))
