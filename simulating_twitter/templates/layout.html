@@ -18,9 +18,9 @@
         <nav class="xs:flex sm:flex flex-col lg:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
                 {% if current_user.is_authenticated %}
-                <a href=" {{url_for('main.home') }}" class="rounded-full px-2">
+                <a href=" {{ url_for('main.home') }}" class="rounded-full px-2">
                     {% else %}
-                    <a href=" {{url_for('auth.home_notauth') }}" class="rounded-full px-2">
+                    <a href=" {{ url_for('auth.home_notauth') }}" class="rounded-full px-2">
                         {% endif %}
                         <div class="home-btn">
                             <!-- chirpy icon -->
@@ -65,7 +65,7 @@
                     {% if not current_user.is_authenticated %}
                     <a href="{{ url_for('user_settings.settings') }}" class="home-a">
                         <div class="home-btn">
-                            <!-- explore icon -->
+                            <!-- settings icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -340,9 +340,9 @@
         <nav class="xs:hidden sm:hidden lg:flex flex-col xl:hidden h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
                 {% if current_user.is_authenticated %}
-                <a href=" {{url_for('main.home') }}" class="rounded-full px-2">
+                <a href=" {{ url_for('main.home') }}" class="rounded-full px-2">
                     {% else %}
-                    <a href=" {{url_for('auth.home_notauth') }}" class="rounded-full px-2">
+                    <a href=" {{ url_for('auth.home_notauth') }}" class="rounded-full px-2">
                         {% endif %}
                         <div class="home-btn">
                             <!-- chirpy icon -->
@@ -387,7 +387,7 @@
                     {% if not current_user.is_authenticated %}
                     <a href="{{ url_for('user_settings.settings') }}" class="home-a">
                         <div class="home-btn">
-                            <!-- explore icon -->
+                            <!-- settings icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="home-svg">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -663,9 +663,9 @@
         <nav class="xs:hidden sm:hidden xl:flex flex-col h-full justify-between">
             <div class="flex flex-col text-xl font-semibold space-y-3">
                 {% if current_user.is_authenticated %}
-                <a href=" {{url_for('main.home') }}" class="rounded-full px-2">
+                <a href=" {{ url_for('main.home') }}" class="rounded-full px-2">
                     {% else %}
-                    <a href=" {{url_for('auth.home_notauth') }}" class="rounded-full px-2">
+                    <a href=" {{ url_for('auth.home_notauth') }}" class="rounded-full px-2">
                         {% endif %}
                         <!-- chirpy icon -->
                         <div class="home-btn w-12">
