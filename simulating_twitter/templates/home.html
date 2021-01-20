@@ -283,7 +283,7 @@
 
 <!-- templates for all chirp feeds -->
 <div class="border-t-8 border-gray-800">
-    {% for post in posts %}
+    {% for post in current_user.following_posts %}
     <div class="block border-b border-gray-700 hover:bg-gray-800 hover:bg-opacity-25">
         <div class="p-3 text-sm flex flex-row space-x-2">
             <!-- user icon -->
@@ -312,7 +312,7 @@
                         <div class="text-gray-600 font-bold">·</div>
                         <!-- link to that specific chirp -->
                         <a href="#" class="text-gray-600 hover:underline">
-                            <time class="">{{ post.show_time() }}</time>
+                            <time class="">{{ post.show_time }}</time>
                             <!-- if less than a hour: do it backwards: e.g. 30min -->
                             <!-- if not the same year:  %d %b %Y-->
                         </a>
@@ -602,7 +602,7 @@
 
 
                     <!-- like button -->
-                    {% if current_user.liked_post(post) %}
+                    {% if current_user.has_liked_post(post) %}
                     <div>
                         <form
                             action="{{ url_for('post.unlike_chirp', handle = current_user.handle, post_id = post.id) }}"
@@ -615,7 +615,7 @@
                                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                 </div>
-                                <div class="text-red-600">{{ post.like_count() }}</div>
+                                <div class="text-red-600">{{ post.liked_by.count() }}</div>
                             </button>
                         </form>
                     </div>
@@ -631,7 +631,7 @@
                                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                 </div>
-                                <div class="text-gray-600">{{ post.like_count() }}</div>
+                                <div class="text-gray-600">{{ post.liked_by.count() }}</div>
                             </button>
                         </form>
                     </div>

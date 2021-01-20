@@ -220,7 +220,7 @@ hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focu
                         <a href="{{ url_for('user.profile_following', handle = user.handle) }}" class="hover:underline">
                             <div class="flex flex-row items-center">
                                 <span class="text-gray-600">
-                                    <b class="text-white">{{ user.following_count() }}</b>
+                                    <b class="text-white">{{ user.following.count() }}</b>
                                     Following
                                 </span>
                             </div>
@@ -228,7 +228,7 @@ hover:bg-gray-700 hover:bg-opacity-25 font-bold py-2 px-4 mb-2 rounded-full focu
                         <a href="{{ url_for('user.profile_followers', handle = user.handle) }}" class="hover:underline">
                             <div class="flex flex-row items-center">
                                 <span class="text-gray-600">
-                                    <b class="text-white">{{ user.follower_count() }}</b>
+                                    <b class="text-white">{{ user.follower.count() }}</b>
                                     Followers
                                 </span>
                             </div>

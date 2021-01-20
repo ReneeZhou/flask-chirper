@@ -359,7 +359,7 @@
                     <div>{{ 21 }} Quotes</div>
                     <div class="hover:underline text-white">
                         <a href="{{ url_for('post.status_likes', handle = post.author.handle, post_id = post.id) }}">
-                            <b class="font-semibold">{{ post.like_count() }}</b>
+                            <b class="font-semibold">{{ post.like_count }}</b>
                             <span class="text-gray-600"> Likes</span>
                         </a>
                     </div>
@@ -392,7 +392,7 @@
 
 
                 <!-- like button -->
-                {% if current_user.liked_post(post) %}
+                {% if current_user.has_liked_post(post) %}
                 <div>
                     <form action="{{ url_for('post.unlike_chirp', handle = current_user.handle, post_id = post.id) }}"
                         method="POST">
@@ -404,7 +404,7 @@
                                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
                             </div>
-                            <div class="text-red-600">{{ post.like_count() }}</div>
+                            <div class="text-red-600">{{ post.like_count }}</div>
                         </button>
                     </form>
                 </div>
@@ -420,7 +420,7 @@
                                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
                             </div>
-                            <div class="text-gray-600">{{ post.like_count() }}</div>
+                            <div class="text-gray-600">{{ post.like_count }}</div>
                         </button>
                     </form>
                 </div>

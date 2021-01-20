@@ -44,7 +44,7 @@ px-4 py-2 border border-transparent focus-within:text-blue-500">
 
                     <!-- list of folloing users/contacts -->
                     <div class="mt-10">
-                        {% for user in following_users %}
+                        {% for user in current_user.following.all() %}
                         <a href="{{ url_for('main.messages_counterpart', counterpart_id = user.id, currentuser_id = current_user.id) }}">
                             <div class="flex flex-row border-b border-gray-700 
                             hover:bg-gray-800 hover:bg-opacity-25">
