@@ -45,7 +45,10 @@ def profile_likes(handle):
     if not current_user.is_authenticated:
         return redirect(url_for('user.profile', handle = user.handle))
 
-    return render_template('profile_likes.html', user = user)
+    if current_user.is_authenticated:
+        posts = user.posts_liked.order_by(Post.created_at.desc()).all()
+
+    return render_template('profile_likes.html', user = user, posts = posts)
 
 
 # needs fixing <handle>
