@@ -11,14 +11,14 @@ def profile(handle):
     user = User.query.filter_by(handle = handle).first_or_404()
 
     posts = Post.query.filter_by(user_id = user.id).order_by(Post.created_at.desc()).all()
-    posts_num = len(posts)
+    posts_count = len(posts)
 
     if current_user.is_authenticated:
         following_status = current_user.is_following(user)
     else: 
         following_status = None
 
-    return render_template('profile.html', user = user, posts = posts, posts_num = posts_num, \
+    return render_template('profile.html', user = user, posts = posts, posts_count = posts_count, \
         following_status = following_status)
 
 
@@ -47,8 +47,9 @@ def profile_likes(handle):
 
     if current_user.is_authenticated:
         posts = user.posts_liked.order_by(Post.created_at.desc()).all()
+        posts_count = len(posts)
 
-    return render_template('profile_likes.html', user = user, posts = posts)
+    return render_template('profile_likes.html', user = user, posts = posts, posts_count = posts_count)
 
 
 # needs fixing <handle>

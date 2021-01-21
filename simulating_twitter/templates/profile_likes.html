@@ -3,7 +3,7 @@
 <!-- overwrite the ones in layout_profile.html -->
 {% block title %}Chirps liked by {{ current_user.name }} (@h{{ current_user.handle }}){% endblock title %}
 {% block small %}
-<div class="text-gray-600 text-s font-normal">14 Likes</div>
+<div class="text-gray-600 text-s font-normal">{{ posts_count }} Likes</div>
 {% endblock small %}
 
 <!-- 4 tabs -->
