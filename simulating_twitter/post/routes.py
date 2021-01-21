@@ -77,10 +77,15 @@ def update_chirp(handle, post_id):
 @login_required
 def delete_chirp(handle, post_id):
     post = Post.query.get_or_404(post_id)
-    
+    users = post.liked_by.all()
+
     if post.author != current_user:
         abort(403)
-
+    
+    for user in users:
+        post.liked_by.remove(user)
+    db.session.commit()
+    
     db.session.delete(post)
     db.session.commit()
     flash('Your chirp was deleted', 'success')
