@@ -386,4 +386,51 @@
 {% endif %}
 
 {% endif %}
-{% endblock %}
+
+
+<!-- delete button scripts -->
+<script>
+    var openmodalDelete = document.querySelectorAll('.modal-delete-open')
+    for (var i = 0; i < openmodalDelete.length; i++) {
+        openmodalDelete[i].addEventListener('click', function (event) {
+            event.preventDefault()
+            toggleModalDelete()
+        })
+    }
+
+
+    const overlayDelete = document.querySelector('.modal-delete-overlay')
+    overlayDelete.addEventListener('click', toggleModalDelete)
+
+
+    var closemodalDelete = document.querySelectorAll('.modal-delete-close')
+    for (var i = 0; i < closemodalDelete.length; i++) {
+        closemodalDelete[i].addEventListener('click', toggleModalDelete)
+    }
+
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event
+        var isEscape = false
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc")
+        } else {
+            isEscape = (evt.keyCode === 27)
+        }
+        if (isEscape && document.body.classList.contains('modal-delete-active')) {
+            toggleModalDelete()
+        }
+    };
+
+
+    function toggleModalDelete() {
+        const body = document.querySelector('body')
+        const modalDelete = document.querySelector('.modal-delete')
+        modalDelete.classList.toggle('opacity-0')
+        modalDelete.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-delete-active')
+    }
+</script>
+<!-- scripts end -->
+
+{% endblock tabcontent %}
