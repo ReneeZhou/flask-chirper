@@ -171,7 +171,10 @@ class Post(db.Model, TimestampMixin):
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    op_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable = True)
+    comments = db.relationship('Post', backref = 'op', remote_side = [id], lazy = True)
     liked_by = db.relationship('User', secondary = 'liker', backref = 'post', lazy = 'dynamic')
+
 
     # return how many likes a post has
     @property
