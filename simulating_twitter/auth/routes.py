@@ -2,7 +2,6 @@ import datetime
 from secrets import token_urlsafe, randbits
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 from flask_login import current_user, login_user, logout_user, login_required
-from itsdangerous import NoneAlgorithm
 from simulating_twitter import db, bcrypt
 from simulating_twitter.models import User
 from simulating_twitter.auth.forms import LoginForm, PersonalInfoForm, ChirperTrackerForm, \
