@@ -137,10 +137,10 @@ def timeline():
 
 
 # i
-@main.route('/connect_people')
+@main.route('/connectPeople')
 @login_required
-def connect_people():
-    return render_template('connect_people.html')
+def connectPeople():
+    return render_template('connectPeople.html')
 
 
 # i
