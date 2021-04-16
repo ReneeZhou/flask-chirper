@@ -60,7 +60,7 @@ class RegistrationForm(FlaskForm):
 
 
 class VerifyCodeForm(FlaskForm):
-    code = StringField('Verification code', validators = [DataRequired(), Length(max = 200)])
+    code = StringField('Verification code', validators = [DataRequired(), Length(max = 220)])
     submit = SubmitField('Next')
 
 
