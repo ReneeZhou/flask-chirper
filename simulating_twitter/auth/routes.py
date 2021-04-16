@@ -172,3 +172,10 @@ def account_add():
 @login_required
 def account_switch():
     return render_template('account_switch.html')
+
+
+# from .forms import RegistrationForm1
+# @auth.route('/signup')
+# def signup():
+#     form = RegistrationForm1()
+#     return render_template('signup.html', form = form)
