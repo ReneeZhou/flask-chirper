@@ -67,11 +67,11 @@ class VerifyCodeForm(FlaskForm):
 class PasswordForm(FlaskForm):
     password = PasswordField('Password', validators = [DataRequired(), \
         Length(min = 8, message = 'Your password needs to be at least 8 characters. Please enter a long one.')])
-    confirm_password = PasswordField('Confirm Passrowd', validators = [DataRequired(), EqualTo('password', message = 'Passwords do not match.')])
+    confirm_password = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password', message = 'Passwords do not match.')])
     submit = SubmitField('Next')
 
 
-# class RegistrationForm(FlaskForm):
+# class RegistrationForm1(FlaskForm):
 #     name = StringField('Name', validators = [DataRequired(), Length(max = 50)])
 #     email = EmailField('Email', validators = [DataRequired(), Email()])
     
@@ -81,7 +81,7 @@ class PasswordForm(FlaskForm):
     
 #     password = PasswordField('Password', validators = [DataRequired(), \
 #         Length(min = 8, message = 'Your password needs to be at least 8 characters. Please enter a long one.')])
-#     confirm_password = PasswordField('Confirm Passrowd', validators = [DataRequired(), EqualTo('password')])
+#     confirm_password = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password')])
 #     submit = SubmitField('Sign Up')
 
 #     # create a custom validation
