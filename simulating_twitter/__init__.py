@@ -32,7 +32,8 @@ def create_app(config_class = Config):
 
     # default value during development
     # this will load instance/config.py
-    app.config.from_pyfile('config.py')
+    # app.config.from_pyfile('config.py')           #### temporarily disabled for Heroku deployment
+
 
     # app.config.from_object('config') 
     # overridden if this file exists in the instance folder
