@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from elasticsearch import Elasticsearch
+from flask_migrate import Migrate
 from simulating_twitter.config import Config
 
 
@@ -13,6 +13,7 @@ from simulating_twitter.config import Config
 # no application specific state is stored on the extension object
 # one extension object can be used for multiple apps
 db = SQLAlchemy()
+migrate = Migrate()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 # telling the extension where the login route is located when login_required
@@ -32,11 +33,13 @@ def create_app(config_class = Config):
     # default value during development
     # this will load instance/config.py
     app.config.from_pyfile('config.py')
+
     # app.config.from_object('config') 
     # overridden if this file exists in the instance folder
     app.config.from_object(Config)
     
     db.init_app(app)
+    migrate.init_app(app, db)
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
