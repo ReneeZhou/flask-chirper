@@ -1,4 +1,3 @@
-from instance.config import SQLALCHEMY_DATABASE_URI
 import os
 
 class Config:
