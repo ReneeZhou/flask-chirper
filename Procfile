@@ -1,1 +1,1 @@
-web: gunicorn simulating-twitter:run
+web: gunicorn run:app
