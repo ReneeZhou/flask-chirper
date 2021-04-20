@@ -146,12 +146,12 @@ postcss.config.js
 
 # ignore img
 simulating_twitter/site.db
-simulating_twitter/static/img/bird_fill.svg
-simulating_twitter/static/img/bird.svg
-simulating_twitter/static/img/bird_fill_blue.svg
-simulating_twitter/static/img/favicon.png
-simulating_twitter/static/img/email.svg
-simulating_twitter/static/img/ocean6.jpg
+# simulating_twitter/static/img/bird_fill.svg
+# simulating_twitter/static/img/bird.svg
+# simulating_twitter/static/img/bird_fill_blue.svg
+# simulating_twitter/static/img/favicon.png
+# simulating_twitter/static/img/email.svg
+# simulating_twitter/static/img/ocean6.jpg
 simulating_twitter/static/img/profile_pics/*
 simulating_twitter/static/img/background_pics/*
 
