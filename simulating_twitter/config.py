@@ -1,10 +1,18 @@
 import os
+import re
+
+
+# Fixing Heroku psql connection error using SQLAlchemy
+uri = os.getenv('DATABASE_URL')
+if uri.startwith('postgres://'):
+    uri = uri.replace('postgres://', 'postgresql://', 1)
+
 
 class Config:
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///site.db'
+    SQLALCHEMY_DATABASE_URI = uri or 'sqlite:///site.db'
     # SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
