@@ -28,7 +28,8 @@ mail = Mail()
 def create_app(config_class = Config):
 
     # instance_relative_config allows separation of private info
-    app = Flask(__name__, instance_relative_config = True)
+    # app = Flask(__name__, instance_relative_config = True)
+    app = Flask(__name__)
 
     # default value during development
     # this will load instance/config.py
