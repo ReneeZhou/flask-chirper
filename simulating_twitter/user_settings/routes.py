@@ -99,7 +99,7 @@ def settings_screenName():
             return redirect(url_for('user_settings.settings_yourChirperData_account'))
 
 
-    return render_template('settings_ScreenName.html', form = form)
+    return render_template('settings_screenName.html', form = form)
 
 
 @user_settings.route('/settings/account')
