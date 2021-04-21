@@ -1,7 +1,6 @@
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
-from sqlalchemy.dialects.mysql import BIGINT
 from flask_login import UserMixin
 from simulating_twitter import db, login_manager    # so we can use app's secret key in the serializer
 
@@ -37,7 +36,7 @@ class TimestampMixin:    # causing error if inherit from db.Model here
 
 class User(db.Model, UserMixin, TimestampMixin):
     created_at_ip = db.Column(db.String, nullable = False)
-    id = db.Column(db.BIGINT.__init__(unsigned = True), primary_key = True)
+    id = db.Column(db.Integer, primary_key = True)
     handle = db.Column(db.String(20), nullable = False, unique = True)          # handle
     name = db.Column(db.String(50), nullable = False)                           # profile name
     email = db.Column(db.String(120), nullable = False, unique = True)
