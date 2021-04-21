@@ -21,7 +21,9 @@ def upgrade():
     op.create_table('user',
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('created_at_ip', sa.String(), nullable=False),
-    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('id', sa.BigInteger(), nullable=False),
+    # change id field to BigInt for psql on heroku
+    # psql doesn't suppoer unsigned
     sa.Column('handle', sa.String(length=20), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
