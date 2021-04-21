@@ -3,9 +3,13 @@ import re
 
 
 # Fixing Heroku psql connection error using SQLAlchemy
+# wrapped in try statement for local dev
 uri = os.getenv('DATABASE_URL')
-if uri.startswith('postgres://'):
-    uri = uri.replace('postgres://', 'postgresql://', 1)
+try:
+    if uri.startswith('postgres://'):
+        uri = uri.replace('postgres://', 'postgresql://', 1)
+except AttributeError:
+    pass
 
 
 class Config:
