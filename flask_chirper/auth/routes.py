@@ -2,11 +2,11 @@ import datetime
 from secrets import token_urlsafe, randbits
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 from flask_login import current_user, login_user, logout_user, login_required
-from simulating_twitter import db, bcrypt
-from simulating_twitter.models import User
-from simulating_twitter.auth.forms import LoginForm, PersonalInfoForm, ChirperTrackerForm, \
+from flask_chirper import db, bcrypt
+from flask_chirper.models import User
+from flask_chirper.auth.forms import LoginForm, PersonalInfoForm, ChirperTrackerForm, \
     RegistrationForm, VerifyCodeForm, PasswordForm
-from simulating_twitter.auth.utils import send_verification_email, verify_verification_code
+from flask_chirper.auth.utils import send_verification_email, verify_verification_code
 
 
 auth = Blueprint('auth', __name__)

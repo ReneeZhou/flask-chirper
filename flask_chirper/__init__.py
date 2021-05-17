@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
-from simulating_twitter.config import Config
+from flask_chirper.config import Config
 
 
 # create the extension outside of the create_app()
@@ -45,17 +45,17 @@ def create_app(config_class = Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
-    # from simulating_twitter import routes
+    # from flask_chirper import routes
     # instead of importing routes registered with app (@app) like above
     # we are importing blueprint instances and register them with our routes
-    from simulating_twitter.account.routes import account
-    from simulating_twitter.auth.routes import auth
-    from simulating_twitter.error.handlers import error
-    from simulating_twitter.main.routes import main
-    from simulating_twitter.post.routes import post
-    from simulating_twitter.user.routes import user
-    from simulating_twitter.user_settings.routes import user_settings
-    from simulating_twitter.subdomain.routes import subdomain
+    from flask_chirper.account.routes import account
+    from flask_chirper.auth.routes import auth
+    from flask_chirper.error.handlers import error
+    from flask_chirper.main.routes import main
+    from flask_chirper.post.routes import post
+    from flask_chirper.user.routes import user
+    from flask_chirper.user_settings.routes import user_settings
+    from flask_chirper.subdomain.routes import subdomain
 
     app.register_blueprint(account)
     app.register_blueprint(auth)

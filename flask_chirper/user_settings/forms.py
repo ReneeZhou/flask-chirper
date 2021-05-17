@@ -8,7 +8,7 @@ from wtforms.fields.html5 import URLField, EmailField
 from wtforms.fields.simple import PasswordField
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from flask_login import current_user
-from simulating_twitter.models import User
+from flask_chirper.models import User
 
 
 

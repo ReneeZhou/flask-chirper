@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
-from simulating_twitter import db
-from simulating_twitter.models import User, Post, follower
+from flask_chirper import db
+from flask_chirper.models import User, Post, follower
 
 
 user = Blueprint('user', __name__)

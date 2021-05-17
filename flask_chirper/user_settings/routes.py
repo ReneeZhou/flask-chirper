@@ -4,12 +4,12 @@ from phonenumbers import carrier
 from phonenumbers.phonenumberutil import NumberParseException, number_type
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 from flask_login import login_required, current_user
-from simulating_twitter import db, bcrypt
-from simulating_twitter.models import User
-from simulating_twitter.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
+from flask_chirper import db, bcrypt
+from flask_chirper.models import User
+from flask_chirper.user_settings.forms import UpdateProfileForm, UpdateAccountForm, \
     UpdatePasswordForm, ConfirmPasswordForm, UpdateScreenNameForm, UpdatePhoneForm, \
     UpdateEmailForm
-from simulating_twitter.user_settings.utils import save_image
+from flask_chirper.user_settings.utils import save_image
 
 
 

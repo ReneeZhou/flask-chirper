@@ -1,9 +1,9 @@
 from secrets import randbits
 from flask import Blueprint, render_template, redirect, url_for, flash, request, abort
 from flask_login import login_required, current_user
-from simulating_twitter import db
-from simulating_twitter.models import Post
-from simulating_twitter.post.forms import PostForm
+from flask_chirper import db
+from flask_chirper.models import Post
+from flask_chirper.post.forms import PostForm
 
 
 post = Blueprint('post', __name__)

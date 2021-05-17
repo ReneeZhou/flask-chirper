@@ -5,7 +5,7 @@ from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.fields.core import BooleanField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from simulating_twitter.models import User
+from flask_chirper.models import User
 
 
 

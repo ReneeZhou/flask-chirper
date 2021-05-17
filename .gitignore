@@ -140,20 +140,20 @@ package-lock.json
 package.json
 tailwind.config.js
 tailwind_default.config.js
-simulating_twitter/static/main.css
+flask_chirper/static/main.css
 src/styles.css
 postcss.config.js
 
 # ignore img
-simulating_twitter/site.db
-# simulating_twitter/static/img/bird_fill.svg
-# simulating_twitter/static/img/bird.svg
-# simulating_twitter/static/img/bird_fill_blue.svg
-# simulating_twitter/static/img/favicon.png
-# simulating_twitter/static/img/email.svg
-# simulating_twitter/static/img/ocean6.jpg
-simulating_twitter/static/img/profile_pics/*
-simulating_twitter/static/img/background_pics/*
+flask_chirper/site.db
+# flask_chirper/static/img/bird_fill.svg
+# flask_chirper/static/img/bird.svg
+# flask_chirper/static/img/bird_fill_blue.svg
+# flask_chirper/static/img/favicon.png
+# flask_chirper/static/img/email.svg
+# flask_chirper/static/img/ocean6.jpg
+flask_chirper/static/img/profile_pics/*
+flask_chirper/static/img/background_pics/*
 
 # debug
 debug.py

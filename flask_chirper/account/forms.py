@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, RadioField, StringField, PasswordField, BooleanField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
-from simulating_twitter.models import User
+from flask_chirper.models import User
 
 
 class BeginPasswordResetForm(FlaskForm):

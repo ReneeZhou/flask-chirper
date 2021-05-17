@@ -1,5 +1,5 @@
 # this is the script to run our application
-from simulating_twitter import create_app
+from flask_chirper import create_app
 
 app = create_app()
 

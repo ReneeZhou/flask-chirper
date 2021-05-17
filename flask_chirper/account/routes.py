@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from flask_login import current_user
 from flask_login.utils import login_user
-from simulating_twitter import db, bcrypt
-from simulating_twitter.models import User
-from simulating_twitter.account.forms import BeginPasswordResetForm, SendPasswordResetForm, \
+from flask_chirper import db, bcrypt
+from flask_chirper.models import User
+from flask_chirper.account.forms import BeginPasswordResetForm, SendPasswordResetForm, \
     ConfirmPinResetForm, ResetPasswordForm, PasswordResetSurveyForm
-from simulating_twitter.account.utils import send_pin_email
+from flask_chirper.account.utils import send_pin_email
 
 
 account = Blueprint('account', __name__)

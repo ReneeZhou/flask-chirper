@@ -3,10 +3,10 @@ from datetime import datetime
 from flask import render_template, redirect, url_for
 from flask.blueprints import Blueprint
 from flask_login import current_user, login_required
-from simulating_twitter import db
-from simulating_twitter.models import User, Post, follower, Message
-from simulating_twitter.main.forms import MessageForm
-from simulating_twitter.post.forms import PostForm
+from flask_chirper import db
+from flask_chirper.models import User, Post, follower, Message
+from flask_chirper.main.forms import MessageForm
+from flask_chirper.post.forms import PostForm
 
 
 main = Blueprint('main', __name__)

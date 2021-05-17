@@ -1,7 +1,7 @@
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import render_template, current_app
 from flask_mail import Message
-from simulating_twitter import mail
+from flask_chirper import mail
 
 
 

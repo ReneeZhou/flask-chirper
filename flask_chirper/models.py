@@ -2,7 +2,7 @@ from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
 from flask_login import UserMixin
-from simulating_twitter import db, login_manager    # so we can use app's secret key in the serializer
+from flask_chirper import db, login_manager    # so we can use app's secret key in the serializer
 
 
 # this func reloads user from the user id stored in the session
