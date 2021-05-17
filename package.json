@@ -1,0 +1,29 @@
+{
+  "name": "flask-chirper",
+  "version": "1.0.0",
+  "description": "A web app using flask to simulate twitter",
+  "main": "postcss.config.js",
+  "scripts": {
+    "build": "postcss src/styles.css -o flask_chirper/static/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReneeZhou/flask-chirper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReneeZhou/flask-chirper/issues"
+  },
+  "homepage": "https://github.com/ReneeZhou/flask-chirper#readme",
+  "dependencies": {
+    "autoprefixer": "^10.0.1",
+    "postcss-cli": "^8.1.0",
+    "tailwindcss": "^1.9.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "postcss": "^8.1.2"
+  }
+}

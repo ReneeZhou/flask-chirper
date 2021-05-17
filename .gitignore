@@ -136,13 +136,13 @@ dmypy.json
 
 # tailwind
 node_modules/
-package-lock.json
-package.json
-tailwind.config.js
+# package-lock.json
+# package.json
+# postcss.config.js
+# tailwind.config.js
 tailwind_default.config.js
 flask_chirper/static/main.css
 src/styles.css
-postcss.config.js
 
 # ignore img
 flask_chirper/site.db
