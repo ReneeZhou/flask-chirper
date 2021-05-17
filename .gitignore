@@ -142,7 +142,7 @@ node_modules/
 # tailwind.config.js
 tailwind_default.config.js
 flask_chirper/static/main.css
-src/styles.css
+# src/styles.css
 
 # ignore img
 flask_chirper/site.db
