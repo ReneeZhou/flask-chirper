@@ -21,3 +21,8 @@ A simulated Twitter web app using Flask framework
 ### Notes:
 
 Currently can log in via only `email`
+
+*****
+
+### Database Diagram: 
+![database-diagram](https://github.com/ReneeZhou/flask-chirper/blob/main/db-diagram.png)
